@@ -1,0 +1,191 @@
+#wrap img {
+    width: 100%; height: 100%;
+}
+.container {
+    width: 100%;
+    background-color: #222;
+    padding-bottom: 200px;
+    color: #fff;
+}
+.content1 {
+    max-width: 1400px;
+    overflow: hidden;
+    margin: 0 auto;
+    padding-top: 100px;
+    position: relative;
+}
+.detail_poster {
+    width: 400px;
+    height: 600px;
+    float: left;
+}
+.detail_content {
+    float: left;
+    padding: 0 30px;
+}
+.movie_title {
+    font-size: 50px;
+    float: left;
+}
+.movie_year {
+    float: left;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+.movie_country {
+    margin-top: 100px;
+}
+.movie_genre, .movie_ott {
+    font-size: 20px;
+    margin-top: 10px;
+}
+.star_icon {
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+.avg_box {
+    margin-top: 20px;
+    overflow: hidden;
+}
+.movie_avg {
+    float: left;
+    margin-left: 10px;
+    font-size: 24px;
+}
+.best_review_box {
+    width: 970px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+.best_title {
+    float: left;
+    font-size: 23px;
+    margin-right: 10px;
+}
+.best_icon {
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+.best_box {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    gap: 20px;
+    padding-top: 20px;
+}
+.best {
+    width: calc(100% / 3);
+    background-color: aliceblue;
+    border-radius: 20px;
+    color: #000;
+    padding: 15px;
+}
+.best_review_id {
+    float: left;
+}
+.star_icon_best {
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin: 0 10px;
+}
+.best_review_txt {
+    height: 150px;
+    padding: 10px 0;
+}
+.click_box {
+    float: right;
+}
+.click_box1 { 
+    float: left; 
+    width: 120px;
+}
+.click_icon {
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    filter: opacity(0.5) drop-shadow(0 0 0 #fff);
+    margin: 0 auto;
+}
+.click_menu {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.content2 {
+    max-width: 1400px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.title_txt {
+    font-size: 25px;
+    margin: 40px 0 15px;
+}
+.actor_box1 {
+    width: 100px;
+}
+.photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+.photo_name {
+    text-align: center;
+    padding: 10px 0;
+}
+.preview {
+    max-width: 1400px;
+    height: 800px;
+    background-color: #fff;
+}
+.review_list_box {
+    padding: 10px 0;
+    color: lightgray;
+}
+.list_line {
+    width: 100%;
+    height: 1px;
+    background: #d3d3d333;
+    margin: 20px 0 10px;
+}
+.review_title_box { overflow: hidden;}
+.select_r {
+    float: right;
+    outline: none;
+}
+.nickname {
+    float: left;
+    margin-right: 30px;
+    font-size: 20px;
+}
+.star_icon1 {
+    width: 25px;
+    height: 25px;
+    float: left;
+}
+.movie_avg1 {
+    float: left;
+    margin-left: 10px;
+    font-size: 20px;
+}
+.write_date {
+    float: right;
+}
+.review_content {
+    margin: 20px 0;
+}
+.like_box {
+    float: right;
+}
+.like_icon, .like_bin {
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin-right: 10px;
+}
+.like_cnt {float: left;}

@@ -1,0 +1,50 @@
+.container {
+    width: 100%;
+    overflow: hidden;
+    background-color: #222;
+    padding: 100px 0 300px;
+    color: #fff;
+}
+.title {
+    font-size: 30px;
+    text-align: center;
+    padding: 30px 0;
+}
+.login_form {
+    width: 500px;
+    margin: 0 auto;
+}
+.login_input {
+    border: none;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-top: 10px;
+    outline: none;
+}
+hr {
+    margin: 20px 0px 10px;
+    background: gray;
+    height: 1px;
+    border: none;
+}
+.id_search_box {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    font-size: 12px;
+    color: gray;
+    padding: 5px;
+}
+.id_search { 
+    cursor: pointer;
+    font-weight: 900;
+}
+.h_line {
+    width: 1px;
+    height: 10px;
+    background: lightgray;
+    margin-top: 3px;
+}
