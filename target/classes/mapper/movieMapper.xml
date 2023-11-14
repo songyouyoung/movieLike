@@ -8,20 +8,24 @@
     <select id="selectKeyword" parameterType="movieDto" resultType="movieDto">
         select * from movies
             where true
-        <choose>
-            <when test="ottName == '' or ottName == null">
-                and ottName = #{ottName}
-            </when>
-            <when test="genrName == '' or genrName == null">
-                and genrName = #{genrName}
-            </when>
-            <when test="movScoreCount == '' or movScoreCount == null">
-                and movScoreCount = #{movScoreCount}
-            </when>
-            <when test="movScore == '' or movScore == null">
-                and movScore = #{movScore}
-            </when>
-        </choose>
+            <if test="ottName != '' and ottName != null">
+                and ottName
+<!--                    in <foreach item="item" index="index" collection="ottName.split(',')" open="(" separator="," close=")"> '${item}'</foreach>-->
+                        REGEXP #{ottName}
+
+            </if>
+            <if test="genrName != '' and genrName != null">
+                and genrName
+<!--                in <foreach item="item" index="index" collection="genrName.split(',')" open="(" separator="," close=")"> '${item}'</foreach>-->
+                REGEXP #{genrName}
+
+            </if>
+            <if test="movScoreCount != '' and movScoreCount != null">
+                and movScoreCount >= #{movScoreCount}
+            </if>
+            <if test="movScore != '' and movScore != null">
+                and movScore >= #{movScore}
+            </if>
     </select>
 </mapper>
 

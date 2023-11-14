@@ -10,10 +10,10 @@ $(document).ready(function(){
             let value = tag.eq(i).data("key").split("/");
             switch (value[0]){
                 case "genr":
-                    genr += value[1] + ",";
+                    genr += value[1] + "|";
                     break;
                 case "ott":
-                    ott += value[1] + ",";
+                    ott += value[1] + "|";
                     break;
                 case "review":
                     review = review == 0 ? value[1] : (review > value[1] ? value[1] : review);
