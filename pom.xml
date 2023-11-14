@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.movielike</groupId>
 	<artifactId>app</artifactId>
-	<name>homepage</name>
+	<name>movieLike</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>

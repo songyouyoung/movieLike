@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,14 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <link rel="stylesheet" href="./css/common.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/keyword_page.css">
+    <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
+    <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
+    <link rel="stylesheet" href="<c:url value='/css/keyword_page.css'/> ">
 </head>
 <body>
     <div id="wrap">
         <header class="header">
-            <div class="logo"><a href=""><img src="./img/logo.png" alt="로고 이미지"></a></div>
+            <div class="logo"><a href="/"><img src="<c:url value='/img/logo.png'/>" alt="로고 이미지"></a></div>
             <div class="h_left left_50"><a href="">영화 전체보기</a></div>
             <div class="h_left"><a href="./Movie_Like_find.html">차트</a></div>
             <div class="h_left"><a href="">키워드 찾기</a></div>
@@ -63,12 +65,12 @@
                     </td>
                 </tr>
                 <tr class="m_tr">
-                    <th class="m_th">별점</th>
+                    <th class="m_th">평점</th>
                     <td class="m_td">
                         <div class="m_tdList">
-                            <span class="m_tdItem">5점대</span>
-                            <span class="m_tdItem">4점대</span>
-                            <span class="m_tdItem">3점대</span>
+                            <span class="m_tdItem">5점이상</span>
+                            <span class="m_tdItem">4점이상</span>
+                            <span class="m_tdItem">3점이상</span>
                         </div>
                     </td>
                 </tr>
@@ -77,18 +79,15 @@
             <div class="m_tagBox">
                 <!-- chk:: javascript에서 값 불러올 예정 -->
                 <!-- <div class="m_tagList"><span class="m_tagItem"></span></div> -->
-                <div class="m_tagList"><span class="m_tagItem">#액션</span><span class="m_tagItem">#리뷰 리뷰 500개 이상</span></div>
+                <div class="m_tagList"><span class="m_tagItem" data-key="genr/액션">#액션</span><span class="m_tagItem" data-key="review/500">#리뷰 500개 이상</span></div>
             </div>
             
             <div class="m_mvBox">
                 <!-- chk:: javascript에서 값 불러올 예정 -->
-                
-                
-                
             </div>
             
         </main>
     </div>
-    <script src="./js/keyword.js"></script>
+    <script src="<c:url value='/js/keyword.js'/> "></script>
 </body>
 </html>

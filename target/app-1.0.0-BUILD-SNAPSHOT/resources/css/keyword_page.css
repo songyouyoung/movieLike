@@ -100,6 +100,11 @@
     margin-left: 10px;
     font-size: 24px;
 }
+.movie_avg_cnt {
+    float: left;
+    margin: 10px;
+    color: #777;
+}
 .m_mvList {
     width: calc(100% / 2);
     overflow: hidden;

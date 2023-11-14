@@ -11,8 +11,12 @@
     padding: 30px 0;
 }
 .login_form {
-    width: 500px;
+    width: 400px;
     margin: 0 auto;
+    border: 1px solid;
+    border-radius: 30px;
+    padding: 20px;
+    overflow: hidden;
 }
 .login_input {
     border: none;
@@ -30,18 +34,23 @@ hr {
     height: 1px;
     border: none;
 }
+.id_search_box, .remember_id {
+    font-size: 12px;
+    color: gray;
+    padding: 5px;
+    float: left;
+    cursor: pointer;
+    font-weight: 900;
+}
+.id_search_box {
+    float: right;
+}
 .id_search_box {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-    font-size: 12px;
-    color: gray;
-    padding: 5px;
 }
-.id_search { 
-    cursor: pointer;
-    font-weight: 900;
-}
+
 .h_line {
     width: 1px;
     height: 10px;
