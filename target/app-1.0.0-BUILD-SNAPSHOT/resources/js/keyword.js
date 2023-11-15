@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $(".m_tdItem").click(function(){
+    $(".m_tdItem, .m_tagItem").click(function(){
         let genr="";
         let ott="";
         let review= 0;
@@ -36,31 +36,44 @@ $(document).ready(function(){
             data : JSON.stringify(keyword),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
             success : function(result){
                 keyword2 = JSON.parse(result);    // 서버로부터 응답이 도착하면 호출될 함수
-                alert("received="+result);       // result는 서버가 전송한 데이터
+                console.log("received="+result);       // result는 서버가 전송한 데이터
                 $(".m_mvBox").html(toHtml(result));
             },
             error : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
         }); // $.ajax()
     });
+    var c_path = (location.pathname).split("/")[1];
+    console.log("c_path : " + c_path);
     let toHtml = function(movieList) {
         let keywordList ="";
+        movieList = JSON.parse(movieList);
+
         movieList.forEach(function(movie) {
-            keywordList = `<div class="m_mvList">
-                                <div class="m_mvPoster"><img src=${comment.movPosterPath} alt=""></div>
+            let dt = new Date(movie.movReleaseDate);
+            let year = dt.getFullYear();
+            let month = dt.getMonth()+1 < 10 ? "0" + dt.getMonth()+1 : dt.getMonth()+1;
+            let date = dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate();
+
+            keywordList += `<div class="m_mvList">
+                                <div class="m_mvPoster"><img src=${movie.movPosterPath} alt=""></div>
                                 <div class="m_mvDesc">
-                                    <div class="m_mvTitle">${comment.movName}</div>
-                                    <div class="m_mvTitleEng">${comment.movNameEng}</div>
-                                    <div class="m_mvDate">${comment.movReleaseDate}</div>
+                                    <div class="m_mvTitle">${movie.movName}</div>
+                                    <div class="m_mvTitleEng">${movie.movNameEng}</div>
+<!--                                    <div class="m_mvDate">${movie.movReleaseDate}</div>-->
+                                    <div class="m_mvDate">${year}-${month}-${date}</div>
                                     <div class="m_mvDescBox">
-                                        <span class="m_mvDir">${comment.dirId}</span><span class="m_mvCountry">${comment.movCountry}</span>
+                                        <span class="m_mvDir">${movie.dirId}</span><span class="m_mvCountry">${movie.movCountry}</span>
                                     </div>
                                     <div class="m_mvDescBox">
-                                        <span class="m_mvGen">${comment.genrName}</span><span class="m_mvTime">${comment.movRunTime}</span>
+                                        <span class="m_mvGen">${movie.genrName}</span><span class="m_mvTime">${movie.movRunTime}분</span>
+                                    </div>
+                                    <div class="m_mvOttBox">
+                                        <span class="m_mvOtt"><img src= "/${c_path}/img/nficon2023.ico" alt="${movie.ottName}">${movie.ottName}</span>
                                     </div>
                                     <div class="avg_box">
-                                        <div class="star_icon"><img src="./img/star.png" alt="★"></div>
-                                        <div class="movie_avg">${comment.movScore}</div>
-                                        <div class="movie_avg_cnt">( ${comment.movScoreCount.toLocaleString("ko")} )</div>
+                                        <div class="star_icon"><img src= "/${c_path}/img/star.png" alt="★"></div>
+                                        <div class="movie_avg">${movie.movScore}</div>
+                                        <div class="movie_avg_cnt">( ${(movie.movScoreCount).toLocaleString("ko")} )</div>
                                     </div>
                                 </div>
                             </div>`;

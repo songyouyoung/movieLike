@@ -17,7 +17,7 @@ public class MovieDaoTest {
 
     @Test
     public void selectKeyword() {
-        MovieDto movieDto = new MovieDto(4, 200, "", "액션|드라마");
+        MovieDto movieDto = new MovieDto(0, 500, "", "액션|");
         System.out.println("ottName : " + movieDto.getOttName());
         System.out.println("genrName : " + movieDto.getGenrName());
         System.out.println("movScoreCount : " + movieDto.getMovScoreCount());

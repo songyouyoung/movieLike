@@ -1,5 +1,7 @@
 package com.movielike.app.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Date;
@@ -9,6 +11,8 @@ public class MovieDto {
     private String movName;
     private String movNameEng;//협의 전 컬럼
     private String movDesc;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date movReleaseDate;
     private int movRunTime;
     private int movSearchCnt;
@@ -37,7 +41,6 @@ public class MovieDto {
     }
 
     public MovieDto(double movScore, int movScoreCount, String ottName, String genrName){
-        System.out.println("her?");
         this.movScore = movScore;
         this.movScoreCount = movScoreCount;
         this.ottName = ottName;
