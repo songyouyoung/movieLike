@@ -9,16 +9,10 @@
         select * from movies
             where true
             <if test="ottName != '' and ottName != null">
-                and ottName
-<!--                    in <foreach item="item" index="index" collection="ottName.split(',')" open="(" separator="," close=")"> '${item}'</foreach>-->
-                        REGEXP #{ottName}
-
+                and ottName REGEXP #{ottName}
             </if>
             <if test="genrName != '' and genrName != null">
-                and genrName
-<!--                in <foreach item="item" index="index" collection="genrName.split(',')" open="(" separator="," close=")"> '${item}'</foreach>-->
-                REGEXP #{genrName}
-
+                and genrName REGEXP #{genrName}
             </if>
             <if test="movScoreCount != '' and movScoreCount != null">
                 and movScoreCount >= #{movScoreCount}
@@ -26,6 +20,32 @@
             <if test="movScore != '' and movScore != null">
                 and movScore >= #{movScore}
             </if>
+    </select>
+
+<!-- 메인페이지 검색바로 검색 - 영화이름 -->
+    <select id="selectSearchMov" parameterType="movieDto" resultType="movieDto">
+        select * from movies where true
+            <choose>
+                <when test="movName != '' and movName != null">
+                    and movName like concat('%,', #{movName}, ',%')
+                </when>
+                <when test="dirId != '' and dirId != null">
+                    or (dirId = #{dirId}
+                        or dirId like concat('%,', #{dirId}, ',%')
+                        or dirId like concat('%,', #{dirId})
+                        or dirId like concat(#{dirId}, ',%'))
+                </when>
+                <when test="actId != '' and actId != null">
+                    or (actId = #{actId}
+                        or actId like concat('%,', #{actId}, ',%')
+                        or actId like concat('%,', #{actId})
+                        or actId like concat(#{actId}, ',%'))
+                </when>
+            </choose>
+    </select>
+<!--    관계자 ID 가져오기-->
+    <select id="selectActName" parameterType="String" resultType="map">
+        select personName from relatedperson where personName like concat('%', #{personName}, '%')
     </select>
 </mapper>
 

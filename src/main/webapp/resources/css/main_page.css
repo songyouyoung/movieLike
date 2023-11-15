@@ -162,8 +162,10 @@
     float: left;
 }
 .review_txt {
-    padding: 10px 0;
+    margin: 10px 0;
     height: 170px;
+    overflow: auto;
+    text-overflow: ellipsis;
 }
 .like_box {
     float: right;

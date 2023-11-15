@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +18,7 @@
             <div class="logo"><a href="#"><img src="./img/logo.png" alt="로고 이미지"></a></div>
             <div class="h_left left_50"><a href="">영화 전체보기</a></div>
             <div class="h_left"><a href="./Movie_Like_find.html">차트</a></div>
-            <div class="h_left"><a href="<c:url value='/find/keyword'/>">키워드 찾기</a></div>
+            <div class="h_left"><a href="">키워드 찾기</a></div>
             <div class="h_right">
                 <div class="login"><a href="">로그인</a></div>
                 <div class="line"></div>

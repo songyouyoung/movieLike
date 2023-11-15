@@ -23,5 +23,5 @@
 
 	<context:component-scan base-package="com.movielike.app" />
 
-	<view-controller path="/" view-name="Movie_Like_Main" />
+	<view-controller path="/" view-name="index" />
 </beans:beans>
