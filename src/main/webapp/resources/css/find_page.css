@@ -53,12 +53,15 @@
 .content_list {
     background-color: #fff;
     border-radius: 20px;
+    position: relative;
+    overflow: hidden;
 }
 .content_list4 {
     width: calc(100% / 4);
 }
 .content_list5 {
     width: calc(100% / 5);
+    position: relative;
 }
 .content_list6 {
     width: calc(100% / 6);
@@ -85,4 +88,41 @@
 }
 .next_btn {
     right: -30px;
+}
+
+.action_movie {
+    width: 100%;
+    height: 100%;
+    background: url(../img/action_movie.png) no-repeat center / cover;
+}
+.content_list_title {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    transform: translateY(-50%);
+    font-size: 25px;
+    padding: 20px 0;
+    background: #ffffffa3;
+}
+.korea_movie {
+    width: 100%;
+    height: 100%;
+    background: url(../img/korea.png) no-repeat center / cover;
+}
+.america_movie {
+    width: 100%;
+    height: 100%;
+    background: url(../img/america.png) no-repeat center / cover;
+}
+.uk_movie {
+    width: 100%;
+    height: 100%;
+    background: url(../img/uk.png) no-repeat center / cover;
+}
+.japan_movie {
+    width: 100%;
+    height: 100%;
+    background: url(../img/japan.png) no-repeat center / cover;
 }

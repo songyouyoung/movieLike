@@ -9,40 +9,36 @@ import java.util.Date;
 public class MovieDto {
     private int movId;
     private String movName;
-    private String movNameEng;//협의 전 컬럼
+    private String movNameEng;
     private String movDesc;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date movReleaseDate;
-    private int movRunTime;
+    private Date movDate;
+    private int movTime;
     private int movSearchCnt;
-    private String movPosterPath;
+    private String movPoster;
     private String movTrailer;
 
-//    아래 영어 이름, 나라, 평점, ott, 장르, 감독/배우는 아직 합의 전
-    private String movCountry;
     private double movScore;
-    private int movScoreCount;
-    private String ottName;
-    private String genrName;
-    private String dirId;
-    private String actId;
+    private int movScoreCnt;
+    private String cName; //movie Table에 없음. 나라이름.
+    private String ottName; //movie Table에 없음. ott이름.
+    private String genrName; //movie Table에 없음. 장르이름.
+    private String dirName; //movie Table에 없음. 감독이름.
+    private String actName; //movie Table에 없음. 배우이름.
+    
 
     public MovieDto() {
     }
 
-    public MovieDto(int movSearchCnt) {
-        this.movSearchCnt = movSearchCnt;
+    public MovieDto(double movScore, int movScoreCnt) {
+        this.movScore = movScore;
+        this.movScoreCnt = movScoreCnt;
     }
 
-    public MovieDto(double movScore, int movScoreCount) {
+    public MovieDto(double movScore, int movScoreCnt, String ottName, String genrName){
         this.movScore = movScore;
-        this.movScoreCount = movScoreCount;
-    }
-
-    public MovieDto(double movScore, int movScoreCount, String ottName, String genrName){
-        this.movScore = movScore;
-        this.movScoreCount = movScoreCount;
+        this.movScoreCnt = movScoreCnt;
         this.ottName = ottName;
         this.genrName = genrName;
     }
@@ -79,20 +75,20 @@ public class MovieDto {
         this.movDesc = movDesc;
     }
 
-    public Date getMovReleaseDate() {
-        return movReleaseDate;
+    public Date getMovDate() {
+        return movDate;
     }
 
-    public void setMovReleaseDate(Date movReleaseDate) {
-        this.movReleaseDate = movReleaseDate;
+    public void setMovDate(Date movDate) {
+        this.movDate = movDate;
     }
 
-    public int getMovRunTime() {
-        return movRunTime;
+    public int getMovTime() {
+        return movTime;
     }
 
-    public void setMovRunTime(int movRunTime) {
-        this.movRunTime = movRunTime;
+    public void setMovTime(int movTime) {
+        this.movTime = movTime;
     }
 
     public int getMovSearchCnt() {
@@ -103,12 +99,12 @@ public class MovieDto {
         this.movSearchCnt = movSearchCnt;
     }
 
-    public String getMovPosterPath() {
-        return movPosterPath;
+    public String getMovPoster() {
+        return movPoster;
     }
 
-    public void setMovPosterPath(String movPosterPath) {
-        this.movPosterPath = movPosterPath;
+    public void setMovPoster(String movPoster) {
+        this.movPoster = movPoster;
     }
 
     public String getMovTrailer() {
@@ -119,12 +115,12 @@ public class MovieDto {
         this.movTrailer = movTrailer;
     }
 
-    public String getMovCountry() {
-        return movCountry;
+    public String getCName() {
+        return cName;
     }
 
-    public void setMovCountry(String movCountry) {
-        this.movCountry = movCountry;
+    public void setCName(String cName) {
+        this.cName = cName;
     }
 
     public double getMovScore() {
@@ -135,12 +131,12 @@ public class MovieDto {
         this.movScore = movScore;
     }
 
-    public int getMovScoreCount() {
-        return movScoreCount;
+    public int getMovScoreCnt() {
+        return movScoreCnt;
     }
 
-    public void setMovScoreCount(int movScoreCount) {
-        this.movScoreCount = movScoreCount;
+    public void setMovScoreCnt(int movScoreCnt) {
+        this.movScoreCnt = movScoreCnt;
     }
 
     public String getOttName() {
@@ -160,20 +156,12 @@ public class MovieDto {
         this.genrName = genrName;
     }
 
-    public String getDirId() {
-        return dirId;
+    public String getDirName() {
+        return dirName;
     }
 
-    public void setDirId(String dirId) {
-        this.dirId = dirId;
-    }
-
-    public String getActId() {
-        return actId;
-    }
-
-    public void setActId(String actId) {
-        this.actId = actId;
+    public void setDirName(String dirName) {
+        this.dirName = dirName;
     }
 
     @Override
@@ -183,18 +171,18 @@ public class MovieDto {
                 ", movName='" + movName + '\'' +
                 ", movNameEng='" + movNameEng + '\'' +
                 ", movDesc='" + movDesc + '\'' +
-                ", movReleaseDate=" + movReleaseDate +
-                ", movRunTime=" + movRunTime +
+                ", movDate=" + movDate +
+                ", movTime=" + movTime +
                 ", movSearchCnt=" + movSearchCnt +
-                ", movPosterPath='" + movPosterPath + '\'' +
+                ", movPoster='" + movPoster + '\'' +
                 ", movTrailer='" + movTrailer + '\'' +
-                ", movCountry='" + movCountry + '\'' +
+                ", cName='" + cName + '\'' +
                 ", movScore=" + movScore +
-                ", movScoreCount=" + movScoreCount +
+                ", movScoreCnt=" + movScoreCnt +
                 ", ottName='" + ottName + '\'' +
                 ", genrName='" + genrName + '\'' +
-                ", dirId='" + dirId + '\'' +
-                ", actId='" + actId + '\'' +
+                ", dirName='" + dirName + '\'' +
+                ", actName='" + actName + '\'' +
                 '}';
     }
 }

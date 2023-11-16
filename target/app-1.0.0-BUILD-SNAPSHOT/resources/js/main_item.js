@@ -1,17 +1,3 @@
-function poster_content_best() {
-    for(let i=0; i<5; i++) {
-
-        let best_poster_item = `<div class="ranking_poster">
-                                    <img src="./img/poster.jpg" alt="">
-                                    <div class="ranking">${i+1}</div>
-                                </div>`
-
-        $(best_poster_item).appendTo('.ranking_poster_box')
-    }
-}
-
-poster_content_best();
-
 function poster_content6() {
     for(let i=0; i<6; i++) {
 
@@ -22,7 +8,6 @@ function poster_content6() {
         $(poster_item).appendTo('.poster_box')
     }
 }
-
 poster_content6();
 
 function review_content() {
@@ -38,3 +23,75 @@ function review_content() {
     $(review_item).appendTo('.review')
 }
 review_content();
+
+// 순위(스와이퍼) 
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 5, // 칸 수
+    spaceBetween: 70,
+    // freeMode: true,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+     // Navigation arrows
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    loop: false,
+    direction: 'horizontal', //horizontal,vertical 배치 방향
+    effect: 'slide' // 'slide', 'fade', 'cube', 'coverflow', 'flip' or 'creative'
+});
+
+
+// 메인베너
+var idx_lgth = $(".main_banner>div").length;
+var srt = 1;
+var idx = 0;
+
+$("section>a").click(function(){
+    idx = $(this).index();
+    srt = idx;
+    $(this).addClass('on').siblings().removeClass('on');
+    $(".main_banner>div").eq(idx).addClass('on').siblings().removeClass('on');
+});
+
+var AutoSlide = setInterval(AutoRun, 2000);
+
+function AutoRun(){
+  
+    if(srt == idx_lgth){
+        srt = 0;  
+    }
+    $("section>a").eq(srt).addClass('on').siblings().removeClass('on');
+    $(".main_banner>div").eq(srt).addClass('on').siblings().removeClass('on');
+    srt++;  
+}
+
+$(".main_banner").mouseover(function(){
+    clearInterval(AutoSlide);
+    $(".right_btn").css({opacity : '1'});
+    $(".left_btn").css({opacity : '1'});
+});
+$(".main_banner").mouseleave(function(){
+    AutoSlide = setInterval(AutoRun, 2000);
+    $(".right_btn").css({opacity : '0'});
+    $(".left_btn").css({opacity : '0'});
+});
+
+$(".right_btn").click(function(){
+    srt++;
+    if(srt == idx_lgth){
+        srt = 0;   
+    } 
+    $(".main_banner>div").eq(srt).addClass('on').siblings().removeClass('on'); $("section>a").eq(srt).addClass('on').siblings().removeClass('on');
+});
+
+$(".left_btn").click(function(){
+    srt--;
+    if(srt == -1){
+        srt = idx_lgth-1; 
+    }
+    $(".main_banner>div").eq(srt).addClass('on').siblings().removeClass('on');
+    $("section>a").eq(srt).addClass('on').siblings().removeClass('on'); 
+});

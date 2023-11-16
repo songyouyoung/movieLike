@@ -7,7 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movie Like</title>
+    <link rel="icon" href="./img/favicon.ico">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
     <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
@@ -85,6 +86,9 @@
             
             <div class="m_mvBox">
                 <!-- chk:: javascript에서 값 불러올 예정 -->
+                
+                
+                
             </div>
             
         </main>

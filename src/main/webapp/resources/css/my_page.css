@@ -1,0 +1,264 @@
+#wrap img {
+    width: 100%; height: 100%;
+}
+.container {
+    width: 100%;
+    overflow: hidden;
+    background-color: #222;
+    padding-bottom: 200px;
+    color: #fff;
+}
+.content {
+    width: 700px;
+    margin: 60px auto;
+    background: #333333;
+    padding: 20px;
+    position: relative;
+}
+.genre {
+    border: none;
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 5px 10px;
+}
+.nickname_txt {
+    font-size: 25px;
+    padding: 10px 0;
+}
+.update_icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;    
+    margin: 20px;
+    padding-bottom: 20px;
+}
+.my_change_btn, .my_end_btn {
+    width: 130px;
+    text-align: center;
+    background: #A785EF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    transform: translateX(-140px);
+    opacity: 0;
+}
+.update_icon:hover .my_change_btn, 
+.update_icon:hover .my_end_btn {
+    opacity: 1;
+}
+.btn_box {
+    width: 400px;
+    height: 120px;
+    display: flex;
+    gap: 20px;
+    margin: 50px auto;
+}
+.btn_each_box {
+    width: calc(100% / 3);
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding: 10px;
+}
+.my_review_cnt, .my_watched_cnt, .my_like_cnt {
+    font-size: 40px;
+    text-align: center;
+    margin-top: 10px;
+}
+.my_txt {
+    text-align: center;
+    margin-top: 15px;
+}
+.chart_box {
+    height: 350px;
+    color: #ffffff;
+    padding: 20px 10px;
+    background: #555;
+}
+.chart_title {
+    text-align: center;
+    padding: 30px;
+}
+
+
+
+.blind{
+    position:absolute;
+    clip:rect(0 0 0 0);
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    }
+    .vertical_chart_box{
+    position:relative;
+    width: 500px;
+    margin: 0 auto;
+    .chart_box{
+        position:relative;
+        margin-bottom:45px;
+        padding-left:20px;
+        box-sizing:border-box;
+        height:200px;
+    }
+    /* .axis_y{
+        display:-webkit-flex;
+        display:-ms-flex;
+        display:-o-flex;
+        display:flex;
+        flex-direction:column-reverse;
+        align-items:center;
+        justify-content:space-between;
+        position:absolute;
+        top:0;
+        left:0;
+        margin:0;
+        padding:0;
+        width:20px;
+        height:100%;
+        font-size:12px;
+        color:#fff;
+        &:before{
+        content:'';
+        position:absolute;
+        top:5px;
+        bottom:0;
+        right:0;
+        width:1px;
+        background:#d3d3d3;
+        }
+    } */
+    .axis_x{
+        display:-webkit-flex;
+        display:-ms-flex;
+        display:-o-flex;
+        display:flex;
+        justify-content:center;
+        position:relative;
+        padding:0;
+        box-sizing:border-box;
+        height:100%;
+        border-bottom:1px solid #d3d3d3;
+        .item{
+        flex:1;
+        position:relative;
+        .text_box{
+            position:absolute;
+            bottom:-43px;
+            left:50%;
+            text-align:center;
+            -webkit-transform:translate(-50%,0);
+            -ms-transform:translate(-50%,0);
+            -o-transform:translate(-50%,0);
+            transform:translate(-50%,0);
+            .rating{
+            display:block;
+            font-size:12px;
+            line-height:19px;
+            color:#fff;
+            }
+        }
+        }
+        .graph{
+        display:-webkit-flex;
+        display:-ms-flex;
+        display:-o-flex;
+        display:flex;
+        flex-direction:column-reverse;
+        position:relative;
+        margin:0 auto;
+        padding:0;
+        width:35px;
+        height:100%;
+        background:#e8e8e8;
+        border-radius:3px 3px 0 0;
+        overflow:hidden;
+        .time{
+            display:block;
+            position:relative;
+            margin-bottom:-4px;
+            padding-top:4px;
+            box-sizing:content-box;
+            width:100%;
+            border-radius:3px 3px 0 0;
+            &.data{
+            background:#A785EF;
+            z-index:3;
+            }
+        }
+        }
+        button.graph{
+        border:0;
+        }
+    }
+}
+
+.review_box {
+    position: relative;
+    padding: 10px;
+    margin-top: 50px;
+}
+.review_list_box {
+    color: lightgray;
+    overflow: hidden;
+}
+.list_line {
+    width: 100%;
+    height: 1px;
+    background: #d3d3d333;
+    margin: 10px 0;
+}
+.review_title_box { overflow: hidden;}
+.myreview_title_txt {
+    font-size: 25px;
+}
+.select_r {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    outline: none;
+}
+.nickname {
+    float: left;
+    margin-right: 30px;
+    font-size: 20px;
+}
+.star_icon1 {
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+.movie_avg1 {
+    float: left;
+    margin-left: 5px;
+    font-size: 20px;
+}
+.write_date {
+    float: right;
+}
+.review_content {
+    margin: 10px 0 20px;
+}
+.like_box {
+    float: right;
+}
+.like_icon, .like_bin {
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin-right: 10px;
+}
+.like_cnt {
+    float: left;
+    line-height: 25px;
+}
+
+
+
+.img_box {
+    width: 30vw;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

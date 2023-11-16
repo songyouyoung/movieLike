@@ -20,7 +20,7 @@ public class MovieDaoTest {
         MovieDto movieDto = new MovieDto(0, 500, "", "액션|");
         System.out.println("ottName : " + movieDto.getOttName());
         System.out.println("genrName : " + movieDto.getGenrName());
-        System.out.println("movScoreCount : " + movieDto.getMovScoreCount());
+        System.out.println("movScoreCount : " + movieDto.getMovScoreCnt());
         System.out.println("movScore : " + movieDto.getMovScore());
         System.out.println(movieDao.selectKeyword(movieDto).get(0).getMovName());
         assertTrue(!movieDao.selectKeyword(movieDto).get(0).getMovName().equals(null));

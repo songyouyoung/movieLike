@@ -26,7 +26,7 @@ $(document).ready(function(){
         console.log("genr : " + genr);
         console.log("review : " + review);
         // let keyword = {movScore: score, movScoreCount: review, ottName: encodeURIComponent(ott), genrName: encodeURIComponent(genr)};
-        let keyword = {movScore: score, movScoreCount: review, ottName: ott, genrName: genr};
+        let keyword = {movScore: score, movScoreCnt: review, ottName: ott, genrName: genr};
         let keyword2 = {};
         $.ajax({
             type:'POST',       // 요청 메서드
@@ -49,23 +49,23 @@ $(document).ready(function(){
         movieList = JSON.parse(movieList);
 
         movieList.forEach(function(movie) {
-            let dt = new Date(movie.movReleaseDate);
+            let dt = new Date(movie.movDate);
             let year = dt.getFullYear();
             let month = dt.getMonth()+1 < 10 ? "0" + dt.getMonth()+1 : dt.getMonth()+1;
             let date = dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate();
 
             keywordList += `<div class="m_mvList">
-                                <div class="m_mvPoster"><img src=${movie.movPosterPath} alt=""></div>
+                                <div class="m_mvPoster"><img src=${movie.movPoster} alt=""></div>
                                 <div class="m_mvDesc">
                                     <div class="m_mvTitle">${movie.movName}</div>
                                     <div class="m_mvTitleEng">${movie.movNameEng}</div>
-<!--                                    <div class="m_mvDate">${movie.movReleaseDate}</div>-->
+<!--                                    <div class="m_mvDate">${movie.movDate}</div>-->
                                     <div class="m_mvDate">${year}-${month}-${date}</div>
                                     <div class="m_mvDescBox">
-                                        <span class="m_mvDir">${movie.dirId}</span><span class="m_mvCountry">${movie.movCountry}</span>
+                                        <span class="m_mvDir">${movie.dirName}</span><span class="m_mvCountry">${movie.cName}</span>
                                     </div>
                                     <div class="m_mvDescBox">
-                                        <span class="m_mvGen">${movie.genrName}</span><span class="m_mvTime">${movie.movRunTime}분</span>
+                                        <span class="m_mvGen">${movie.genrName}</span><span class="m_mvTime">${movie.movTime}분</span>
                                     </div>
                                     <div class="m_mvOttBox">
                                         <span class="m_mvOtt"><img src= "/${c_path}/img/nficon2023.ico" alt="${movie.ottName}">${movie.ottName}</span>
@@ -73,7 +73,7 @@ $(document).ready(function(){
                                     <div class="avg_box">
                                         <div class="star_icon"><img src= "/${c_path}/img/star.png" alt="★"></div>
                                         <div class="movie_avg">${movie.movScore}</div>
-                                        <div class="movie_avg_cnt">( ${(movie.movScoreCount).toLocaleString("ko")} )</div>
+                                        <div class="movie_avg_cnt">( ${(movie.movScoreCnt).toLocaleString("ko")} )</div>
                                     </div>
                                 </div>
                             </div>`;

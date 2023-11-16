@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movie Like</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <link rel="icon" href="./img/favicon.ico">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/detail_page.css">
@@ -11,7 +13,7 @@
 <body>
     <div id="wrap">
         <header class="header">
-            <div class="logo"><a href="#"><img src="./img/logo-removebg-preview.png" alt="로고 이미지"></a></div>
+            <div class="logo"><a href="#"><img src="./img/logo.png" alt="로고 이미지"></a></div>
             <div class="h_left left_50"><a href="">영화 전체보기</a></div>
             <div class="h_left"><a href="./Movie_Like_find.html">차트</a></div>
             <div class="h_left"><a href="">키워드 찾기</a></div>
@@ -25,8 +27,10 @@
             <div class="content1">
                 <div class="detail_poster"><img src="./img/poster.jpg" alt=""></div>
                 <div class="detail_content">
-                    <div class="movie_title">영화명</div>
-                    <div class="movie_year">(개봉년)</div>
+                    <div class="detail_top">
+                        <div class="movie_title">영화명</div>
+                        <span class="movie_year">(개봉년)</span>
+                    </div>
                     <div class="movie_country">국가명</div>
                     <div class="movie_genre">장르</div>
                     <div class="movie_ott">가능한 OTT 서비스</div>
@@ -37,18 +41,28 @@
                 </div>
                 <div class="click_box">
                     <div class="click_box1"><a href="">
-                        <div class="click_icon"><img src="./img/heart.png" alt="찜"></div>
+                        <input type="checkbox" id="jjim">
+                        <div class="jjim_box">
+                            <label for="jjim">
+                                <div class="click_icon"><img src="./img/heart.png" alt="찜"></div>
+                            </label>
+                        </div>
                         <div class="click_menu">찜</div>
                     </a></div>
                     <div class="click_box1"><a href="">
-                        <div class="click_icon"><img src="./img/check.png" alt="봤어요"></div>
+                        <input type="checkbox" id="check">
+                        <div class="check_box">
+                            <label for="check">
+                                <div class="click_icon"><img src="./img/check.png" alt="찜"></div>
+                            </label>
+                        </div>
                         <div class="click_menu">봤어요</div>
                     </a></div>
                     <div class="click_box1"><a href="">
                         <div class="click_icon"><img src="./img/share.png" alt="공유"></div>
                         <div class="click_menu">공유</div>
                     </a></div>
-                    <div class="click_box1"><a href="">
+                    <div class="click_box1"><a href="#review_write">
                         <div class="click_icon"><img src="./img/write.png" alt="리뷰작성"></div>
                         <div class="click_menu">리뷰작성</div>
                     </a></div>
@@ -79,49 +93,34 @@
                 <div class="title_txt">감독 / 출연배우</div>
                 <div class="actor_box">
                     <div class="actor_box1">
-                        <div class="photo"></div>
+                        <div class="photo"><img src="./img/actor.jpg" alt=""></div>
                         <div class="photo_name">배우이름</div>
                     </div>
                 </div>
                 <div class="title_txt">예고편 영상</div>
-                <div class="preview"></div>
-                <div class="review_box">
-                    <div class="title_txt">모든 리뷰</div>
-                    <select class="select_r">
-                        <option value="latest" selected>최신순</option>
-                        <option value="like">좋아요순</option>
-                    </select>
-                    <div class="review_list_box">
-                        <div class="list_line"></div>
-                        <div class="review_title_box">
-                            <div class="nickname">닉네임</div>
-                            <div class="star_icon1"><img src="./img/star.png" alt=""></div>
-                            <div class="movie_avg1">4</div>
-                            <div class="write_date">4달 전</div>
-                        </div>
-                        <div class="review_content">리뷰입력</div>
-                        <div class="like_box">
-                            <div class="like_icon"><img src="./img/heart_cnt.png" alt=""></div>
-                            <div class="like_cnt">256</div>
-                        </div>
+                <div class="preview">
+                    <video src="./img/trailer.mp4" controls></video>
+                </div>
+                <div class="review_box" id="review_write">
+                    <div class="write_box">
+                        <div class="title_txt">리뷰 작성</div>
+                        <input type="text" class="review_write" placeholder="리뷰 내용을 입력해주세요.">
+                        <input type="button" class="review_write_btn" value="등록">
                     </div>
-                    <div class="review_list_box">
-                        <div class="list_line"></div>
-                        <div class="review_title_box">
-                            <div class="nickname">닉네임</div>
-                            <div class="star_icon1"><img src="./img/star.png" alt=""></div>
-                            <div class="movie_avg1">4</div>
-                            <div class="write_date">4달 전</div>
-                        </div>
-                        <div class="review_content">리뷰입력</div>
-                        <div class="like_box">
-                            <div class="like_icon"><img src="./img/heart_cnt.png" alt=""></div>
-                            <div class="like_cnt">256</div>
-                        </div>
+
+                    <div class="all_review">
+                        <div class="title_txt">모든 리뷰</div>
+                        <select class="select_r">
+                            <option value="latest" selected>최신순</option>
+                            <option value="like">좋아요순</option>
+                        </select>
+                        
                     </div>
+                    
                 </div>
             </div>
         </main>
     </div>
+    <script src="./js/detail.js"></script>
 </body>
 </html>
