@@ -5,5 +5,7 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="movieDto" type="com.movielike.app.domain.MovieDto" />
+        <typeAlias alias="personDto" type="com.movielike.app.domain.PersonDto" />
+        <typeAlias alias="ottDto" type="com.movielike.app.domain.OttDto" />
     </typeAliases>
 </configuration>

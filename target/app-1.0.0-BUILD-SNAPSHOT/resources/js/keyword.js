@@ -26,7 +26,7 @@ $(document).ready(function(){
         console.log("genr : " + genr);
         console.log("review : " + review);
         // let keyword = {movScore: score, movScoreCount: review, ottName: encodeURIComponent(ott), genrName: encodeURIComponent(genr)};
-        let keyword = {rvScore: score, rvScoreCnt: review, ottName: ott, genrName: genr};
+        let keyword = {movScore: score, movScoreCnt: review, ottName: ott, genrName: genr};
         let keyword2 = {};
         $.ajax({
             type:'POST',       // 요청 메서드
@@ -72,8 +72,8 @@ $(document).ready(function(){
                                     </div>
                                     <div class="avg_box">
                                         <div class="star_icon"><img src= "/${c_path}/img/star.png" alt="★"></div>
-                                        <div class="movie_avg">${movie.rvScore}</div>
-                                        <div class="movie_avg_cnt">( ${(movie.rvScoreCnt).toLocaleString("ko")} )</div>
+                                        <div class="movie_avg">${movie.movScore}</div>
+                                        <div class="movie_avg_cnt">( ${(movie.movScoreCnt).toLocaleString("ko")} )</div>
                                     </div>
                                 </div>
                             </div>`;

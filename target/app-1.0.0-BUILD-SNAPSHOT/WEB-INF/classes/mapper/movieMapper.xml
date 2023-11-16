@@ -5,42 +5,51 @@
 
 <mapper namespace="com.movielike.app.dao.movieMapper">
 <!-- 키워드 찾기 무비 리스트 출력 -->
-    <select id="selectKeyword" parameterType="movieDto" resultType="movieDto">
-        select * from movie
+    <select id="selectMovie" parameterType="movieDto" resultType="movieDto">
+        select DISTINCT m.movId, m.movName, m.movNameEng, m.movDate, m.movTime, m.movPoster, (m.movScore / m.movScoreCnt) movScore, m.movScoreCnt
+            from movie m, ott o, movieOtt mo, genre g, movieGenre mg
             where true
             <if test="ottName != '' and ottName != null">
-                and ottName REGEXP #{ottName}
+                and mo.movId = m.movId and o.ottId = mo.ottId
+                and o.ottName REGEXP #{ottName}
             </if>
             <if test="genrName != '' and genrName != null">
-                and genrName REGEXP #{genrName}
+                and mg.movId = m.movId and mg.genrId = g.genrId
+                and g.genrName REGEXP #{genrName}
             </if>
-            <if test="rvScoreCnt != '' and rvScoreCnt != null">
-                and rvScoreCnt >= #{rvScoreCnt}
+            <if test="movScoreCnt != 0 and movScoreCnt != '' and movScoreCnt != null">
+                and m.movScoreCnt >= #{movScoreCnt}
             </if>
-            <if test="rvScore != '' and rvScore != null">
-                and rvScore >= #{rvScore}
+            <if test="movScore != 0 and movScore != '' and movScore != null">
+                and (m.movScore / m.movScoreCnt) >= #{movScore}
             </if>
+            order by m.movScoreCnt
+    </select>
 
-        select DISTINCT m.movId, m.movName, m.movNameEng, m.movDate, m.movTime, m.movPoster, p.perName, mp.perJob, c.cName, o.ottName, g.genrName
-            from movie m, person p, moviePerson mp, country c, ott o, movieOtt mo, review r, genre g, movieGenre mg
-            where ((mp.movId = m.movId and mp.perId = p.perId)
-                    and (c.movId = m.movId)
-                    and (mo.movId = m.movId and o.ottId = mo.ottId)
-                    and (mg.movId = m.movId and mg.genrId = g.genrId))
-                and (g.genrName REGEXP #{genrName})
-                and (o.ottName REGEXP #{ottName})
-            <if test="ottName != '' and ottName != null">
-                and ottName REGEXP #{ottName}
-            </if>
-            <if test="genrName != '' and genrName != null">
-                and genrName REGEXP #{genrName}
-            </if>
-            <if test="rvScoreCnt != 0 and rvScoreCnt != null">
-                and rvScoreCnt >= #{rvScoreCnt}
-            </if>
-            <if test="rvScore != 0 and rvScore != null">
-                and (rvScore / movScoreCnt) >= #{rvScoreCnt}
-            </if>
+<!-- person데이터 출력 -->
+    <select id="selectPerson" parameterType="map" resultType="personDto">
+        select p.perId, p.perName, p.perImgSrc, mp.perJob from person p, moviePerson mp
+            where mp.perId = p.perId
+                and mp.movId = #{movId}
+                <if test="searchType == '0'">
+                    and mp.perJob = #{perJob}
+                </if>
+            order by mp.perJob, p.perName;
+    </select>
+
+    <!-- country데이터 출력 -->
+    <!-- 나라,나라 식으로 출력됨-->
+    <select id="selectCountry" parameterType="int" resultType="String">
+        select group_concat(cName) from country
+        where movId = #{movId} ORDER BY cName;
+    </select>
+
+<!-- genre데이터 출력 -->
+<!-- 장르,장르 식으로 출력됨-->
+    <select id="selectGenre" parameterType="int" resultType="String">
+        select group_concat(g.genrName) from genre g, movieGenre mg
+        where mg.genrId = g.genrId
+            and mg.movId = #{movId} ORDER BY g.genrName;
     </select>
 
 <!-- 메인페이지 검색바로 검색 - 영화이름 -->
