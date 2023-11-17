@@ -38,13 +38,31 @@
     width: 90%;
     overflow:hidden;
 }
+.m_tdList{
+    float: left;
+}
+
+.genre_list {  
+    width: 1300px;
+    padding-bottom: 10px;
+}
 .m_td:hover{
     overflow: auto;
 }
-.m_tdList{
-    text-wrap: nowrap;
-    float: left;
+
+.m_td::-webkit-scrollbar {
+    height: 5px;
 }
+.m_td::-webkit-scrollbar-thumb {
+    background-color: #979797a3;
+    border-radius: 10px;
+}
+.m_td::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0);
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
+
 .m_tdItem, .m_tagItem {
     border: 1px solid;
     padding: 5px 10px;
@@ -54,6 +72,12 @@
 .m_tdItem {
     float: left;
 }
+.m_tdItem:hover,
+.m_tagItem:hover {
+    cursor: pointer;
+    background: #A785EF;
+}
+
 .m_tagBox {
     width: 1400px;
     margin: 0 auto;
@@ -68,12 +92,15 @@
     overflow: hidden;
 }
 .m_mvPoster {
-    width: 250px;
+    width: 45%;
+    height: 450px;
     float: left;
 }
 .m_mvDesc {
+    width: 55%;
     float: left;
     padding: 0 20px;
+    box-sizing: border-box;
 }
 .m_mvTitle {
     font-size: 35px;
@@ -111,3 +138,72 @@
     float: left;
     margin-top: 30px;
 }
+.m_mvOtt {
+    padding: 10px 0;
+    overflow: hidden;
+}
+.ott_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.float_L {
+    float: left;
+    margin-right: 20px;
+}
+
+.nodata_txt {
+    text-align: center;
+    margin-top: 100px;
+}
+
+
+input {
+    display: none;
+}
+
+.m_tagItem {
+    display: none;
+}
+
+/* 장르 */
+#adventure_chk:checked ~ .m_tagBox #adventure,
+#fantasy_chk:checked ~ .m_tagBox #fantasy,
+#animation_chk:checked ~ .m_tagBox #animation,
+#drama_chk:checked ~ .m_tagBox #drama,
+#horror_chk:checked ~ .m_tagBox #horror,
+#action_chk:checked ~ .m_tagBox #action,
+#comedy_chk:checked ~ .m_tagBox #comedy,
+#history_chk:checked ~ .m_tagBox #history,
+#western_chk:checked ~ .m_tagBox #western,
+#thriller_chk:checked ~ .m_tagBox #thriller,
+#crime_chk:checked ~ .m_tagBox #crime,
+#documentary_chk:checked ~ .m_tagBox #documentary,
+#sf_chk:checked ~ .m_tagBox #sf,
+#mystery_chk:checked ~ .m_tagBox #mystery,
+#music_chk:checked ~ .m_tagBox #music,
+#romance_chk:checked ~ .m_tagBox #romance,
+#family_chk:checked ~ .m_tagBox #family,
+#war_chk:checked ~ .m_tagBox #war,
+/* OTT */
+#documentary_chk:checked ~ .m_tagBox #netflex,
+#watcha_chk:checked ~ .m_tagBox #watcha,
+#disnep_chk:checked ~ .m_tagBox #disnep,
+#wavve_chk:checked ~ .m_tagBox #wavve,
+#appletv_chk:checked ~ .m_tagBox #appletv,
+#naverseries_chk:checked ~ .m_tagBox #naverseries,
+#googleplay_chk:checked ~ .m_tagBox #googleplay,
+/* 리뷰 */
+#review_500_chk:checked ~ .m_tagBox #review_500,
+#review_400_chk:checked ~ .m_tagBox #review_400,
+#review_300_chk:checked ~ .m_tagBox #review_300,
+/* 평점 */
+#score5_chk:checked ~ .m_tagBox #score5,
+#score4_chk:checked ~ .m_tagBox #score4,
+#score3_chk:checked ~ .m_tagBox #score3
+{
+    display: inline-block;
+}
+

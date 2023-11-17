@@ -30,4 +30,9 @@ public class MovieDaoTest {
     public void selectCountry() {
         assertTrue(movieDao.selectCountry(6) != null);
     }
+
+    @Test
+    public void selectOtt() {
+        assertTrue(movieDao.selectOtt(492008) != null);
+    }
 }

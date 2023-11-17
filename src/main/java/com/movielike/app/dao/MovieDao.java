@@ -1,6 +1,7 @@
 package com.movielike.app.dao;
 
 import com.movielike.app.domain.MovieDto;
+import com.movielike.app.domain.OttDto;
 import com.movielike.app.domain.PersonDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,6 @@ import java.util.Map;
 @Repository
 public class MovieDao {
     @Autowired
-    DataSource ds;
-
-//    @Autowired
-//    UserDao userDao;
-
-    @Autowired
     SqlSession session;
     String namespace="com.movielike.app.dao.movieMapper.";
 
@@ -27,10 +22,9 @@ public class MovieDao {
         return session.selectList(namespace+"selectMovie" , movieDto);
     }
     
-    //searchType : (0 : 감독만 or 배우만, 1 : 둘 다)
-    public List<PersonDto> selectPerson(int searchType, int movId, String perJob){
+    // perJob에 값 넣으면 감독만, 배우만 조회. ""면 둘 다 조회
+    public List<PersonDto> selectPerson(int movId, String perJob){
         Map<String, String> movMap = new HashMap<>();
-        movMap.put("searchType", String.valueOf(searchType));
         movMap.put("movId", String.valueOf(movId));
         movMap.put("perJob", perJob);
         return session.selectList(namespace+"selectPerson", movMap);
@@ -44,7 +38,7 @@ public class MovieDao {
         return session.selectOne(namespace+"selectGenre" , movId);
     }
 
-    public String selectOtt(int movId) {
-        return session.selectOne(namespace+"selectOtt" , movId);
+    public List<OttDto> selectOtt(int movId) {
+        return session.selectList(namespace+"selectOtt" , movId);
     }
 }

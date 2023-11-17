@@ -33,8 +33,6 @@ public class KeywordController {
         if(movieDto.getOttName().endsWith("|")){
             movieDto.setOttName(movieDto.getOttName().substring(0, movieDto.getOttName().length()-1));
         }
-        //List<MovieDto> listMovie = service.keywordFind(movieDto);
-        //return listMovie;
         try {
             List<MovieDto> listMovie = service.keywordFind(movieDto);
             if (listMovie == null || listMovie.isEmpty()){

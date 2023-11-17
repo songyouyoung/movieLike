@@ -1,11 +1,11 @@
 package com.movielike.app.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Date;
-
 public class MovieDto {
     private int movId;
     private String movName;
@@ -22,10 +22,13 @@ public class MovieDto {
     private double movScore;
     private int movScoreCnt;
     private String cName; //movie Table에 없음. 나라이름.
+    private String ottId; //movie Table에 없음. ottId.
     private String ottName; //movie Table에 없음. ott이름.
     private String genrName; //movie Table에 없음. 장르이름.
     private String dirName; //movie Table에 없음. 감독이름.
-    private String actName; //movie Table에 없음. 배우이름.
+    private int nowPage;
+    private int pageSize;
+    private int movCnt;
     
 
     public MovieDto() {
@@ -139,6 +142,14 @@ public class MovieDto {
         this.movScoreCnt = movScoreCnt;
     }
 
+    public String getOttId() {
+        return ottId;
+    }
+
+    public void setOttId(String ottId) {
+        this.ottId = ottId;
+    }
+
     public String getOttName() {
         return ottName;
     }
@@ -164,6 +175,30 @@ public class MovieDto {
         this.dirName = dirName;
     }
 
+    public int getNowPage() {
+        return nowPage;
+    }
+
+    public void setNowPage(int nowPage) {
+        this.nowPage = nowPage;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public int getMovCnt() {
+        return movCnt;
+    }
+
+    public void setMovCnt(int movCnt) {
+        this.movCnt = movCnt;
+    }
+
     @Override
     public String toString() {
         return "MovieDto{" +
@@ -179,10 +214,13 @@ public class MovieDto {
                 ", cName='" + cName + '\'' +
                 ", movScore=" + movScore +
                 ", movScoreCnt=" + movScoreCnt +
+                ", ottId='" + ottId + '\'' +
                 ", ottName='" + ottName + '\'' +
                 ", genrName='" + genrName + '\'' +
                 ", dirName='" + dirName + '\'' +
-                ", actName='" + actName + '\'' +
+                ", nowPage='" + nowPage + '\'' +
+                ", pageSize='" + pageSize + '\'' +
+                ", movCnt='" + movCnt + '\'' +
                 '}';
     }
 }

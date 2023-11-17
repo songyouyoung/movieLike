@@ -1,5 +1,13 @@
 $(document).ready(function(){
-    $(".m_tdItem, .m_tagItem").click(function(){
+    var nowPage = 0;
+    var endPage = 0;
+    var pageSize = 20;
+    $(".m_tdItem, .m_tagItem").click(function (){
+        $(".m_mvBox").html("");
+        showMovieList();
+    });
+
+    function showMovieList(){
         let genr="";
         let ott="";
         let review= 0;
@@ -25,8 +33,7 @@ $(document).ready(function(){
         }
         console.log("genr : " + genr);
         console.log("review : " + review);
-        // let keyword = {movScore: score, movScoreCount: review, ottName: encodeURIComponent(ott), genrName: encodeURIComponent(genr)};
-        let keyword = {movScore: score, movScoreCnt: review, ottName: ott, genrName: genr};
+        let keyword = {movScore: score, movScoreCnt: review, ottName: ott, genrName: genr, nowPage: nowPage, pageSize: pageSize};
         let keyword2 = {};
         $.ajax({
             type:'POST',       // 요청 메서드
@@ -35,43 +42,58 @@ $(document).ready(function(){
             dataType : 'text', // 전송받을 데이터의 타입
             data : JSON.stringify(keyword),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
             success : function(result){
-                keyword2 = JSON.parse(result);    // 서버로부터 응답이 도착하면 호출될 함수
                 console.log("received="+result);       // result는 서버가 전송한 데이터
-                $(".m_mvBox").html(toHtml(result));
+                $(".m_mvBox").append(toHtml(result));
+                showPage();
             },
-            error : function(){ alert("error") } // 에러가 발생했을 때, 호출될 함수
+            error : function(){
+                alert("error");
+                $(".m_mvBox").html("");
+                $(".m_moreBox").html("");
+            } // 에러가 발생했을 때, 호출될 함수
         }); // $.ajax()
-    });
+    }
+
     var c_path = (location.pathname).split("/")[1];
     console.log("c_path : " + c_path);
     let toHtml = function(movieList) {
-        let keywordList ="";
+        let keywordList = "";
+        let ottList = "";
         movieList = JSON.parse(movieList);
+        endPage += movieList.length;
 
         movieList.forEach(function(movie) {
             let dt = new Date(movie.movDate);
             let year = dt.getFullYear();
             let month = dt.getMonth()+1 < 10 ? "0" + dt.getMonth()+1 : dt.getMonth()+1;
             let date = dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate();
-
-            keywordList += `<div class="m_mvList">
-                                <div class="m_mvPoster"><img src=${movie.movPoster} alt=""></div>
+            let ottId = movie.ottId;
+            let ottName = movie.ottName;
+            if(ottId != "" && ottId != null) {
+                let ottIdList = ottId.split(",");
+                let ottNameList = ottName.split(",");
+                for (let j = 0; j < ottIdList.length; j++) {
+                    ottList += `<div class="m_mvOttBox">
+                                <span class="m_mvOtt"><img src= "../img/ott/${ottIdList[j]}.png" alt="${ottNameList[j]}">${ottNameList[j]}</span>
+                            </div>`;
+                }
+            }
+            keywordList += `<div class="m_mvList" data-movId=${movie.movId}>
+                                <div class="m_mvPoster"><img src="https://image.tmdb.org/t/p/w500/${movie.movPoster}" alt=""></div>
                                 <div class="m_mvDesc">
                                     <div class="m_mvTitle">${movie.movName}</div>
                                     <div class="m_mvTitleEng">${movie.movNameEng}</div>
-<!--                                    <div class="m_mvDate">${movie.movDate}</div>-->
+    <!--                                    <div class="m_mvDate">${movie.movDate}</div>-->
                                     <div class="m_mvDate">${year}-${month}-${date}</div>
                                     <div class="m_mvDescBox">
-                                        <span class="m_mvDir">${movie.dirName}</span><span class="m_mvCountry">${movie.cName}</span>
+                                        <span class="m_mvDir">${movie.dirName}</span><span class="m_mvCountry">${movie.cname}</span>
                                     </div>
                                     <div class="m_mvDescBox">
                                         <span class="m_mvGen">${movie.genrName}</span><span class="m_mvTime">${movie.movTime}분</span>
-                                    </div>
-                                    <div class="m_mvOttBox">
-                                        <span class="m_mvOtt"><img src= "/${c_path}/img/nficon2023.ico" alt="${movie.ottName}">${movie.ottName}</span>
-                                    </div>
-                                    <div class="avg_box">
-                                        <div class="star_icon"><img src= "/${c_path}/img/star.png" alt="★"></div>
+                                    </div>`
+                                    + ottList +
+                                    `<div class="avg_box">
+                                        <div class="star_icon"><img src= "../img/star.png" alt="★"></div>
                                         <div class="movie_avg">${movie.movScore}</div>
                                         <div class="movie_avg_cnt">( ${(movie.movScoreCnt).toLocaleString("ko")} )</div>
                                     </div>
@@ -80,4 +102,22 @@ $(document).ready(function(){
         });
         return keywordList;
     };
+
+    // 페이징 작업
+    function showPage(){
+        console.log("endPage : " + endPage);
+        console.log("pageSize : " + pageSize);
+        console.log("endPage % pageSize : " + endPage % pageSize);
+        if(endPage % pageSize == 0) {
+            $(".m_moreBox").html("<span>더보기▽</span>");
+        }else{
+            $(".m_moreBox").html("");
+        }
+        nowPage = endPage;
+        console.log("nowPage : " + nowPage);
+    }
+    $(".m_moreBox").click(function (){
+        showMovieList();
+    });
+
 });
