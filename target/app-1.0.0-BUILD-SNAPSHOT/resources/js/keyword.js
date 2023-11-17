@@ -4,7 +4,34 @@ $(document).ready(function(){
     var pageSize = 20;
     $(".m_tdItem, .m_tagItem").click(function (){
         $(".m_mvBox").html("");
+        let checkName = $(this).parent().prop("for");
+        console.log("ads : " + $(`#${checkName}`).is(":checked"));
+        if($(`#${checkName}`).is(":checked") && $(`#${checkName}`).prop("type") == "radio"){
+            console.log("asdfasdfasdfsadf");
+            console.log($(`#${checkName}`) + " : " + $(`#${checkName}`).prop("checked"));
+            $(`#${checkName}`).prop("checked", false);
+        }
         showMovieList();
+    });
+    $("input[type='checkbox'], input[type='radio']").change(function(){
+        let checkName = $(this).prop("id")
+        console.log("sasda : " + $(`#${checkName}`).is(":checked"));
+        if($(`#${checkName}`).is(":checked")){
+            console.log("radio? : " + $(this).prop("type"))
+            if($(this).prop("type") == "radio"){
+                let radioName = $(this).prop("name");
+                console.log("radioName : " + radioName)
+                for(let i = 0; i < $(`input[name = "${radioName}"]`).length; i++){
+                    let radioId = $(`input[name = "${radioName}"]`).eq(i).prop("id");
+                    console.log("radioId : " + radioId)
+                    $(`label[for="${radioId}"]`).children(".m_tdItem").prop("class", "m_tdItem");
+                }
+            }
+        }else{
+            // $(`#${checkName}`).prop("checked", false);
+            // console.log("체크해제");
+        }
+        $(`label[for="${checkName}"]`).children(".m_tdItem").toggleClass('m_tdItem_check');
     });
 
     function showMovieList(){
@@ -13,6 +40,8 @@ $(document).ready(function(){
         let review= 0;
         let score= 0.0;
         let tag = $(".m_tagList").children();
+        console.log("tag : " + tag.eq(0).prop("class"));
+        console.log("data : " + tag.eq(0 ).data('genre'));
         let j = tag.length; //val()
         for (let i = 0; i < j; i++){
             let value = tag.eq(i).data("key").split("/");

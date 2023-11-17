@@ -138,7 +138,7 @@
             <!-- <div class="m_tagList"><span class="m_tagItem"></span></div> -->
             <div class="m_tagList">
                 <!-- 장르 check -->
-                <label for="adventure_chk"><span class="m_tagItem" id="adventure">#모험</span></label>
+                <label for="adventure_chk" data-genre = "123"><span class="m_tagItem" id="adventure">#모험</span></label>
                 <label for="fantasy_chk"><span class="m_tagItem" id="fantasy">#판타지</span></label>
                 <label for="animation_chk"><span class="m_tagItem" id="animation">#애니메이션</span></label>
                 <label for="drama_chk"><span class="m_tagItem" id="drama">#드라마</span></label>
@@ -174,7 +174,7 @@
                 <!-- 평점 check -->
                 <label for="score5_chk"><span class="m_tagItem" id="score5">평점 5개 이상</span></label>
                 <label for="score4_chk"><span class="m_tagItem" id="score4">평점 4개 이상</span></label>
-                <label for="score3_chk"><span class="m_tagItem" id="score3">평점 300개 이상</span></label>
+                <label for="score3_chk"><span class="m_tagItem" id="score3">평점 3개 이상</span></label>
                 <span class="m_tagItem">#평점 5개 이상</span>
             </div>
         </div>
