@@ -27,18 +27,20 @@ public class KeywordController {
     @ResponseBody
     public ResponseEntity<List<MovieDto>> findKeyword(@RequestBody MovieDto movieDto) throws UnsupportedEncodingException {
         System.out.println(movieDto);
-        if(movieDto.getGenrName().endsWith("|")){
-            movieDto.setGenrName(movieDto.getGenrName().substring(0, movieDto.getGenrName().length()-1));
-        }
-        if(movieDto.getOttName().endsWith("|")){
-            movieDto.setOttName(movieDto.getOttName().substring(0, movieDto.getOttName().length()-1));
-        }
+//        if(movieDto.getGenrName().endsWith("|")){
+//            movieDto.setGenrName(movieDto.getGenrName().substring(0, movieDto.getGenrName().length()-1));
+//        }
+//        if(movieDto.getOttName().endsWith("|")){
+//            movieDto.setOttName(movieDto.getOttName().substring(0, movieDto.getOttName().length()-1));
+//        }
+
         try {
             List<MovieDto> listMovie = service.keywordFind(movieDto);
             if (listMovie == null || listMovie.isEmpty()){
                 throw new Exception("출력할 값이 없습니다. ");
             }
-            System.out.println("controller : " + listMovie.get(0).getCName());
+            System.out.println("controller 구동 완료");
+            System.out.println(listMovie);
             return new ResponseEntity<List<MovieDto>>(listMovie, HttpStatus.OK); // 200
         } catch (Exception e) {
             e.printStackTrace();

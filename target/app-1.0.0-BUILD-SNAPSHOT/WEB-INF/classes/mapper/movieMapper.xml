@@ -7,20 +7,33 @@
     <!-- 키워드 찾기 무비 리스트 출력 -->
     <select id="selectMovie" parameterType="movieDto" resultType="movieDto">
         select DISTINCT m.movId, m.movName, m.movNameEng, m.movDate, m.movTime, m.movPoster, (m.movScore / m.movScoreCnt) movScore, m.movScoreCnt
-        from movie m, ott o, movieOtt mo, genre g, movieGenre mg
+        from movie m
+        <if test="genreList != null and genreList.size != 0">
+            , genre g, movieGenre mg
+        </if>
+        <if test="ottList != null and ottList.size != 0">
+            , ott o, movieOtt mo
+        </if>
+
         where true
-        <if test="ottName != '' and ottName != null">
-            and mo.movId = m.movId and o.ottId = mo.ottId
-            and o.ottName REGEXP #{ottName}
+        <if test="genreList != null and genreList.size != 0">
+            and mg.movId = m.movId and mg.genrId = g.genrId and ( true
+            <foreach collection = "genreList" item = "genre" separator=" ">
+                and g.genrName = #{genre}
+            </foreach>
+            )
         </if>
-        <if test="genrName != '' and genrName != null">
-            and mg.movId = m.movId and mg.genrId = g.genrId
-            and g.genrName REGEXP #{genrName}
+        <if test="ottList != null and ottList.size != 0">
+            and mo.movId = m.movId and o.ottId = mo.ottId and ( true
+            <foreach collection = "ottList" item = "ott" separator=" ">
+                or o.ottName = #{ott.ottName}
+            </foreach>
+            )
         </if>
-        <if test="movScoreCnt != 0 and movScoreCnt != '' and movScoreCnt != null">
+        <if test="movScoreCnt > 0">
             and m.movScoreCnt >= #{movScoreCnt}
         </if>
-        <if test="movScore != 0 and movScore != '' and movScore != null">
+        <if test="movScore > 0">
             and (m.movScore / m.movScoreCnt) >= #{movScore}
         </if>
         order by m.movScoreCnt
@@ -41,7 +54,7 @@
 <!-- country데이터 출력 -->
 <!-- 나라,나라 식으로 출력됨-->
     <select id="selectCountry" parameterType="int" resultType="String">
-        select group_concat(cName) from country
+        select cName from country
             where movId = #{movId}
 <!--        ORDER BY cName;-->
     </select>
@@ -49,7 +62,7 @@
 <!-- genre데이터 출력 -->
 <!-- 장르,장르 식으로 출력됨-->
     <select id="selectGenre" parameterType="int" resultType="String">
-        select group_concat(g.genrName) from genre g, movieGenre mg
+        select g.genrName from genre g, movieGenre mg
             where mg.genrId = g.genrId
             and mg.movId = #{movId}
 <!--        ORDER BY g.genrName;-->

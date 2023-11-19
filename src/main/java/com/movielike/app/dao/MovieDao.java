@@ -30,12 +30,12 @@ public class MovieDao {
         return session.selectList(namespace+"selectPerson", movMap);
     }
 
-    public String selectCountry(int movId) {
-        return session.selectOne(namespace+"selectCountry" , movId);
+    public List<String> selectCountry(int movId) {
+        return session.selectList(namespace+"selectCountry" , movId);
     }
 
-    public String selectGenre(int movId) {
-        return session.selectOne(namespace+"selectGenre" , movId);
+    public List<String> selectGenre(int movId) {
+        return session.selectList(namespace+"selectGenre" , movId);
     }
 
     public List<OttDto> selectOtt(int movId) {

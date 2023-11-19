@@ -4,66 +4,49 @@ $(document).ready(function(){
     var pageSize = 20;
     $(".m_tdItem, .m_tagItem").click(function (){
         $(".m_mvBox").html("");
-        let checkName = $(this).parent().prop("for");
-        console.log("ads : " + $(`#${checkName}`).is(":checked"));
-        if($(`#${checkName}`).is(":checked") && $(`#${checkName}`).prop("type") == "radio"){
-            console.log("asdfasdfasdfsadf");
-            console.log($(`#${checkName}`) + " : " + $(`#${checkName}`).prop("checked"));
-            $(`#${checkName}`).prop("checked", false);
-        }
-        showMovieList();
-    });
-    $("input[type='checkbox'], input[type='radio']").change(function(){
-        let checkName = $(this).prop("id")
-        console.log("sasda : " + $(`#${checkName}`).is(":checked"));
-        if($(`#${checkName}`).is(":checked")){
-            console.log("radio? : " + $(this).prop("type"))
-            if($(this).prop("type") == "radio"){
-                let radioName = $(this).prop("name");
-                console.log("radioName : " + radioName)
-                for(let i = 0; i < $(`input[name = "${radioName}"]`).length; i++){
-                    let radioId = $(`input[name = "${radioName}"]`).eq(i).prop("id");
-                    console.log("radioId : " + radioId)
-                    $(`label[for="${radioId}"]`).children(".m_tdItem").prop("class", "m_tdItem");
-                }
+        let checkId = $(this).parent().prop("for"); // 체크박스 ID
+        if(!$(`#${checkId}`).is(":checked") && $(`#${checkId}`).data("type") == "radio"){
+            let checkName = $(`#${checkId}`).prop("name");
+            let radio = $(`input[name = "${checkName}"]`);
+            for(let i = 0; i < radio.length; i++){
+                radio.eq(i).prop("checked", false);
+                $(`label[for="${checkId}"]`).parent().children().eq(i).children(".m_tdItem").prop("class", "m_tdItem");
             }
-        }else{
-            // $(`#${checkName}`).prop("checked", false);
-            // console.log("체크해제");
         }
-        $(`label[for="${checkName}"]`).children(".m_tdItem").toggleClass('m_tdItem_check');
+        $(`label[for="${checkId}"]`).children(".m_tdItem").toggleClass('m_tdItem_check');
+    });
+
+    $("input[type='checkbox']").change(function(){
+        if ($(".m_tagList .m_tagItem"))
+        showMovieList();
     });
 
     function showMovieList(){
-        let genr="";
-        let ott="";
+        let genr=[];
+        let ott=[];
         let review= 0;
         let score= 0.0;
-        let tag = $(".m_tagList").children();
-        console.log("tag : " + tag.eq(0).prop("class"));
-        console.log("data : " + tag.eq(0 ).data('genre'));
+        let tag = $(".m_tagList .m_tagItem");
         let j = tag.length; //val()
         for (let i = 0; i < j; i++){
-            let value = tag.eq(i).data("key").split("/");
-            switch (value[0]){
-                case "genr":
-                    genr += value[1] + "|";
-                    break;
-                case "ott":
-                    ott += value[1] + "|";
-                    break;
-                case "review":
-                    review = review == 0 ? value[1] : (review > value[1] ? value[1] : review);
-                    break;
-                case "score":
-                    score = score == 0 ? value[1] : (score > value[1] ? value[1] : score);
-                    break;
+            if(tag.eq(i).css("display") == "inline-block"){
+                // genr += tag.eq(i).data("genr") == undefined ? "" : tag.eq(i).data("genr") + "|";
+                tag.eq(i).data("genr") == undefined ? "" : genr.push(tag.eq(i).data("genr"));
+                // ott += tag.eq(i).data("ott") == undefined ? "" : tag.eq(i).data("ott") + "|";
+                tag.eq(i).data("ott") == undefined ? "" : ott.push({"ottName" : tag.eq(i).data("ott")});
+                review = tag.eq(i).data("review") == undefined ? 0 : parseInt(tag.eq(i).data("review"));
+                score = tag.eq(i).data("score") == undefined ? 0 : parseInt(tag.eq(i).data("score"));
             }
         }
-        console.log("genr : " + genr);
-        console.log("review : " + review);
-        let keyword = {movScore: score, movScoreCnt: review, ottName: ott, genrName: genr, nowPage: nowPage, pageSize: pageSize};
-        let keyword2 = {};
+        // console.log("genr : " + genr);
+        // console.log("ott : " + ott);
+        // console.log("review : " + review);
+        // console.log("score : " + score);
+        if(genr == "" && ott == "" && review == 0 && score == 0){
+            return mvBox_null("키워드를 골라 원하는 영화를 찾아보세요");
+        }
+        let keyword = {movScore: score, movScoreCnt: review, ottList: ott, genreList: genr, nowPage: nowPage, pageSize: pageSize};
+        //httpRequest.abort();
         $.ajax({
             type:'POST',       // 요청 메서드
             url: '/app/findKeyword',  // 요청 URI
@@ -76,37 +59,67 @@ $(document).ready(function(){
                 showPage();
             },
             error : function(){
-                alert("error");
-                $(".m_mvBox").html("");
-                $(".m_moreBox").html("");
-            } // 에러가 발생했을 때, 호출될 함수
+                mvBox_null("해당 키워드에 맞는 영화가 없습니다");
+            }
         }); // $.ajax()
     }
 
     var c_path = (location.pathname).split("/")[1];
     console.log("c_path : " + c_path);
+
+    function mvBox_null(nodata){
+        let txt = `<div class="nodata_txt">${nodata}</div>`
+        $(".m_mvBox").html(txt);
+        $(".m_moreBox").html("");
+    }
     let toHtml = function(movieList) {
         let keywordList = "";
-        let ottList = "";
         movieList = JSON.parse(movieList);
         endPage += movieList.length;
 
         movieList.forEach(function(movie) {
             let dt = new Date(movie.movDate);
             let year = dt.getFullYear();
-            let month = dt.getMonth()+1 < 10 ? "0" + dt.getMonth()+1 : dt.getMonth()+1;
+            let month = dt.getMonth()+1 < 10 ? "0" + (dt.getMonth()+1) : dt.getMonth()+1;
             let date = dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate();
-            let ottId = movie.ottId;
-            let ottName = movie.ottName;
-            if(ottId != "" && ottId != null) {
-                let ottIdList = ottId.split(",");
-                let ottNameList = ottName.split(",");
-                for (let j = 0; j < ottIdList.length; j++) {
-                    ottList += `<div class="m_mvOttBox">
-                                <span class="m_mvOtt"><img src= "../img/ott/${ottIdList[j]}.png" alt="${ottNameList[j]}">${ottNameList[j]}</span>
+            // let ottId = movie.ottId;
+            // let ottName = movie.ottName;
+            // if(movie.ottList.length > 0) {
+            //     console.log("ott 값 있음");
+            //     ottList = "";
+            //     let ottIdList = ottId.split(",");
+            //     let ottNameList = ottName.split(",");
+            //     for (let j = 0; j < ottIdList.length; j++) {
+            //         ottList += `<div class="m_mvOttBox">
+            //                     <span class="m_mvOtt"><img src= "../img/ott/${ottIdList[j]}.png" alt="${ottNameList[j]}">${ottNameList[j]}</span>
+            //                 </div>`;
+            //     }
+            // }
+            let ottList = "";
+            movie.ottList.forEach(function (ott, i){
+                ottList += `<div class="m_mvOttBox">
+                                <span class="m_mvOtt"><img src= "../img/ott/${ott.ottId}.png" alt="${ott.ottName}">${ott.ottName}</span>
                             </div>`;
-                }
-            }
+            });
+
+            let dirName = "감독 : ";
+            movie.actorList.forEach(function (dir, i){
+                dirName += dir.perName + ", ";
+            });
+            if (dirName != ""){dirName = dirName.slice(0, -2)}
+
+            let cName = "";
+            movie.countryNameList.forEach(function (country, i){
+                cName += country + ", ";
+            });
+            if (cName != ""){cName = cName.slice(0, -2)}
+
+            let genrName = "";
+            movie.genreList.forEach(function (genre, i){
+                genrName += genre + ", ";
+            });
+            if (genrName != ""){genrName = genrName.slice(0, -2)}
+
             keywordList += `<div class="m_mvList" data-movId=${movie.movId}>
                                 <div class="m_mvPoster"><img src="https://image.tmdb.org/t/p/w500/${movie.movPoster}" alt=""></div>
                                 <div class="m_mvDesc">
@@ -115,10 +128,10 @@ $(document).ready(function(){
     <!--                                    <div class="m_mvDate">${movie.movDate}</div>-->
                                     <div class="m_mvDate">${year}-${month}-${date}</div>
                                     <div class="m_mvDescBox">
-                                        <span class="m_mvDir">${movie.dirName}</span><span class="m_mvCountry">${movie.cname}</span>
+                                        <span class="m_mvDir">${dirName}</span><span class="m_mvCountry">${cName}</span>
                                     </div>
                                     <div class="m_mvDescBox">
-                                        <span class="m_mvGen">${movie.genrName}</span><span class="m_mvTime">${movie.movTime}분</span>
+                                        <span class="m_mvGen">${genrName}</span><span class="m_mvTime">${movie.movTime}분</span>
                                     </div>`
                                     + ottList +
                                     `<div class="avg_box">

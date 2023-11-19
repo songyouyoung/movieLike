@@ -15,34 +15,42 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/1085e31d-757e-44f4-832b-1877090884e4/storage_v2/_src_/schema/movielike.x9bTRg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1085e31d-757e-44f4-832b-1877090884e4/storage_v2/_src_/schema/movielike.x9bTRg.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/controller/KeywordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/controller/KeywordController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/dao/MovieDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/dao/MovieDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/domain/MovieDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/domain/MovieDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/service/KeywordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/service/KeywordService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/movieMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/movieMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Movie_Like_keyword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Movie_Like_keyword.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/keyword_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/keyword_page.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/keyword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/keyword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/controller/KeywordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/controller/KeywordController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/dao/MovieDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/dao/MovieDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/movielike/app/dao/MovieDaoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/movielike/app/dao/MovieDaoTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/domain/MovieDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/domain/MovieDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/domain/OttDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/domain/OttDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/domain/PersonDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/domain/PersonDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/service/KeywordService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/service/KeywordService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/log4j.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mapper/movieMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mapper/movieMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/Movie_Like_keyword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/Movie_Like_keyword.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/css/keyword_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/css/keyword_page.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/js/keyword.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/js/keyword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/movielike/app/controller/KeywordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/movielike/app/controller/KeywordController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/movielike/app/dao/MovieDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/movielike/app/dao/MovieDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/movielike/app/domain/MovieDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/movielike/app/domain/MovieDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/movielike/app/domain/OttDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/movielike/app/domain/OttDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/movielike/app/domain/PersonDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/movielike/app/domain/PersonDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/movielike/app/service/KeywordService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/movielike/app/service/KeywordService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/movielike/app/dao/MovieDaoTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/log4j.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/movieMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/movieMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/movielike/app/dao/MovieDaoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/movielike/app/dao/MovieDaoTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -65,35 +73,35 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "프로젝트",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;프로젝트&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\user1\Documents\GitHub\movieLike\src\main\webapp\resources\css" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.82">
-    <configuration name="MovieDaoTest.selectOtt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MovieDaoTest.selectMovie" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <extension name="coverage">
         <pattern>
@@ -103,7 +111,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.movielike.app.dao" />
       <option name="MAIN_CLASS_NAME" value="com.movielike.app.dao.MovieDaoTest" />
-      <option name="METHOD_NAME" value="selectOtt" />
+      <option name="METHOD_NAME" value="selectMovie" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -120,7 +128,7 @@
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="16269bae-7f42-46a0-bd2d-7d73f2086919" />
+        <option name="BASE_DIRECTORY_NAME" value="4ccee7d7-bb85-4d47-afbf-20cfa6f1536d" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -128,7 +136,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="65120" />
+        <option name="DEBUG_PORT" value="14373" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -199,7 +207,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MovieDaoTest.selectOtt" />
+        <item itemvalue="JUnit.MovieDaoTest.selectMovie" />
       </list>
     </recent_temporary>
   </component>
@@ -215,6 +223,14 @@
       <workItem from="1700181409913" duration="7497000" />
       <workItem from="1700189035937" duration="18939000" />
       <workItem from="1700231222623" duration="9889000" />
+      <workItem from="1700304758927" duration="6002000" />
+      <workItem from="1700318690112" duration="175000" />
+      <workItem from="1700320084624" duration="1559000" />
+      <workItem from="1700322378935" duration="348000" />
+      <workItem from="1700322827489" duration="72000" />
+      <workItem from="1700323308900" duration="8538000" />
+      <workItem from="1700386627423" duration="1685000" />
+      <workItem from="1700396699010" duration="13266000" />
     </task>
     <servers />
   </component>

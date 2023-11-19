@@ -6,30 +6,28 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Date;
+import java.util.List;
+
 public class MovieDto {
     private int movId;
     private String movName;
     private String movNameEng;
     private String movDesc;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date movDate;
     private int movTime;
     private int movSearchCnt;
     private String movPoster;
     private String movTrailer;
-
     private double movScore;
     private int movScoreCnt;
-    private String cName; //movie Table에 없음. 나라이름.
-    private String ottId; //movie Table에 없음. ottId.
-    private String ottName; //movie Table에 없음. ott이름.
-    private String genrName; //movie Table에 없음. 장르이름.
-    private String dirName; //movie Table에 없음. 감독이름.
+    private List<String> countryNameList; //movie Table에 없음. 나라 이름 리스트.
+    private List<OttDto> ottList; //movie Table에 없음. ott 리스트
+    private List<String> genreList; //movie Table에 없음. 장르 이름 리스트
+    private List<PersonDto> actorList; // 배우 리스트
     private int nowPage;
     private int pageSize;
-    private int movCnt;
-    
+
 
     public MovieDto() {
     }
@@ -39,11 +37,20 @@ public class MovieDto {
         this.movScoreCnt = movScoreCnt;
     }
 
-    public MovieDto(double movScore, int movScoreCnt, String ottName, String genrName){
+    //    public MovieDto(double movScore, int movScoreCnt, String ottName, String genrName){
+//        this.movScore = movScore;
+//        this.movScoreCnt = movScoreCnt;
+//        this.ottName = ottName;
+//        this.genrName = genrName;
+//    }
+
+    public MovieDto(double movScore, int movScoreCnt, List<OttDto> ottList, List<String> genreList, int nowPage, int pageSize) {
         this.movScore = movScore;
         this.movScoreCnt = movScoreCnt;
-        this.ottName = ottName;
-        this.genrName = genrName;
+        this.ottList = ottList;
+        this.genreList = genreList;
+        this.nowPage = nowPage;
+        this.pageSize = pageSize;
     }
 
     public int getMovId() {
@@ -118,14 +125,6 @@ public class MovieDto {
         this.movTrailer = movTrailer;
     }
 
-    public String getCName() {
-        return cName;
-    }
-
-    public void setCName(String cName) {
-        this.cName = cName;
-    }
-
     public double getMovScore() {
         return movScore;
     }
@@ -142,39 +141,20 @@ public class MovieDto {
         this.movScoreCnt = movScoreCnt;
     }
 
-    public String getOttId() {
-        return ottId;
+    public List<String> getCountryNameList() {
+        return countryNameList;
     }
 
-    public void setOttId(String ottId) {
-        this.ottId = ottId;
+    public void setCountryNameList(List<String> countryNameList) {
+        this.countryNameList = countryNameList;
+    }
+    public List<String> getGenreList() {
+        return genreList;
     }
 
-    public String getOttName() {
-        return ottName;
+    public void setGenreList(List<String> genreList) {
+        this.genreList = genreList;
     }
-
-    public void setOttName(String ottName) throws UnsupportedEncodingException {
-        this.ottName = URLDecoder.decode(ottName, "UTF-8");
-    }
-
-    public String getGenrName() {
-        return genrName;
-    }
-
-    public void setGenrName(String genrName) throws UnsupportedEncodingException {
-//        this.genrName = URLDecoder.decode(genrName, "UTF-8");
-        this.genrName = genrName;
-    }
-
-    public String getDirName() {
-        return dirName;
-    }
-
-    public void setDirName(String dirName) {
-        this.dirName = dirName;
-    }
-
     public int getNowPage() {
         return nowPage;
     }
@@ -191,12 +171,20 @@ public class MovieDto {
         this.pageSize = pageSize;
     }
 
-    public int getMovCnt() {
-        return movCnt;
+    public List<PersonDto> getActorList() {
+        return actorList;
     }
 
-    public void setMovCnt(int movCnt) {
-        this.movCnt = movCnt;
+    public void setActorList(List<PersonDto> actorList) {
+        this.actorList = actorList;
+    }
+
+    public List<OttDto> getOttList() {
+        return ottList;
+    }
+
+    public void setOttList(List<OttDto> ottList) {
+        this.ottList = ottList;
     }
 
     @Override
@@ -211,16 +199,14 @@ public class MovieDto {
                 ", movSearchCnt=" + movSearchCnt +
                 ", movPoster='" + movPoster + '\'' +
                 ", movTrailer='" + movTrailer + '\'' +
-                ", cName='" + cName + '\'' +
                 ", movScore=" + movScore +
                 ", movScoreCnt=" + movScoreCnt +
-                ", ottId='" + ottId + '\'' +
-                ", ottName='" + ottName + '\'' +
-                ", genrName='" + genrName + '\'' +
-                ", dirName='" + dirName + '\'' +
-                ", nowPage='" + nowPage + '\'' +
-                ", pageSize='" + pageSize + '\'' +
-                ", movCnt='" + movCnt + '\'' +
+                ", countryNameList=" + countryNameList +
+                ", ottList=" + ottList +
+                ", genreList=" + genreList +
+                ", actorList=" + actorList +
+                ", nowPage=" + nowPage +
+                ", pageSize=" + pageSize +
                 '}';
     }
 }

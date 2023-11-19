@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.bitstudy.app">
+	<logger name="com.movielike.app">
 		<level value="info" />
 	</logger>
 	

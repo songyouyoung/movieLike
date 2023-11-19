@@ -190,8 +190,9 @@ input {
 #romance_chk:checked ~ .m_tagBox #romance,
 #family_chk:checked ~ .m_tagBox #family,
 #war_chk:checked ~ .m_tagBox #war,
+#tvmovie_chk:checked ~ .m_tagBox #tvmovie,
 /* OTT */
-#documentary_chk:checked ~ .m_tagBox #netflex,
+#netflex_chk:checked ~ .m_tagBox #netflex,
 #watcha_chk:checked ~ .m_tagBox #watcha,
 #disnep_chk:checked ~ .m_tagBox #disnep,
 #wavve_chk:checked ~ .m_tagBox #wavve,
