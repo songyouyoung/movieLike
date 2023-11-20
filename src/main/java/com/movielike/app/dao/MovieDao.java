@@ -18,6 +18,9 @@ public class MovieDao {
     SqlSession session;
     String namespace="com.movielike.app.dao.movieMapper.";
 
+/////////////////////////////////
+/////// 키워드 찾기 페이지 ////////
+/////////////////////////////////
     public List<MovieDto> selectMovie(MovieDto movieDto) {
         return session.selectList(namespace+"selectMovie" , movieDto);
     }
@@ -25,6 +28,8 @@ public class MovieDao {
     // perJob에 값 넣으면 감독만, 배우만 조회. ""면 둘 다 조회
     public List<PersonDto> selectPerson(int movId, String perJob){
         Map<String, String> movMap = new HashMap<>();
+        System.out.println("movId : " + movId);
+        System.out.println("perJob : " + perJob);
         movMap.put("movId", String.valueOf(movId));
         movMap.put("perJob", perJob);
         return session.selectList(namespace+"selectPerson", movMap);
@@ -41,4 +46,12 @@ public class MovieDao {
     public List<OttDto> selectOtt(int movId) {
         return session.selectList(namespace+"selectOtt" , movId);
     }
+
+/////////////////////////////////
+////////// 메인 페이지 ///////////
+/////////////////////////////////
+    public List<MovieDto> selectSearchMov(String search) {
+        return session.selectList(namespace+"selectSearchMov" , search);
+    }
 }
+

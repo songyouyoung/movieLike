@@ -2,8 +2,6 @@ package com.movielike.app.service;
 
 import com.movielike.app.dao.MovieDao;
 import com.movielike.app.domain.MovieDto;
-import com.movielike.app.domain.OttDto;
-import com.movielike.app.domain.PersonDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +9,13 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Service
-public class KeywordService {
+public class IndexService {
     @Autowired
     MovieDao movieDao;
 
-    public List<MovieDto> keywordFind(MovieDto movieDto) throws UnsupportedEncodingException {
+    public List<MovieDto> indexSearch(String search){
         // 영화데이터 출력
-        List<MovieDto> movieList = movieDao.selectMovie(movieDto);
+        List<MovieDto> movieList = movieDao.selectSearchMov(search);
         System.out.println(movieList);
         CommonService common = new CommonService();
         movieList = common.movieList(movieList);

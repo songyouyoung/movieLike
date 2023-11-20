@@ -30,8 +30,9 @@ public class MovieDaoTest {
 
         List<String> genreList = new ArrayList<>();
         genreList.add("모험");
+        genreList.add("범죄");
 
-        MovieDto movieDto = new MovieDto(0, 0, null, genreList, 0, 20);
+        MovieDto movieDto = new MovieDto(0, 0, ottList, genreList, 0, 20);
         assertTrue(!movieDao.selectMovie(movieDto).get(0).getMovName().equals(null));
     }
 
@@ -44,4 +45,5 @@ public class MovieDaoTest {
     public void selectOtt() {
         assertTrue(movieDao.selectOtt(492008) != null);
     }
+
 }

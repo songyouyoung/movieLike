@@ -17,17 +17,21 @@
 
         where true
         <if test="genreList != null and genreList.size != 0">
-            and mg.movId = m.movId and mg.genrId = g.genrId and ( true
-            <foreach collection = "genreList" item = "genre" separator=" ">
-                and g.genrName = #{genre}
-            </foreach>
+            and mg.movId = m.movId and mg.genrId = g.genrId and (
+            <trim prefixOverrides="OR">
+                <foreach collection = "genreList" item = "genre" separator=" ">
+                    OR g.genrName = #{genre}
+                </foreach>
+            </trim>
             )
         </if>
         <if test="ottList != null and ottList.size != 0">
-            and mo.movId = m.movId and o.ottId = mo.ottId and ( true
-            <foreach collection = "ottList" item = "ott" separator=" ">
-                or o.ottName = #{ott.ottName}
-            </foreach>
+            and mo.movId = m.movId and o.ottId = mo.ottId and (
+            <trim prefixOverrides="OR">
+                <foreach collection = "ottList" item = "ott" separator=" ">
+                    OR o.ottName = #{ott.ottName}
+                </foreach>
+            </trim>
             )
         </if>
         <if test="movScoreCnt > 0">
@@ -48,7 +52,7 @@
                 <if test="perJob != '' and perJob != null">
                     and mp.perJob = #{perJob}
                 </if>
-<!--            order by mp.perJob, p.perName;-->
+            order by mp.perJob, p.perName;
     </select>
 
 <!-- country데이터 출력 -->
@@ -56,7 +60,7 @@
     <select id="selectCountry" parameterType="int" resultType="String">
         select cName from country
             where movId = #{movId}
-<!--        ORDER BY cName;-->
+        ORDER BY cName;
     </select>
 
 <!-- genre데이터 출력 -->
@@ -65,7 +69,7 @@
         select g.genrName from genre g, movieGenre mg
             where mg.genrId = g.genrId
             and mg.movId = #{movId}
-<!--        ORDER BY g.genrName;-->
+        ORDER BY g.genrName;
     </select>
 
 <!-- ott데이터 출력 -->
@@ -73,15 +77,15 @@
         select o.ottId, o.ottName from ott o, movieOtt mo
             where mo.ottId = o.ottId
                 and mo.movId = #{movId}
-<!--        ORDER BY o.ottName;-->
+        ORDER BY o.ottName;
     </select>
 
 <!-- 메인페이지 검색바로 검색 - 영화이름 -->
     <select id="selectSearchMov" parameterType="String" resultType="movieDto">
-        select m.movId, m.movName, p.perName, mp.perJob
+        select DISTINCT m.movId, m.movName, m.movNameEng, m.movDate, m.movTime, m.movPoster, (m.movScore / m.movScoreCnt) movScore, m.movScoreCnt
             from movie m, person p, moviePerson mp
             where ((m.movId = mp.movId) and (mp.perId = p.perId))
-                and (m.movName like concat('%',#{search},'%')
-                or p.perName like concat('%',#{search},'%');
+                and ( m.movName like concat('%',#{search},'%') or m.movNameEng like concat('%',#{search},'%')
+                    or p.perName like concat('%',#{search},'%') );
     </select>
 </mapper>

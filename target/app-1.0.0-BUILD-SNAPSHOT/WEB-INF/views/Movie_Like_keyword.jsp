@@ -184,10 +184,8 @@
         <div class="m_mvBox">
             <!-- chk:: javascript에서 값 불러올 예정 -->
             <div class="nodata_txt">키워드를 골라 원하는 영화를 찾아보세요</div>
-
-
-
         </div>
+        <div class="m_moreBox"></div>
 
     </main>
 </div>

@@ -138,7 +138,7 @@ test|schema||bitstudy||SELECT|G
 test|schema||bitstudy||SHOW VIEW|G
 test|schema||bitstudy||TRIGGER|G
 test|schema||bitstudy||UPDATE|G</Grants>
-      <ServerVersion>8.0.28</ServerVersion>
+      <ServerVersion>8.0.34</ServerVersion>
     </root>
     <collation id="2" parent="1" name="armscii8_general_ci">
       <Charset>armscii8</Charset>
@@ -1061,8 +1061,8 @@ test|schema||bitstudy||UPDATE|G</Grants>
       <CollationName>utf8mb3_general_ci</CollationName>
     </schema>
     <schema id="295" parent="1" name="movielike">
-      <IntrospectionTimestamp>2023-11-19.11:12:36</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-11-18.17:12:36</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2023-11-17.19:13:44</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-11-17.01:13:44</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="296" parent="1" name="bitstudy">
@@ -1120,7 +1120,7 @@ test|schema||bitstudy||UPDATE|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
     <column id="309" parent="301" name="cId">
-      <AutoIncrement>3586</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1229,7 +1229,7 @@ test|schema||bitstudy||UPDATE|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="331" parent="304" name="mgId">
-      <AutoIncrement>7162</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1255,7 +1255,7 @@ test|schema||bitstudy||UPDATE|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="336" parent="305" name="moId">
-      <AutoIncrement>1662</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -1281,7 +1281,7 @@ test|schema||bitstudy||UPDATE|G</Grants>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="341" parent="306" name="mpId">
-      <AutoIncrement>113041</AutoIncrement>
+      <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
