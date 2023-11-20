@@ -1,3 +1,4 @@
+// 많이 보고 싶어하는 영화, 시리즈 출력
 function poster_content6() {
     for(let i=0; i<6; i++) {
 
@@ -10,6 +11,7 @@ function poster_content6() {
 }
 poster_content6();
 
+// 베스트 댓글 출력
 function review_content() {
     let review_item = `<div class="review_movie_name">영화제목</div>
                         <div class="review_txt">리뷰 작성</div>
@@ -44,7 +46,7 @@ var swiper = new Swiper(".mySwiper", {
 });
 
 
-// 메인베너
+// 메인베너 스와이퍼
 var idx_lgth = $(".main_banner>div").length;
 var srt = 1;
 var idx = 0;

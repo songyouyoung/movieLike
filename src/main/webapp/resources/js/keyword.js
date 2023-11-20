@@ -2,8 +2,12 @@ $(document).ready(function(){
     var nowPage = 0;
     var endPage = 0;
     var pageSize = 20;
+// 위 키워드 선택 시 해당 키워드에 색 칠하기
     $(".m_tdItem, .m_tagItem").click(function (){
-        $(".m_mvBox").html("");
+        $(".m_mvListBox").html("");
+        $(".m_moreBox, .select_r").css({
+            "display": "none"
+        });
         let checkId = $(this).parent().prop("for"); // 체크박스 ID
         if(!$(`#${checkId}`).is(":checked") && $(`#${checkId}`).data("type") == "radio"){
             let checkName = $(`#${checkId}`).prop("name");
@@ -16,13 +20,29 @@ $(document).ready(function(){
         $(`label[for="${checkId}"]`).children(".m_tdItem").toggleClass('m_tdItem_check');
     });
 
+// 영화 리스트 불러오기
     $("input[type='checkbox']").change(function(){
-        if ($(".m_tagList .m_tagItem"))
-        showMovieList();
+        nowPage = 0;
+        endPage = 0;
+        showMovieList(0);
     });
 
-    function showMovieList(){
+// 정렬방법 다르게 선택 시 영화 리스트 다시 불러오기
+    $(".select_r").change(function(){
+        nowPage = 0;
+        endPage = 0;
+        let sort = $('.select_r > option:checked') == "latest" ? 0 : 1;
+        console.log(sort)
+        $(".m_mvListBox").html("");
+        $(".m_moreBox").css({
+            "display": "none"
+        });
+        showMovieList(sort);
+    });
+
+    function showMovieList(sort){
         let genr=[];
+        let country=[];
         let ott=[];
         let review= 0;
         let score= 0.0;
@@ -30,23 +50,17 @@ $(document).ready(function(){
         let j = tag.length; //val()
         for (let i = 0; i < j; i++){
             if(tag.eq(i).css("display") == "inline-block"){
-                // genr += tag.eq(i).data("genr") == undefined ? "" : tag.eq(i).data("genr") + "|";
                 tag.eq(i).data("genr") == undefined ? "" : genr.push(tag.eq(i).data("genr"));
-                // ott += tag.eq(i).data("ott") == undefined ? "" : tag.eq(i).data("ott") + "|";
-                tag.eq(i).data("ott") == undefined ? "" : ott.push({"ottName" : tag.eq(i).data("ott")});
+                tag.eq(i).data("country") == undefined ? "" : country.push(tag.eq(i).data("country"));
+                tag.eq(i).data("ott") == undefined ? "" : ott.push({"ottId" : parseInt(tag.eq(i).data("ott"))});
                 review = tag.eq(i).data("review") == undefined ? 0 : parseInt(tag.eq(i).data("review"));
                 score = tag.eq(i).data("score") == undefined ? 0 : parseInt(tag.eq(i).data("score"));
             }
         }
-        // console.log("genr : " + genr);
-        // console.log("ott : " + ott);
-        // console.log("review : " + review);
-        // console.log("score : " + score);
-        if(genr == "" && ott == "" && review == 0 && score == 0){
+        if(genr == "" && country == "" && ott == "" && review == 0 && score == 0){
             return mvBox_null("키워드를 골라 원하는 영화를 찾아보세요");
         }
-        let keyword = {movScore: score, movScoreCnt: review, ottList: ott, genreList: genr, nowPage: nowPage, pageSize: pageSize};
-        //httpRequest.abort();
+        let keyword = {genreList: genr, countryNameList: country, ottList: ott, movScore: score, movScoreCnt: review, nowPage: nowPage, pageSize: pageSize, sort: sort};
         $.ajax({
             type:'POST',       // 요청 메서드
             url: '/app/findKeyword',  // 요청 URI
@@ -54,8 +68,8 @@ $(document).ready(function(){
             dataType : 'text', // 전송받을 데이터의 타입
             data : JSON.stringify(keyword),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
             success : function(result){
-                console.log("received="+result);       // result는 서버가 전송한 데이터
-                $(".m_mvBox").append(toHtml(result));
+                // console.log("received="+result);       // result는 서버가 전송한 데이터
+                $(".m_mvListBox").append(toHtml(result));
                 showPage();
             },
             error : function(){
@@ -65,12 +79,14 @@ $(document).ready(function(){
     }
 
     var c_path = (location.pathname).split("/")[1];
-    console.log("c_path : " + c_path);
+    //console.log("c_path : " + c_path);
 
     function mvBox_null(nodata){
         let txt = `<div class="nodata_txt">${nodata}</div>`
-        $(".m_mvBox").html(txt);
-        $(".m_moreBox").html("");
+        $(".m_mvListBox").html(txt);
+        $(".m_moreBox, .select_r").css({
+            "display": "none"
+        });
     }
     let toHtml = function(movieList) {
         let keywordList = "";
@@ -82,19 +98,6 @@ $(document).ready(function(){
             let year = dt.getFullYear();
             let month = dt.getMonth()+1 < 10 ? "0" + (dt.getMonth()+1) : dt.getMonth()+1;
             let date = dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate();
-            // let ottId = movie.ottId;
-            // let ottName = movie.ottName;
-            // if(movie.ottList.length > 0) {
-            //     console.log("ott 값 있음");
-            //     ottList = "";
-            //     let ottIdList = ottId.split(",");
-            //     let ottNameList = ottName.split(",");
-            //     for (let j = 0; j < ottIdList.length; j++) {
-            //         ottList += `<div class="m_mvOttBox">
-            //                     <span class="m_mvOtt"><img src= "../img/ott/${ottIdList[j]}.png" alt="${ottNameList[j]}">${ottNameList[j]}</span>
-            //                 </div>`;
-            //     }
-            // }
             let ottList = "";
             movie.ottList.forEach(function (ott, i){
                 ottList += `<div class="m_mvOttBox">
@@ -125,7 +128,6 @@ $(document).ready(function(){
                                 <div class="m_mvDesc">
                                     <div class="m_mvTitle">${movie.movName}</div>
                                     <div class="m_mvTitleEng">${movie.movNameEng}</div>
-    <!--                                    <div class="m_mvDate">${movie.movDate}</div>-->
                                     <div class="m_mvDate">${year}-${month}-${date}</div>
                                     <div class="m_mvDescBox">
                                         <span class="m_mvDir">${dirName}</span><span class="m_mvCountry">${cName}</span>
@@ -145,21 +147,36 @@ $(document).ready(function(){
         return keywordList;
     };
 
-    // 페이징 작업
+// 페이징 작업
     function showPage(){
-        console.log("endPage : " + endPage);
-        console.log("pageSize : " + pageSize);
-        console.log("endPage % pageSize : " + endPage % pageSize);
+        // console.log("endPage : " + endPage);
+        // console.log("pageSize : " + pageSize);
+        // console.log("endPage % pageSize : " + endPage % pageSize);
+        $(".select_r").css({
+            "display": "block"
+        });
         if(endPage % pageSize == 0) {
-            $(".m_moreBox").html("<span>더보기▽</span>");
+            $(".m_moreBox").css({
+                "display": "block"
+            });
         }else{
-            $(".m_moreBox").html("");
+            //$(".m_moreBox").html("");
+            $(".m_moreBox").css({
+                "display": "none"
+            });
         }
-        nowPage = endPage;
-        console.log("nowPage : " + nowPage);
     }
     $(".m_moreBox").click(function (){
-        showMovieList();
+        nowPage = endPage;
+        let sort = $('.select_r > option:checked') == "latest" ? 0 : 1;
+        console.log(sort)
+        showMovieList(sort);
     });
 
+// 영화 선택 시 상세 페이지로 가기
+    $(".m_mvListBox").on('click', '.m_mvList', function(){
+        //$(`#${checkId}`).data("type")
+        let movId = $(this).data("movid");
+        location.href = "../movie/detail?movId="+movId;
+    });
 });

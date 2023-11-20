@@ -16,7 +16,7 @@
 <body>
 <div id="wrap">
     <header class="header">
-        <div class="logo"><a href="/"><img src="<c:url value='/img/logo.png'/>" alt="로고 이미지"></a></div>
+        <div class="logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="로고 이미지"></a></div
         <div class="h_left left_50"><a href="">영화 전체보기</a></div>
         <div class="h_left"><a href="./Movie_Like_find.html">차트</a></div>
         <div class="h_left"><a href="">키워드 찾기</a></div>
@@ -52,6 +52,26 @@
         <input type="checkbox" id="war_chk">
         <input type="checkbox" id="tvmovie_chk">
 
+        <!-- 국가 선택 -->
+        <input type="checkbox" id="korea_chk">
+        <input type="checkbox" id="america_chk">
+        <input type="checkbox" id="uk_chk">
+        <input type="checkbox" id="china_chk">
+        <input type="checkbox" id="japan_chk">
+        <input type="checkbox" id="france_chk">
+        <input type="checkbox" id="hongkong_chk">
+        <input type="checkbox" id="canada_chk">
+        <input type="checkbox" id="germany_chk">
+        <input type="checkbox" id="taiwan_chk">
+        <input type="checkbox" id="australia_chk">
+        <input type="checkbox" id="brazil_chk">
+        <input type="checkbox" id="india_chk">
+        <input type="checkbox" id="russia_chk">
+        <input type="checkbox" id="denmark_chk">
+        <input type="checkbox" id="mexico_chk">
+        <input type="checkbox" id="switzerland_chk">
+
+
         <!-- OTT 선택 -->
         <input type="checkbox" id="netflex_chk">
         <input type="checkbox" id="watcha_chk">
@@ -59,7 +79,6 @@
         <input type="checkbox" id="wavve_chk">
         <input type="checkbox" id="appletv_chk">
         <input type="checkbox" id="naverseries_chk">
-        <input type="checkbox" id="googleplay_chk">
 
         <!-- 리뷰 선택 -->
         <input type="checkbox" name="review_rd" id="review_500_chk" data-type = "radio">
@@ -99,6 +118,30 @@
                 </td>
             </tr>
             <tr class="m_tr">
+                <th class="m_th">국가</th>
+                <td class="m_td">
+                    <div class="m_tdList">
+                        <label for="korea_chk"><span class="m_tdItem">대한민국</span></label>
+                        <label for="america_chk"><span class="m_tdItem">미국</span></label>
+                        <label for="uk_chk"><span class="m_tdItem">영국</span></label>
+                        <label for="china_chk"><span class="m_tdItem">중국</span></label>
+                        <label for="japan_chk"><span class="m_tdItem">일본</span></label>
+                        <label for="france_chk"><span class="m_tdItem">프랑스</span></label>
+                        <label for="hongkong_chk"><span class="m_tdItem">홍콩</span></label>
+                        <label for="canada_chk"><span class="m_tdItem">캐나다</span></label>
+                        <label for="germany_chk"><span class="m_tdItem">독일</span></label>
+                        <label for="taiwan_chk"><span class="m_tdItem">대만</span></label>
+                        <label for="australia_chk"><span class="m_tdItem">호주</span></label>
+                        <label for="brazil_chk"><span class="m_tdItem">브라질</span></label>
+                        <label for="india_chk"><span class="m_tdItem">인도</span></label>
+                        <label for="russia_chk"><span class="m_tdItem">러시아</span></label>
+                        <label for="denmark_chk"><span class="m_tdItem">덴마크</span></label>
+                        <label for="mexico_chk"><span class="m_tdItem">멕시코</span></label>
+                        <label for="switzerland_chk"><span class="m_tdItem">스위스</span></label>
+                    </div>
+                </td>
+            </tr>
+            <tr class="m_tr">
                 <th class="m_th">OTT</th>
                 <td class="m_td">
                     <div class="m_tdList">
@@ -108,7 +151,6 @@
                         <label for="wavve_chk"><span class="m_tdItem">웨이브</span></label>
                         <label for="appletv_chk"><span class="m_tdItem">Apple TV+</span></label>
                         <label for="naverseries_chk"><span class="m_tdItem">네이버 시리즈온</span></label>
-                        <label for="googleplay_chk"><span class="m_tdItem">Google Play Movies</span></label>
                     </div>
                 </td>
             </tr>
@@ -118,7 +160,7 @@
                     <div class="m_tdList">
                         <label for="review_500_chk"><span class="m_tdItem">리뷰 500개 이상</span></label>
                         <label for="review_400_chk"><span class="m_tdItem">리뷰 400개
-                                <label for="review_300_chk"></label>이상</span></label>
+                                    <label for="review_300_chk"></label>이상</span></label>
                         <label for="review_300_chk"><span class="m_tdItem">리뷰 300개 이상</span></label>
                     </div>
                 </td>
@@ -160,14 +202,32 @@
                 <label for="war_chk"><span class="m_tagItem" id="war" data-genr = "전쟁">#전쟁</span></label>
                 <label for="tvmovie_chk"><span class="m_tagItem" id="tvmovie" data-genr = "TV 영화">#TV 영화</span></label>
 
+                <!-- 국가 check -->
+                <label for="korea_chk"><span class="m_tagItem" id="korea" data-country = "대한민국">#대한민국</span></label>
+                <label for="america_chk"><span class="m_tagItem" id="america" data-country = "미국">#미국</span></label>
+                <label for="uk_chk"><span class="m_tagItem" id="uk" data-country = "영국">#영국</span></label>
+                <label for="china_chk"><span class="m_tagItem" id="china" data-country = "중국">#중국</span></label>
+                <label for="japan_chk"><span class="m_tagItem" id="japan" data-country = "일본">#일본</span></label>
+                <label for="france_chk"><span class="m_tagItem" id="france" data-country = "프랑스">#프랑스</span></label>
+                <label for="hongkong_chk"><span class="m_tagItem" id="hongkong" data-country = "홍콩">#홍콩</span></label>
+                <label for="canada_chk"><span class="m_tagItem" id="canada" data-country = "캐나다">#캐나다</span></label>
+                <label for="germany_chk"><span class="m_tagItem" id="germany" data-country = "독일">#독일</span></label>
+                <label for="taiwan_chk"><span class="m_tagItem" id="taiwan" data-country = "대만">#대만</span></label>
+                <label for="australia_chk"><span class="m_tagItem" id="australia" data-country = "호주">#호주</span></label>
+                <label for="brazil_chk"><span class="m_tagItem" id="brazil" data-country = "브라질">#브라질</span></label>
+                <label for="india_chk"><span class="m_tagItem" id="india" data-country = "인도">#인도</span></label>
+                <label for="russia_chk"><span class="m_tagItem" id="russia" data-country = "러시아">#러시아</span></label>
+                <label for="denmark_chk"><span class="m_tagItem" id="denmark" data-country = "덴마크">#덴마크</span></label>
+                <label for="mexico_chk"><span class="m_tagItem" id="mexico" data-country = "멕시코">#멕시코</span></label>
+                <label for="switzerland_chk"><span class="m_tagItem" id="switzerland" data-country = "스위스">#스위스</span></label>
+
                 <!-- OTT check -->
-                <label for="netflex_chk"><span class="m_tagItem" id="netflex" data-ott = "Netflix">#넷플릭스</span></label>
-                <label for="watcha_chk"><span class="m_tagItem" id="watcha" data-ott = "Watcha">#왓챠</span></label>
-                <label for="disnep_chk"><span class="m_tagItem" id="disnep" data-ott = "Disney Plus">#디즈니+</span></label>
-                <label for="wavve_chk"><span class="m_tagItem" id="wavve" data-ott = "wavve">#웨이브</span></label>
-                <label for="appletv_chk"><span class="m_tagItem" id="appletv" data-ott = "Apple TV Plus">#Apple TV+</span></label>
-                <label for="naverseries_chk"><span class="m_tagItem" id="naverseries" data-ott = "네이버 시리즈온">#네이버 시리즈온</span></label>
-                <label for="googleplay_chk"><span class="m_tagItem" id="googleplay" data-ott = "Google Play Movies">#Google Play Movies</span></label>
+                <label for="netflex_chk"><span class="m_tagItem" id="netflex" data-ott = "8">#넷플릭스</span></label>
+                <label for="watcha_chk"><span class="m_tagItem" id="watcha" data-ott = "97">#왓챠</span></label>
+                <label for="disnep_chk"><span class="m_tagItem" id="disnep" data-ott = "337">#디즈니+</span></label>
+                <label for="wavve_chk"><span class="m_tagItem" id="wavve" data-ott = "356">#웨이브</span></label>
+                <label for="appletv_chk"><span class="m_tagItem" id="appletv" data-ott = "350">#Apple TV+</span></label>
+                <label for="naverseries_chk"><span class="m_tagItem" id="naverseries" data-ott = "96">#네이버 시리즈온</span></label>
 
                 <!-- 리뷰 check -->
                 <label for="review_500_chk"><span class="m_tagItem" id="review_500" data-review = "500">리뷰 500개 이상</span></label>
@@ -182,10 +242,16 @@
         </div>
 
         <div class="m_mvBox">
-            <!-- chk:: javascript에서 값 불러올 예정 -->
-            <div class="nodata_txt">키워드를 골라 원하는 영화를 찾아보세요</div>
+            <select class="select_r">
+                <option value="latest" selected>최신순</option>
+                <option value="popularity">인기순</option>
+            </select>
+            <div class="m_mvListBox">
+                <!-- chk:: javascript에서 값 불러올 예정 -->
+                <div class="nodata_txt">키워드를 골라 원하는 영화를 찾아보세요</div>
+            </div>
         </div>
-        <div class="m_moreBox"></div>
+        <div class="m_moreBox">더보기▽</div>
 
     </main>
 </div>

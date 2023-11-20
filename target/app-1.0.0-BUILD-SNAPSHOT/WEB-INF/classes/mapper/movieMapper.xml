@@ -11,6 +11,9 @@
         <if test="genreList != null and genreList.size != 0">
             , genre g, movieGenre mg
         </if>
+        <if test="countryNameList != null and countryNameList.size != 0">
+            , country c
+        </if>
         <if test="ottList != null and ottList.size != 0">
             , ott o, movieOtt mo
         </if>
@@ -25,11 +28,20 @@
             </trim>
             )
         </if>
+        <if test="countryNameList != null and countryNameList.size != 0">
+            and c.movId = m.movId and (
+            <trim prefixOverrides="OR">
+                <foreach collection = "countryNameList" item = "country" separator=" ">
+                    OR c.cName = #{country}
+                </foreach>
+            </trim>
+            )
+        </if>
         <if test="ottList != null and ottList.size != 0">
             and mo.movId = m.movId and o.ottId = mo.ottId and (
             <trim prefixOverrides="OR">
                 <foreach collection = "ottList" item = "ott" separator=" ">
-                    OR o.ottName = #{ott.ottName}
+                    OR o.ottId = #{ott.ottId}
                 </foreach>
             </trim>
             )
@@ -40,7 +52,14 @@
         <if test="movScore > 0">
             and (m.movScore / m.movScoreCnt) >= #{movScore}
         </if>
-        order by m.movScoreCnt
+        <choose>
+            <when test="sort == 0">
+                order by m.movDate desc
+            </when>
+            <when test="sort == 1">
+                order by m.movScoreCnt
+            </when>
+        </choose>
         limit #{nowPage}, #{pageSize}
     </select>
 

@@ -17,7 +17,7 @@
 <body>
     <div id="wrap">
         <header class="header">
-            <div class="logo"><a href="/"><img src="<c:url value='/img/logo.png'/>" alt="로고 이미지"></a></div>
+            <div class="logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="로고 이미지"></a></div>
             <div class="h_left left_50"><a href="">영화 전체보기</a></div>
             <div class="h_left"><a href="">차트</a></div>
             <div class="h_left"><a href="<c:url value='/find/keyword'/>">키워드 찾기</a></div>
@@ -37,13 +37,13 @@
                 <div class="mainbanner_list"><a href="#"><img src="<c:url value='./img/mainbanner4.jpg'/>" alt="4" width="100%" height="100%"></a></div>
                 <div class="mainbanner_list"><a href="#"><img src="<c:url value='./img/mainbanner5.jpg'/>" alt="5" width="100%" height="100%"></a></div>
                 <section>   
-                <div class="left_btn">
-                    <span></span>
-                    <span></span>
+                    <div class="left_btn">
+                        <span></span>
+                        <span></span>
                     </div>
                     <div class="right_btn">
-                    <span></span>
-                    <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
                 </section>
                 <section id="control">
@@ -62,9 +62,9 @@
                 <div class="content_box">
                     <div class="title_box">
                         <div class="title">전체 인기순위</div>
-                        <div class="title_icon"><img src="<c:url value='./img/crown.png'/>" alt="왕관 아이콘"></div>
+                        <div class="title_icon"><img src="<c:url value='/img/crown.png'/>" alt="왕관 아이콘"></div>
                     </div>
-                    <div class="ranking_poster_box">
+                    <div class="ranking_poster_box allBox">
                         <div class="recommended_item_content">
                             <section class="new_arr">
                                 <!-- Swiper -->
@@ -125,9 +125,9 @@
                 <div class="content_box">
                     <div class="title_box">
                         <div class="title">넷플릭스 인기순위</div>
-                        <div class="title_icon"><img src="<c:url value='./img/popcon.png'/>" alt="팝콘 아이콘"></div>
+                        <div class="title_icon"><img src="<c:url value='/img/popcon.png'/>" alt="팝콘 아이콘"></div>
                     </div>
-                    <div class="ranking_poster_box">
+                    <div class="ranking_poster_box netflixBox">
                         <div class="recommended_item_content">
                             <section class="new_arr">
                                 <!-- Swiper -->
@@ -176,7 +176,7 @@
                                         </div>
                                     </div>
                                     <div class="swiper-pagination"></div>
-                    
+
                                     <!-- If we need navigation buttons -->
                                     <div class="swiper-button-prev"></div>
                                     <div class="swiper-button-next"></div>
@@ -187,19 +187,61 @@
                 </div>
                 <div class="content_box">
                     <div class="title_box">
-                        <div class="title">사람들이 많이 보고 싶어 하는 영화</div>
-                        <div class="title_icon"><img src="./img/eyes.png" alt="눈 아이콘"></div>
-                        <div class="more_btn"><a href="">더보기</a></div>
+                        <div class="title">사람들이 많이 검색한 영화</div>
+                        <div class="title_icon"><img src="<c:url value='/img/eyes.png'/>" alt="눈 아이콘"></div>
                     </div>
-                    <div class="poster_box">
-                        
+                    <div class="ranking_poster_box wannerBox">
+                        <div class="recommended_item_content">
+                            <section class="new_arr">
+                                <!-- Swiper -->
+                                <div class="swiper mySwiper" style="padding: 0 30px; box-sizing: border-box;">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="swiper-pagination"></div>
+
+                                    <!-- If we need navigation buttons -->
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
+                                </div>
+                            </section>
+                        </div>
                     </div>
                 </div>
 
                 <div class="best_review_box">
                     <div class="title_box">
                         <div class="title">베스트 리뷰</div>
-                        <div class="title_icon"><img src="./img/best_review.png" alt="베스트 아이콘"></div>
+                        <div class="title_icon"><img src="<c:url value='/img/best_review.png'/>" alt="베스트 아이콘"></div>
                     </div>
                     <div class="review_box">
                         <div class="review">
@@ -217,10 +259,10 @@
                 <div class="content_box">
                     <div class="title_box">
                         <div class="title">지브리 시리즈</div>
-                        <div class="title_icon"><img src="./img/gibli.png" alt="지브리 아이콘"></div>
+                        <div class="title_icon"><img src="<c:url value='/img/gibli.png'/>" alt="지브리 아이콘"></div>
                         <div class="more_btn"><a href="">더보기</a></div>
                     </div>
-                    <div class="poster_box">
+                    <div class="poster_box gibliBox">
                         
                     </div>
                 </div>
@@ -228,10 +270,10 @@
                 <div class="content_box">
                     <div class="title_box">
                         <div class="title">마블 시리즈</div>
-                        <div class="title_icon"><img src="./img/marble.png" alt="마블 아이콘"></div>
+                        <div class="title_icon"><img src="<c:url value='/img/marble.png'/>" alt="마블 아이콘"></div>
                         <div class="more_btn"><a href="">더보기</a></div>
                     </div>
-                    <div class="poster_box">
+                    <div class="poster_box marbleBox">
                         
                     </div>
                 </div>
@@ -239,10 +281,10 @@
                 <div class="content_box">
                     <div class="title_box">
                         <div class="title">해리포터 시리즈</div>
-                        <div class="title_icon"><img src="./img/glasses.png" class="glasses" alt="해리포터 아이콘"></div>
+                        <div class="title_icon"><img src="<c:url value='/img/glasses.png'/>" class="glasses" alt="해리포터 아이콘"></div>
                         <div class="more_btn"><a href="">더보기</a></div>
                     </div>
-                    <div class="poster_box">
+                    <div class="poster_box harryBox">
                         
                     </div>
                 </div>
@@ -254,6 +296,6 @@
         </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <script src="./js/main_item.js"></script>
+    <script src="<c:url value='/js/main_item.js'/>"></script>
 </body>
 </html>

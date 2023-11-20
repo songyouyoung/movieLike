@@ -11,6 +11,9 @@
         <if test="genreList != null and genreList.size != 0">
             , genre g, movieGenre mg
         </if>
+        <if test="countryNameList != null and countryNameList.size != 0">
+            , country c
+        </if>
         <if test="ottList != null and ottList.size != 0">
             , ott o, movieOtt mo
         </if>
@@ -25,11 +28,20 @@
             </trim>
             )
         </if>
+        <if test="countryNameList != null and countryNameList.size != 0">
+            and c.movId = m.movId and (
+            <trim prefixOverrides="OR">
+                <foreach collection = "countryNameList" item = "country" separator=" ">
+                    OR c.cName = #{country}
+                </foreach>
+            </trim>
+            )
+        </if>
         <if test="ottList != null and ottList.size != 0">
             and mo.movId = m.movId and o.ottId = mo.ottId and (
             <trim prefixOverrides="OR">
                 <foreach collection = "ottList" item = "ott" separator=" ">
-                    OR o.ottName = #{ott.ottName}
+                    OR o.ottId = #{ott.ottId}
                 </foreach>
             </trim>
             )
@@ -40,7 +52,14 @@
         <if test="movScore > 0">
             and (m.movScore / m.movScoreCnt) >= #{movScore}
         </if>
-        order by m.movScoreCnt
+        <choose>
+            <when test="sort == 0">
+                order by m.movDate desc
+            </when>
+            <when test="sort == 1">
+                order by m.movScoreCnt, m.movScore
+            </when>
+        </choose>
         limit #{nowPage}, #{pageSize}
     </select>
 
@@ -80,12 +99,67 @@
         ORDER BY o.ottName;
     </select>
 
+
+<!--    메인페이지 메인배너를 위한 사용자 취향 장르 확인-->
+    <select id="selectUserGenre" parameterType="int" resultType="String">
+        select genrId from userGenre
+            where userId = #{userId};
+    </select>
+
+    <!--    메인페이지 메인배너 영화 조회-->
+    <select id="selectMainBanner" parameterType="String" resultType="movieDto">
+        select DISTINCT m.movId, m.movName, m.movPoster from movie m
+        <if test="genrList != null">
+            , movieGenre mg
+            where m.movId = mg.movId and (
+            <trim prefixOverrides="OR">
+                <foreach collection="genrList" item = "genre" separator=" ">
+                    OR mg.genrId = #{genre}
+                </foreach>
+            </trim>
+            )
+        </if>
+        ORDER BY m.movDate desc
+        limit 0, 5;
+    </select>
+
+<!--    메인페이지 순위 영화 조회-->
+<!--    "" : 전체 인기조회
+        "netflix" : 넷플릭스 인기 조회
+        "search" : 검색 인기 조회-->
+    <select id="selectBest" parameterType="String" resultType="movieDto">
+        select DISTINCT m.movId, m.movName, m.movPoster from movie m
+        <if test="search == 'netflix'">
+            , movieOtt mo
+            where mo.ottId = 8 and mo.movId = m.movId
+        </if>
+        <choose>
+            <when test="search == 'search'">
+                ORDER BY m.movSearchCnt
+            </when>
+            <otherwise>
+                ORDER BY m.movScoreCnt, m.movScore
+            </otherwise>
+        </choose>
+        limit 0, 10;
+    </select>
+
+<!--    메인페이지 시리즈 영화 조회 (지브리, 마블, 해리포터)-->
+    <select id="selectSeries" parameterType="String" resultType="movieDto">
+        select DISTINCT m.movId, m.movName, m.movPoster from movie m, series s
+            where s.movId = m.movId
+                and s.serName = #{serName}
+        ORDER BY m.movDate desc
+        limit 0, 6;
+    </select>
+
 <!-- 메인페이지 검색바로 검색 - 영화이름 -->
-    <select id="selectSearchMov" parameterType="String" resultType="movieDto">
+    <select id="selectSearchMov" parameterType="int" resultType="movieDto">
         select DISTINCT m.movId, m.movName, m.movNameEng, m.movDate, m.movTime, m.movPoster, (m.movScore / m.movScoreCnt) movScore, m.movScoreCnt
             from movie m, person p, moviePerson mp
             where ((m.movId = mp.movId) and (mp.perId = p.perId))
                 and ( m.movName like concat('%',#{search},'%') or m.movNameEng like concat('%',#{search},'%')
                     or p.perName like concat('%',#{search},'%') );
     </select>
+
 </mapper>

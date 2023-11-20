@@ -28,8 +28,6 @@ public class MovieDao {
     // perJob에 값 넣으면 감독만, 배우만 조회. ""면 둘 다 조회
     public List<PersonDto> selectPerson(int movId, String perJob){
         Map<String, String> movMap = new HashMap<>();
-        System.out.println("movId : " + movId);
-        System.out.println("perJob : " + perJob);
         movMap.put("movId", String.valueOf(movId));
         movMap.put("perJob", perJob);
         return session.selectList(namespace+"selectPerson", movMap);
@@ -50,6 +48,22 @@ public class MovieDao {
 /////////////////////////////////
 ////////// 메인 페이지 ///////////
 /////////////////////////////////
+    public List<String> selectUserGenre(Integer userId){
+        return session.selectList(namespace+"selectUserGenre" , userId);
+    }
+
+    public List<MovieDto> selectMainBanner(List<String> genrList){
+        return session.selectList(namespace+"selectMainBanner" , genrList);
+    }
+
+    public List<MovieDto> selectBest(String search){
+        return session.selectList(namespace+"selectBest" , search);
+    }
+
+    public List<MovieDto> selectSeries(String serName){
+        return session.selectList(namespace+"selectSeries" , serName);
+    }
+
     public List<MovieDto> selectSearchMov(String search) {
         return session.selectList(namespace+"selectSearchMov" , search);
     }

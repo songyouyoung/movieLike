@@ -43,7 +43,7 @@
 }
 
 .genre_list {  
-    width: 1300px;
+    width: 1410px;
     padding-bottom: 10px;
 }
 .m_td:hover{
@@ -140,6 +140,7 @@
     overflow: hidden;
     float: left;
     margin-top: 30px;
+    cursor: pointer;
 }
 .m_mvOtt {
     padding: 10px 0;
@@ -191,6 +192,25 @@ input {
 #family_chk:checked ~ .m_tagBox #family,
 #war_chk:checked ~ .m_tagBox #war,
 #tvmovie_chk:checked ~ .m_tagBox #tvmovie,
+/* 국가 */
+#korea_chk:checked ~ .m_tagBox #korea,
+#america_chk:checked ~ .m_tagBox #america,
+#uk_chk:checked ~ .m_tagBox #uk,
+#china_chk:checked ~ .m_tagBox #china,
+#japan_chk:checked ~ .m_tagBox #japan,
+#france_chk:checked ~ .m_tagBox #france,
+#hongkong_chk:checked ~ .m_tagBox #hongkong,
+#canada_chk:checked ~ .m_tagBox #canada,
+#germany_chk:checked ~ .m_tagBox #germany,
+#taiwan_chk:checked ~ .m_tagBox #taiwan,
+#australia_chk:checked ~ .m_tagBox #australia,
+#brazil_chk:checked ~ .m_tagBox #brazil,
+#india_chk:checked ~ .m_tagBox #india,
+#russia_chk:checked ~ .m_tagBox #russia,
+#denmark_chk:checked ~ .m_tagBox #denmark,
+#mexico_chk:checked ~ .m_tagBox #mexico,
+#switzerland_chk:checked ~ .m_tagBox #switzerland,
+
 /* OTT */
 #netflex_chk:checked ~ .m_tagBox #netflex,
 #watcha_chk:checked ~ .m_tagBox #watcha,
@@ -198,7 +218,6 @@ input {
 #wavve_chk:checked ~ .m_tagBox #wavve,
 #appletv_chk:checked ~ .m_tagBox #appletv,
 #naverseries_chk:checked ~ .m_tagBox #naverseries,
-#googleplay_chk:checked ~ .m_tagBox #googleplay,
 /* 리뷰 */
 #review_500_chk:checked ~ .m_tagBox #review_500,
 #review_400_chk:checked ~ .m_tagBox #review_400,
@@ -209,4 +228,25 @@ input {
 #score3_chk:checked ~ .m_tagBox #score3
 {
     display: inline-block;
+}
+
+.select_r {
+    float: right;
+    outline: none;
+    margin-top: 15px;
+    font-size: 16px;
+    padding: 3px 5px;
+    display: none;
+}
+.m_moreBox {
+    width: 120px;
+    height: 60px;
+    background: #a785ef;
+    border-radius: 30px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 20px;
+    margin: 100px auto;
+    cursor: pointer;
+    display: none;
 }

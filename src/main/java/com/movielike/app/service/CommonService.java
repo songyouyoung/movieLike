@@ -14,7 +14,6 @@ public class CommonService {
     public List<MovieDto> movieList(List<MovieDto> movieList){
         for (int i = 0; i < movieList.size(); i++) {
             // 감독데이터 출력
-            System.out.println("null? " + movieList.get(i).getMovId());
             movieList.get(i).setActorList(movieDao.selectPerson(movieList.get(i).getMovId(), "감독"));
 
             // 나라데이터 출력

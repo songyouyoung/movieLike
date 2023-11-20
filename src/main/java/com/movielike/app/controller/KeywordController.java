@@ -27,13 +27,6 @@ public class KeywordController {
     @ResponseBody
     public ResponseEntity<List<MovieDto>> findKeyword(@RequestBody MovieDto movieDto) throws UnsupportedEncodingException {
         System.out.println(movieDto);
-//        if(movieDto.getGenrName().endsWith("|")){
-//            movieDto.setGenrName(movieDto.getGenrName().substring(0, movieDto.getGenrName().length()-1));
-//        }
-//        if(movieDto.getOttName().endsWith("|")){
-//            movieDto.setOttName(movieDto.getOttName().substring(0, movieDto.getOttName().length()-1));
-//        }
-
         try {
             List<MovieDto> listMovie = service.keywordFind(movieDto);
             if (listMovie == null || listMovie.isEmpty()){

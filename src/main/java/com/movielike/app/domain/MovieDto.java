@@ -27,7 +27,7 @@ public class MovieDto {
     private List<PersonDto> actorList; // 배우 리스트
     private int nowPage;
     private int pageSize;
-
+    private int sort; // 0 : 최신순, 1 : 인기순
 
     public MovieDto() {
     }
@@ -37,20 +37,15 @@ public class MovieDto {
         this.movScoreCnt = movScoreCnt;
     }
 
-    //    public MovieDto(double movScore, int movScoreCnt, String ottName, String genrName){
-//        this.movScore = movScore;
-//        this.movScoreCnt = movScoreCnt;
-//        this.ottName = ottName;
-//        this.genrName = genrName;
-//    }
-
-    public MovieDto(double movScore, int movScoreCnt, List<OttDto> ottList, List<String> genreList, int nowPage, int pageSize) {
+    public MovieDto(double movScore, int movScoreCnt, List<String> countryNameList, List<OttDto> ottList, List<String> genreList, int nowPage, int pageSize, int sort) {
         this.movScore = movScore;
         this.movScoreCnt = movScoreCnt;
+        this.countryNameList = countryNameList;
         this.ottList = ottList;
         this.genreList = genreList;
         this.nowPage = nowPage;
         this.pageSize = pageSize;
+        this.sort = sort;
     }
 
     public int getMovId() {
@@ -185,6 +180,14 @@ public class MovieDto {
 
     public void setOttList(List<OttDto> ottList) {
         this.ottList = ottList;
+    }
+
+    public int getSort() {
+        return sort;
+    }
+
+    public void setSort(int sort) {
+        this.sort = sort;
     }
 
     @Override

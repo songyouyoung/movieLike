@@ -32,7 +32,10 @@ public class MovieDaoTest {
         genreList.add("모험");
         genreList.add("범죄");
 
-        MovieDto movieDto = new MovieDto(0, 0, ottList, genreList, 0, 20);
+        List<String> countryList = new ArrayList<>();
+        countryList.add("스위스");
+
+        MovieDto movieDto = new MovieDto(0, 0, countryList, null, null, 0, 20, 0);
         assertTrue(!movieDao.selectMovie(movieDto).get(0).getMovName().equals(null));
     }
 
@@ -44,6 +47,37 @@ public class MovieDaoTest {
     @Test
     public void selectOtt() {
         assertTrue(movieDao.selectOtt(492008) != null);
+    }
+
+    @Test
+    public void selectUserGenre(){
+        Integer userId = null;
+        assertTrue(movieDao.selectUserGenre(userId) != null);
+    }
+
+    @Test
+    public void selectMainBanner(){
+        Integer userId = null;
+        List<String> genrList = new ArrayList<>();
+        assertTrue(movieDao.selectMainBanner(genrList) != null);
+    }
+
+    @Test
+    public void selectBest(){
+        String search = "";
+        assertTrue(movieDao.selectBest(search) != null);
+    }
+
+    @Test
+    public void selectSeries(){
+        String serName = "";
+        assertTrue(movieDao.selectSeries(serName) != null);
+    }
+
+    @Test
+    public void selectSearchMov() {
+        String search = "";
+        assertTrue(movieDao.selectSearchMov(search) != null);
     }
 
 }
