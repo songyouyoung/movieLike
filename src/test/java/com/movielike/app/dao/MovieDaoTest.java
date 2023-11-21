@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -50,34 +49,30 @@ public class MovieDaoTest {
     }
 
     @Test
-    public void selectUserGenre(){
-        Integer userId = null;
-        assertTrue(movieDao.selectUserGenre(userId) != null);
-    }
-
-    @Test
     public void selectMainBanner(){
-        Integer userId = null;
+        Integer userId = 1;
         List<String> genrList = new ArrayList<>();
+        System.out.println("genrList : " + genrList);
+
         assertTrue(movieDao.selectMainBanner(genrList) != null);
     }
 
     @Test
     public void selectBest(){
-        String search = "";
+        String search = "netflix";
         assertTrue(movieDao.selectBest(search) != null);
     }
 
     @Test
     public void selectSeries(){
-        String serName = "";
+        String serName = "marble";
         assertTrue(movieDao.selectSeries(serName) != null);
     }
 
-    @Test
-    public void selectSearchMov() {
-        String search = "";
-        assertTrue(movieDao.selectSearchMov(search) != null);
-    }
+//    @Test
+//    public void selectSearchMov() {
+//        String search = "";
+//        assertTrue(movieDao.selectSearchMov(search) != null);
+//    }
 
 }

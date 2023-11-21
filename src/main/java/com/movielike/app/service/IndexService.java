@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class IndexService {
@@ -17,9 +19,12 @@ public class IndexService {
     CommonService commonService;
 
     public List<List<MovieDto>> showIndexMovies(Integer userId){
-        List<String> genreList = movieDao.selectUserGenre(userId);
+        List<String> genreList = new ArrayList<>();
+        if (userId != null && userId > 0) {
+            genreList = movieDao.selectUserGenre(userId);
+        }
         List<List<MovieDto>> movieList = new ArrayList<>(6);
-        movieList.add(movieDao.selectMainBanner(genreList));
+        movieList.add(movieDao.selectMainBanner(genreList)); // 메인배너에 넣을 선택 장르별 or 전체 최신순
         movieList.add(movieDao.selectBest("")); // 전체 인기순
         movieList.add(movieDao.selectBest("netflix")); // 넷플릭스 인기순
         movieList.add(movieDao.selectBest("search")); // 검색 많이 한 순

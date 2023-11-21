@@ -68,7 +68,7 @@ $(document).ready(function(){
             dataType : 'text', // 전송받을 데이터의 타입
             data : JSON.stringify(keyword),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
             success : function(result){
-                // console.log("received="+result);       // result는 서버가 전송한 데이터
+                console.log("received="+result);       // result는 서버가 전송한 데이터
                 $(".m_mvListBox").append(toHtml(result));
                 showPage();
             },
@@ -124,7 +124,7 @@ $(document).ready(function(){
             if (genrName != ""){genrName = genrName.slice(0, -2)}
 
             keywordList += `<div class="m_mvList" data-movId=${movie.movId}>
-                                <div class="m_mvPoster"><img src="https://image.tmdb.org/t/p/w500/${movie.movPoster}" alt=""></div>
+                                <div class="m_mvPoster"><img src="https://image.tmdb.org/t/p/w500/${movie.movPoster}" alt="${movie.movName}"></div>
                                 <div class="m_mvDesc">
                                     <div class="m_mvTitle">${movie.movName}</div>
                                     <div class="m_mvTitleEng">${movie.movNameEng}</div>

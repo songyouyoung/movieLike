@@ -1,19 +1,69 @@
-// 많이 보고 싶어하는 영화, 시리즈 출력
-function poster_content6() {
-    for(let i=0; i<6; i++) {
-
-        let poster_item = `<div class="poster">
-                                <img src="./img/poster.jpg" alt="">
-                            </div>`
-
-        $(poster_item).appendTo('.poster_box')
+$(document).ready(function() {
+    // 많이 보고 싶어하는 영화, 시리즈 출력
+    // function poster_content6() {
+    //     for(let i=0; i<6; i++) {
+    //
+    //         let poster_item = `<div class="poster">
+    //                                 <img src="./img/poster.jpg" alt="">
+    //                             </div>`
+    //
+    //         $(poster_item).appendTo('.poster_box')
+    //     }
+    // }
+    // poster_content6();
+    function showMovieList(movieList, parentClass, viewSize, ranking){
+        let i = 0;
+        movieList.forEach(function(movie){
+            let movie_item = "";
+            if (viewSize == 10){ //랭킹
+                movie_item = `<a href="../movie/detail?movId=${movie.movId}">
+                                <img src="https://image.tmdb.org/t/p/w500/${movie.movPoster}" alt="${movie.movName}">
+                            </a>`;
+                movie_item += (ranking == "ranking" ? `<div class=\"ranking\">${i+1}</div>` : "");
+            }else if(viewSize == 5){ //메인배너
+                src=""
+                movie_item = `<a href="../movie/detail?movId=${movie.movId}">
+                                <iframe width="100%" height="100%"
+                                    src="https://www.youtube.com/embed/${movie.movTrailer}?si=MLICGmo6npmC-CJj&amp;controls=0&autoplay=1&loop=1&rel=0&mute=1&playlist=${movie.movTrailer}"
+                                    title="${movie.movName}"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen
+                                ></iframe>
+<!--                                <iframe src="https://www.youtube.com/embed/${movie.movTrailer}?si=MLICGmo6npmC-CJj&amp;controls=0&autoplay=1&loop=1&rel=0" width="100%" height="100%"></iframe>-->
+<!--                                <img src="https://image.tmdb.org/t/p/w500/" alt="${movie.movName}" class="poster" data-movId="${movie.movId}" width="100%" height="100%">-->
+                                </a>`;
+            }else{
+                movie_item = `<div class="poster" data-movId="${movie.movId}">
+                                    <a href="../movie/detail?movId=${movie.movId}" class="poster">
+                                        <img src="https://image.tmdb.org/t/p/w500/${movie.movPoster}" alt="${movie.movName}">
+                                    </a>
+                                </div>`;
+            }
+            if (viewSize == 6){
+                $(parentClass).append(movie_item);
+            }else{
+                $(parentClass).eq(i).append(movie_item);
+            }
+            i += 1;
+        });
     }
-}
-poster_content6();
+    showMovieList(bannerList, ".mainbanner_list", 5, "");
+    showMovieList(allBestList, ".allBox .swiper-slide", 10, "ranking");
+    showMovieList(netflixBestList, ".netflixBox .swiper-slide", 10, "ranking");
+    showMovieList(searchBestList, ".wannerBox .swiper-slide", 10, "");
+    showMovieList(gibliList, ".gibliBox", 6, "");
+    showMovieList(marbleList, ".marbleBox", 6, "");
+    showMovieList(harryList, ".harryBox", 6, "");
+
+
+
+
+
 
 // 베스트 댓글 출력
-function review_content() {
-    let review_item = `<div class="review_movie_name">영화제목</div>
+    function review_content() {
+        let review_item = `<div class="review_movie_name">영화제목</div>
                         <div class="review_txt">리뷰 작성</div>
                         <div class="review_title">닉네임</div>
                         <div class="star_icon"><img src="./img/star.png" alt=""></div>
@@ -22,78 +72,79 @@ function review_content() {
                             <div class="like_icon"><img src="./img/heart_cnt.png" alt=""></div>
                             <div class="like_cnt">256</div>
                         </div>`
-    $(review_item).appendTo('.review')
-}
-review_content();
+        $(review_item).appendTo('.review')
+    }
+    review_content();
 
-// 순위(스와이퍼) 
-var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 5, // 칸 수
-    spaceBetween: 70,
-    // freeMode: true,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-     // Navigation arrows
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    loop: false,
-    direction: 'horizontal', //horizontal,vertical 배치 방향
-    effect: 'slide' // 'slide', 'fade', 'cube', 'coverflow', 'flip' or 'creative'
-});
+// 순위(스와이퍼)
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 5, // 칸 수
+        spaceBetween: 70,
+        // freeMode: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        loop: false,
+        direction: 'horizontal', //horizontal,vertical 배치 방향
+        effect: 'slide' // 'slide', 'fade', 'cube', 'coverflow', 'flip' or 'creative'
+    });
 
 
 // 메인베너 스와이퍼
-var idx_lgth = $(".main_banner>div").length;
-var srt = 1;
-var idx = 0;
+    var idx_lgth = $(".main_banner>div").length;
+    var srt = 1;
+    var idx = 0;
 
-$("section>a").click(function(){
-    idx = $(this).index();
-    srt = idx;
-    $(this).addClass('on').siblings().removeClass('on');
-    $(".main_banner>div").eq(idx).addClass('on').siblings().removeClass('on');
-});
+    $("section>a").click(function(){
+        idx = $(this).index();
+        srt = idx;
+        $(this).addClass('on').siblings().removeClass('on');
+        $(".main_banner>div").eq(idx).addClass('on').siblings().removeClass('on');
+    });
 
-var AutoSlide = setInterval(AutoRun, 2000);
+    var AutoSlide = setInterval(AutoRun, 2000);
 
-function AutoRun(){
-  
-    if(srt == idx_lgth){
-        srt = 0;  
+    function AutoRun(){
+
+        if(srt == idx_lgth){
+            srt = 0;
+        }
+        $("section>a").eq(srt).addClass('on').siblings().removeClass('on');
+        $(".main_banner>div").eq(srt).addClass('on').siblings().removeClass('on');
+        srt++;
     }
-    $("section>a").eq(srt).addClass('on').siblings().removeClass('on');
-    $(".main_banner>div").eq(srt).addClass('on').siblings().removeClass('on');
-    srt++;  
-}
 
-$(".main_banner").mouseover(function(){
-    clearInterval(AutoSlide);
-    $(".right_btn").css({opacity : '1'});
-    $(".left_btn").css({opacity : '1'});
-});
-$(".main_banner").mouseleave(function(){
-    AutoSlide = setInterval(AutoRun, 2000);
-    $(".right_btn").css({opacity : '0'});
-    $(".left_btn").css({opacity : '0'});
-});
+    $(".main_banner").mouseover(function(){
+        clearInterval(AutoSlide);
+        $(".right_btn").css({opacity : '1'});
+        $(".left_btn").css({opacity : '1'});
+    });
+    $(".main_banner").mouseleave(function(){
+        AutoSlide = setInterval(AutoRun, 2000);
+        $(".right_btn").css({opacity : '0'});
+        $(".left_btn").css({opacity : '0'});
+    });
 
-$(".right_btn").click(function(){
-    srt++;
-    if(srt == idx_lgth){
-        srt = 0;   
-    } 
-    $(".main_banner>div").eq(srt).addClass('on').siblings().removeClass('on'); $("section>a").eq(srt).addClass('on').siblings().removeClass('on');
-});
+    $(".right_btn").click(function(){
+        srt++;
+        if(srt == idx_lgth){
+            srt = 0;
+        }
+        $(".main_banner>div").eq(srt).addClass('on').siblings().removeClass('on'); $("section>a").eq(srt).addClass('on').siblings().removeClass('on');
+    });
 
-$(".left_btn").click(function(){
-    srt--;
-    if(srt == -1){
-        srt = idx_lgth-1; 
-    }
-    $(".main_banner>div").eq(srt).addClass('on').siblings().removeClass('on');
-    $("section>a").eq(srt).addClass('on').siblings().removeClass('on'); 
+    $(".left_btn").click(function(){
+        srt--;
+        if(srt == -1){
+            srt = idx_lgth-1;
+        }
+        $(".main_banner>div").eq(srt).addClass('on').siblings().removeClass('on');
+        $("section>a").eq(srt).addClass('on').siblings().removeClass('on');
+    });
 });

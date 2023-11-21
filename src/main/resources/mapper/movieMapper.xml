@@ -103,22 +103,27 @@
 <!--    메인페이지 메인배너를 위한 사용자 취향 장르 확인-->
     <select id="selectUserGenre" parameterType="int" resultType="String">
         select genrId from userGenre
-            where userId = #{userId};
+        where userId = #{userId};
     </select>
 
     <!--    메인페이지 메인배너 영화 조회-->
     <select id="selectMainBanner" parameterType="String" resultType="movieDto">
-        select DISTINCT m.movId, m.movName, m.movPoster from movie m
-        <if test="genrList != null">
-            , movieGenre mg
-            where m.movId = mg.movId and (
-            <trim prefixOverrides="OR">
-                <foreach collection="genrList" item = "genre" separator=" ">
-                    OR mg.genrId = #{genre}
-                </foreach>
-            </trim>
-            )
-        </if>
+        select DISTINCT m.movId, m.movName, m.movPoster, m.movTrailer, m.movDate from movie m
+        <choose>
+            <when test="list!=null and  list.size!=0">
+                , movieGenre mg
+                where m.movId = mg.movId and (
+                <trim prefixOverrides="OR">
+                    <foreach collection="list" item = "genre" separator=" ">
+                        OR mg.genrId = #{genre}
+                    </foreach>
+                </trim>
+                ) and NOT m.movTrailer = ""
+            </when>
+            <otherwise>
+                where NOT m.movTrailer = ""
+            </otherwise>
+        </choose>
         ORDER BY m.movDate desc
         limit 0, 5;
     </select>
@@ -128,7 +133,7 @@
         "netflix" : 넷플릭스 인기 조회
         "search" : 검색 인기 조회-->
     <select id="selectBest" parameterType="String" resultType="movieDto">
-        select DISTINCT m.movId, m.movName, m.movPoster from movie m
+        select DISTINCT m.movId, m.movName, m.movPoster, m.movSearchCnt, m.movScoreCnt, m.movScore from movie m
         <if test="search == 'netflix'">
             , movieOtt mo
             where mo.ottId = 8 and mo.movId = m.movId
@@ -146,7 +151,7 @@
 
 <!--    메인페이지 시리즈 영화 조회 (지브리, 마블, 해리포터)-->
     <select id="selectSeries" parameterType="String" resultType="movieDto">
-        select DISTINCT m.movId, m.movName, m.movPoster from movie m, series s
+        select DISTINCT m.movId, m.movName, m.movPoster, m.movDate from movie m, series s
             where s.movId = m.movId
                 and s.serName = #{serName}
         ORDER BY m.movDate desc
