@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session = "false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
@@ -254,15 +254,21 @@
                         <div class="title_icon"><img src="<c:url value='/img/best_review.png'/>" alt="베스트 아이콘"></div>
                     </div>
                     <div class="review_box">
-                        <div class="review">
-                            
-                        </div>
-                        <div class="review">
-                            
-                        </div>
-                        <div class="review">
-                            
-                        </div>
+                        ${reviewList}
+                        <c:forEach var="review" items="${reviewList}">
+                            <div class="review">
+<%--                                <div class="review_movie_name">${review.movName}</div>--%>
+                                <div class="review_movie_name">영화 제목</div>
+<%--                                <div class="review_txt">${review.rvContent}</div>--%>
+<%--                                <div class="review_title">${review.userNickName}</div>--%>
+<%--                                <div class="star_icon"><img src="<c:url value='/img/star.png'/>" alt="★"></div>--%>
+<%--                                <div class="movie_star">${review.rvScore}</div>--%>
+<%--                                <div class="like_box">--%>
+<%--                                    <div class="like_icon"><img src="<c:url value='/img/heart_cnt.png'/>" alt="♥"></div>--%>
+<%--                                    <div class="like_cnt">${review.rvLike}</div>--%>
+<%--                                </div>--%>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
 

@@ -52,6 +52,7 @@ public class MovieDaoTest {
     public void selectMainBanner(){
         Integer userId = 1;
         List<String> genrList = new ArrayList<>();
+        genrList = movieDao.selectUserGenre(userId);
         System.out.println("genrList : " + genrList);
 
         assertTrue(movieDao.selectMainBanner(genrList) != null);

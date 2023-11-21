@@ -1,16 +1,5 @@
 $(document).ready(function() {
-    // 많이 보고 싶어하는 영화, 시리즈 출력
-    // function poster_content6() {
-    //     for(let i=0; i<6; i++) {
-    //
-    //         let poster_item = `<div class="poster">
-    //                                 <img src="./img/poster.jpg" alt="">
-    //                             </div>`
-    //
-    //         $(poster_item).appendTo('.poster_box')
-    //     }
-    // }
-    // poster_content6();
+    // 베스트, 많이 보고 싶어하는 영화, 시리즈 출력
     function showMovieList(movieList, parentClass, viewSize, ranking){
         let i = 0;
         movieList.forEach(function(movie){
@@ -30,8 +19,6 @@ $(document).ready(function() {
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     allowfullscreen
                                 ></iframe>
-<!--                                <iframe src="https://www.youtube.com/embed/${movie.movTrailer}?si=MLICGmo6npmC-CJj&amp;controls=0&autoplay=1&loop=1&rel=0" width="100%" height="100%"></iframe>-->
-<!--                                <img src="https://image.tmdb.org/t/p/w500/" alt="${movie.movName}" class="poster" data-movId="${movie.movId}" width="100%" height="100%">-->
                                 </a>`;
             }else{
                 movie_item = `<div class="poster" data-movId="${movie.movId}">
@@ -56,25 +43,20 @@ $(document).ready(function() {
     showMovieList(marbleList, ".marbleBox", 6, "");
     showMovieList(harryList, ".harryBox", 6, "");
 
-
-
-
-
-
 // 베스트 댓글 출력
-    function review_content() {
-        let review_item = `<div class="review_movie_name">영화제목</div>
-                        <div class="review_txt">리뷰 작성</div>
-                        <div class="review_title">닉네임</div>
-                        <div class="star_icon"><img src="./img/star.png" alt=""></div>
-                        <div class="movie_star">4.2</div>
-                        <div class="like_box">
-                            <div class="like_icon"><img src="./img/heart_cnt.png" alt=""></div>
-                            <div class="like_cnt">256</div>
-                        </div>`
-        $(review_item).appendTo('.review')
-    }
-    review_content();
+//     function review_content() {
+//         let review_item = `<div class="review_movie_name">영화제목</div>
+//                         <div class="review_txt">리뷰 작성</div>
+//                         <div class="review_title">닉네임</div>
+//                         <div class="star_icon"><img src="./img/star.png" alt=""></div>
+//                         <div class="movie_star">4.2</div>
+//                         <div class="like_box">
+//                             <div class="like_icon"><img src="./img/heart_cnt.png" alt=""></div>
+//                             <div class="like_cnt">256</div>
+//                         </div>`
+//         $(review_item).appendTo('.review')
+//     }
+//     review_content();
 
 // 순위(스와이퍼)
     var swiper = new Swiper(".mySwiper", {

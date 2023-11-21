@@ -3,6 +3,7 @@ package com.movielike.app.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movielike.app.domain.MovieDto;
+import com.movielike.app.domain.ReviewDto;
 import com.movielike.app.service.IndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +28,9 @@ public class IndexController {
 
     @GetMapping("/")
     public String showIndex(HttpSession session, Model model) throws JsonProcessingException {
-        Integer userId = (Integer) session.getAttribute("uID");
-        System.out.println("userId : " + userId);
+        Integer userId = (Integer) session.getAttribute("userId");
         List<List<MovieDto>> movieList = service.showIndexMovies(userId);
+        System.out.println("userId : " + userId);
         List<MovieDto> bannerList = movieList.get(0);
         List<MovieDto> allBestList = movieList.get(1);
         List<MovieDto> netflixBestList = movieList.get(2);
@@ -37,6 +38,9 @@ public class IndexController {
         List<MovieDto> gibliList = movieList.get(4);
         List<MovieDto> marbleList = movieList.get(5);
         List<MovieDto> harryList = movieList.get(6);
+
+        List<ReviewDto> reviewList = service.showBestReview();
+        System.out.println(reviewList);
 
         ObjectMapper mapper = new ObjectMapper();
         String bannerString = mapper.writeValueAsString( bannerList );
@@ -46,6 +50,8 @@ public class IndexController {
         String gibliString = mapper.writeValueAsString( gibliList );
         String marbleString = mapper.writeValueAsString( marbleList );
         String harryString = mapper.writeValueAsString( harryList );
+        String reviewString = mapper.writeValueAsString( reviewList );
+
         model.addAttribute( "bannerList", bannerString );
         model.addAttribute( "allBestList", allBestString );
         model.addAttribute( "netflixBestList", netflixBestString );
@@ -53,14 +59,7 @@ public class IndexController {
         model.addAttribute( "gibliList", gibliString );
         model.addAttribute( "marbleList", marbleString );
         model.addAttribute( "harryList", harryString );
-
-//        model.addAttribute("allBestList", allBestList);
-//        model.addAttribute("netflixBestList", netflixBestList);
-//        model.addAttribute("searchBestList", searchBestList);
-//        model.addAttribute("gibliList", gibliList);
-//        model.addAttribute("marbleList", marbleList);
-//        model.addAttribute("harryList", harryList);
-
+        model.addAttribute( "reviewList", reviewString );
         return "index";
     }
     
@@ -68,7 +67,7 @@ public class IndexController {
     @GetMapping("/login")
     public String sessionMake(HttpServletRequest request){
         HttpSession session = request.getSession();
-        session.setAttribute("uId", 1);
-        return "index";
+        session.setAttribute("userId", 1);
+        return "redirect:/";
     }
 }
