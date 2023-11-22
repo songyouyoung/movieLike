@@ -64,7 +64,7 @@ public class MovieDao {
         return session.selectList(namespace+"selectSeries" , serName);
     }
 
-    public List<MovieDto> selectSearchMov(String search) {
+    public List<MovieDto> selectSearchMov(Map search) {
         return session.selectList(namespace+"selectSearchMov" , search);
     }
 }

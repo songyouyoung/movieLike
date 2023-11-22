@@ -10,61 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76222612-11bf-4cc6-a51f-f4aa257a2d96" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/controller/ListController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/service/ListService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/88d56e49-149f-454f-80ce-c8c292469c0a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/88d56e49-149f-454f-80ce-c8c292469c0a.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/controller/IndexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/controller/KeywordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/controller/KeywordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/dao/ReviewDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/dao/ReviewDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/domain/MovieDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/domain/MovieDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/domain/ReviewDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/domain/ReviewDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/service/KeywordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/service/KeywordService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/controller/ListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/controller/ListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/dao/MovieDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/dao/MovieDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/service/IndexService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/service/IndexService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movielike/app/service/ListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movielike/app/service/ListService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/movieMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/movieMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/reviewMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/reviewMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Movie_Like_find_all.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Movie_Like_group.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Movie_Like_group.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Movie_Like_keyword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/Movie_Like_keyword.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/group_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/group_page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/keyword_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/keyword_page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/main_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/main_page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/group_item.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/group_item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/keyword.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/keyword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/js/main_item.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/resources/js/main_item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/controller/IndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/controller/IndexController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/controller/KeywordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/controller/KeywordController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/dao/ReviewDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/dao/ReviewDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/domain/MovieDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/domain/MovieDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/domain/ReviewDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/domain/ReviewDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/service/KeywordService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/com/movielike/app/service/KeywordService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mapper/movieMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mapper/movieMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mapper/reviewMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/classes/mapper/reviewMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/spring/root-context.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/Movie_Like_group.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/Movie_Like_keyword.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/Movie_Like_keyword.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/WEB-INF/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/css/group_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/css/group_page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/css/header.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/css/keyword_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/css/keyword_page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/css/main_page.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/css/main_page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/js/group_item.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/js/group_item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/js/keyword.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/js/keyword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/js/main_item.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/app-1.0.0-BUILD-SNAPSHOT/resources/js/main_item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/movielike/app/controller/IndexController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/movielike/app/controller/IndexController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/movielike/app/controller/KeywordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/movielike/app/controller/KeywordController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/movielike/app/dao/ReviewDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/movielike/app/dao/ReviewDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/movielike/app/domain/MovieDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/movielike/app/domain/MovieDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/movielike/app/domain/ReviewDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/movielike/app/domain/ReviewDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/movielike/app/service/KeywordService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/movielike/app/service/KeywordService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/movieMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/movieMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/reviewMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/reviewMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,6 +216,7 @@
       <updated>1700570492548</updated>
       <workItem from="1700570493729" duration="10477000" />
       <workItem from="1700612433670" duration="26067000" />
+      <workItem from="1700662067890" duration="4383000" />
     </task>
     <servers />
   </component>

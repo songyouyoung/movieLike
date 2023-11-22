@@ -187,9 +187,13 @@
                         and mg.genrId = #{val}
                 </when>
                 <when test="title=='year'">
-
+                    where m.movDate BETWEEN #{startYear} and #{endYear}
                 </when>
-                <when test="title=='age'"></when>
+                <when test="title=='age'">
+                    , watchedMovie mw, user u
+                    where (u.userId = mw.userId and mw.movId = m.movId)
+                        and (u.userBirth BETWEEN #{startAge} and #{endAge})
+                </when>
                 <when test="title=='ott'">
                     , movieOtt mo
                     where m.movId = mo.movId
@@ -200,10 +204,22 @@
                     where m.movId = c.movId
                         and c.cName = #{val}
                 </when>
-                <when test="title=='myGenr'"></when>
-                <when test="title=='myView'"></when>
-                <when test="title=='myLike'"></when>
-                <when test="title=='myScore'"></when>
+                <when test="title=='myView'">
+                    , watchedMovie mw
+                    where mw.movId = m.movId
+                        and mw.userId = #{userId}
+                </when>
+                <when test="title=='myLike'">
+                    , myList um
+                    where um.movId = m.movId
+                        and um.userId = #{userId}
+                </when>
+                <when test="title=='myScore'">
+                    , review r
+                    where r.movId = m.movId
+                        and r.userId = #{userId}
+                        and r.rvScore = #{val}
+                </when>
             </choose>
         <choose>
             <when test="sort == 0">

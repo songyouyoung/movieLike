@@ -43,13 +43,4 @@ public class IndexService {
         List<ReviewDto> reviewList = reviewDao.selectBestReview(0); // 베스트 리뷰
         return reviewList;
     }
-
-    public List<MovieDto> indexSearch(String search){
-        // 영화데이터 출력
-        List<MovieDto> movieList = movieDao.selectSearchMov(search);
-        System.out.println(movieList);
-        movieList = commonService.movieList(movieList);
-        return movieList;
-    }
-
 }
