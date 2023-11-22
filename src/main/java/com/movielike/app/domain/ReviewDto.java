@@ -13,6 +13,7 @@ public class ReviewDto {
     private Date rvUpDate;
     private int rvLike;
     private boolean rvLikeChk;
+    private String movName;
 
     public ReviewDto() {
     }
@@ -109,6 +110,14 @@ public class ReviewDto {
         this.rvLikeChk = rvLikeChk;
     }
 
+    public String getMovName() {
+        return movName;
+    }
+
+    public void setMovName(String movName) {
+        this.movName = movName;
+    }
+
     @Override
     public String toString() {
         return "ReviewDto{" +
@@ -122,6 +131,7 @@ public class ReviewDto {
                 ", rvUpDate=" + rvUpDate +
                 ", rvLike=" + rvLike +
                 ", rvLikeChk=" + rvLikeChk +
+                ", movName=" + movName +
                 '}';
     }
 }

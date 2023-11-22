@@ -68,6 +68,7 @@
     padding: 5px 10px;
     margin-right: 10px;
     border-radius: 10px;
+    cursor: pointer;
 }
 .m_tdItem_check{
     background: #A785EF;
@@ -77,7 +78,6 @@
 }
 .m_tdItem:hover,
 .m_tagItem:hover {
-    cursor: pointer;
     background: #A785EF;
 }
 

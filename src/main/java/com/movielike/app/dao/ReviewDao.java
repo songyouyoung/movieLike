@@ -28,20 +28,21 @@ public class ReviewDao {
         return session.selectList(namespace + "selectMovieReviewList", map);
     }
 
-    public int selectReviewLikeOne(ReviewDto reviewDto) {
-        return session.selectOne(namespace + "selectReviewLikeOne", reviewDto);
+    public int selectReviewLikeOne(Map<String, Integer> map) {
+        System.out.println("dao map: " + map);
+        return session.selectOne(namespace + "selectReviewLikeOne", map);
     }
 
 
-    public int insertReviewLike(ReviewDto reviewDto) {
-        return session.insert(namespace + "insertReviewLike", reviewDto);
+    public int insertReviewLike(Map<String, Integer> map) {
+        return session.insert(namespace + "insertReviewLike", map);
     }
 
     public int updateReviewLike(Map<String, Integer> map) {
         return session.update(namespace + "updateReviewLike", map);
     }
 
-    public int deleteReviewLike(ReviewDto reviewDto) {
-        return session.delete(namespace + "deleteReviewLike", reviewDto);
+    public int deleteReviewLike(Map<String, Integer> map) {
+        return session.delete(namespace + "deleteReviewLike", map);
     }
 }

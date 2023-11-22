@@ -24,6 +24,7 @@ $(document).ready(function(){
     $("input[type='checkbox']").change(function(){
         nowPage = 0;
         endPage = 0;
+        console.log("누름");
         showMovieList(0);
     });
 
@@ -31,7 +32,7 @@ $(document).ready(function(){
     $(".select_r").change(function(){
         nowPage = 0;
         endPage = 0;
-        let sort = $('.select_r > option:checked') == "latest" ? 0 : 1;
+        let sort = $('.select_r > option:checked').val() == "latest" ? 0 : 1;
         console.log(sort)
         $(".m_mvListBox").html("");
         $(".m_moreBox").css({
@@ -60,6 +61,13 @@ $(document).ready(function(){
         if(genr == "" && country == "" && ott == "" && review == 0 && score == 0){
             return mvBox_null("키워드를 골라 원하는 영화를 찾아보세요");
         }
+        $(".m_tdItem, .m_tagItem").css({
+            pointerEvents: "none",
+            cursor: "wait"
+        });
+        $("input[type='checkbox']").attr("disabled", true);
+    // .m_tdItem:hover,
+    // .m_tagItem:hover
         let keyword = {genreList: genr, countryNameList: country, ottList: ott, movScore: score, movScoreCnt: review, nowPage: nowPage, pageSize: pageSize, sort: sort};
         $.ajax({
             type:'POST',       // 요청 메서드
@@ -68,12 +76,22 @@ $(document).ready(function(){
             dataType : 'text', // 전송받을 데이터의 타입
             data : JSON.stringify(keyword),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
             success : function(result){
-                console.log("received="+result);       // result는 서버가 전송한 데이터
+                //console.log("received="+result);       // result는 서버가 전송한 데이터
                 $(".m_mvListBox").append(toHtml(result));
                 showPage();
+                $(".m_tdItem, .m_tagItem").css({
+                    pointerEvents: "auto",
+                    cursor: "pointer"
+                });
+                $("input[type='checkbox']").removeAttr("disabled");
             },
             error : function(){
                 mvBox_null("해당 키워드에 맞는 영화가 없습니다");
+                $(".m_tdItem, .m_tagItem").css({
+                    pointerEvents: "auto",
+                    cursor: "pointer"
+                });
+                $("input[type='checkbox']").removeAttr("disabled");
             }
         }); // $.ajax()
     }
@@ -149,9 +167,6 @@ $(document).ready(function(){
 
 // 페이징 작업
     function showPage(){
-        // console.log("endPage : " + endPage);
-        // console.log("pageSize : " + pageSize);
-        // console.log("endPage % pageSize : " + endPage % pageSize);
         $(".select_r").css({
             "display": "block"
         });
@@ -168,7 +183,7 @@ $(document).ready(function(){
     }
     $(".m_moreBox").click(function (){
         nowPage = endPage;
-        let sort = $('.select_r > option:checked') == "latest" ? 0 : 1;
+        let sort = $('.select_r > option:checked').val() == "latest" ? 0 : 1;
         console.log(sort)
         showMovieList(sort);
     });

@@ -4,7 +4,10 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.movielike.app.dao.movieMapper">
-    <!-- 키워드 찾기 무비 리스트 출력 -->
+<!-- ..................................... -->
+<!-- ............키워드 찾기............... -->
+<!-- ..................................... -->
+<!-- 키워드 찾기 무비 리스트 출력 -->
     <select id="selectMovie" parameterType="movieDto" resultType="movieDto">
         select DISTINCT m.movId, m.movName, m.movNameEng, m.movDate, m.movTime, m.movPoster, (m.movScore / m.movScoreCnt) movScore, m.movScoreCnt
         from movie m
@@ -57,7 +60,7 @@
                 order by m.movDate desc
             </when>
             <when test="sort == 1">
-                order by m.movScoreCnt, m.movScore
+                order by m.movScoreCnt, movScore
             </when>
         </choose>
         limit #{nowPage}, #{pageSize}
@@ -99,7 +102,9 @@
         ORDER BY o.ottName;
     </select>
 
-
+<!-- ..................................... -->
+<!-- ............메인 페이지............... -->
+<!-- ..................................... -->
 <!--    메인페이지 메인배너를 위한 사용자 취향 장르 확인-->
     <select id="selectUserGenre" parameterType="int" resultType="String">
         select genrId from userGenre
@@ -158,13 +163,15 @@
         limit 0, 6;
     </select>
 
-<!-- 메인페이지 검색바로 검색 - 영화이름 -->
-    <select id="selectSearchMov" parameterType="int" resultType="movieDto">
+<!-- ....................................... -->
+<!-- ............리스트 페이지............... -->
+<!-- ....................................... -->
+    <select id="selectSearchMov" parameterType="map" resultType="movieDto">
         select DISTINCT m.movId, m.movName, m.movNameEng, m.movDate, m.movTime, m.movPoster, (m.movScore / m.movScoreCnt) movScore, m.movScoreCnt
             from movie m, person p, moviePerson mp
             where ((m.movId = mp.movId) and (mp.perId = p.perId))
-                and ( m.movName like concat('%',#{search},'%') or m.movNameEng like concat('%',#{search},'%')
-                    or p.perName like concat('%',#{search},'%') );
+                and ( m.movName like concat('%',#{val},'%') or m.movNameEng like concat('%',#{val},'%')
+                    or p.perName like concat('%',#{val},'%') );
     </select>
 
 </mapper>

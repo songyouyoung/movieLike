@@ -32,7 +32,6 @@ public class KeywordController {
             if (listMovie == null || listMovie.isEmpty()){
                 throw new Exception("출력할 값이 없습니다. ");
             }
-            System.out.println("controller 구동 완료");
             System.out.println(listMovie);
             return new ResponseEntity<List<MovieDto>>(listMovie, HttpStatus.OK); // 200
         } catch (Exception e) {

@@ -18,7 +18,7 @@
     <div id="wrap">
         <header class="header">
             <div class="logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="로고 이미지"></a></div>
-            <div class="h_left left_50"><a href="">영화 전체보기</a></div>
+            <div class="h_left left_50"><a href="<c:url value='/list/chart?title=all'/>">영화 전체보기</a></div>
             <div class="h_left"><a href="">차트</a></div>
             <div class="h_left"><a href="<c:url value='/find/keyword'/>">키워드 찾기</a></div>
             <div class="h_right">
@@ -31,21 +31,11 @@
         <main class="container">
             <div class="main_banner">
                 <!-- 메인베너 -->
-                <div class="mainbanner_list on">
-<%--                    <a href="#"><img src="<c:url value='./img/mainbanner1.jpg'/>" alt="1" width="100%" height="100%"></a>--%>
-                </div>
-                <div class="mainbanner_list">
-<%--                    <a href="#"><img src="<c:url value='./img/mainbanner2.jpg'/>" alt="2" width="100%" height="100%"></a>--%>
-                </div>
-                <div class="mainbanner_list">
-<%--                    <a href="#"><img src="<c:url value='./img/mainbanner3.jpg'/>" alt="3" width="100%" height="100%"></a>--%>
-                </div>
-                <div class="mainbanner_list">
-<%--                    <a href="#"><img src="<c:url value='./img/mainbanner4.jpg'/>" alt="4" width="100%" height="100%"></a>--%>
-                </div>
-                <div class="mainbanner_list">
-<%--                    <a href="#"><img src="<c:url value='./img/mainbanner5.jpg'/>" alt="5" width="100%" height="100%"></a>--%>
-                </div>
+                <div class="mainbanner_list on"></div>
+                <div class="mainbanner_list"></div>
+                <div class="mainbanner_list"></div>
+                <div class="mainbanner_list"></div>
+                <div class="mainbanner_list"></div>
                 <section>   
                     <div class="left_btn">
                         <span></span>
@@ -66,7 +56,7 @@
             </div>
             <div class="search_bar">
                 <input type="text" class="search" placeholder="영화 제목, 감독 배우를 검색해주세요">
-                <div class="s_icon"><a href=""><img src="<c:url value='/img/search.png'/>" alt=""></a></div>
+                <div class="s_icon"><img src="<c:url value='/img/search.png'/>" alt=""></div>
             </div>
             <div class="content">
                 <div class="content_box">
@@ -81,46 +71,16 @@
                                 <div class="swiper mySwiper" style="
                                 padding: 0 30px; box-sizing: border-box;">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">1</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">2</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">3</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">4</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">5</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">6</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">7</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">8</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">9</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">10</div>--%>
-                                        </div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
                                     </div>
                                     <div class="swiper-pagination"></div>
                     
@@ -144,46 +104,16 @@
                                 <div class="swiper mySwiper" style="
                                 padding: 0 30px; box-sizing: border-box;">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">1</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">2</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">3</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">4</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">5</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">6</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">7</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">8</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">9</div>--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-<%--                                            <div class="ranking">10</div>--%>
-                                        </div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
                                     </div>
                                     <div class="swiper-pagination"></div>
 
@@ -206,36 +136,16 @@
                                 <!-- Swiper -->
                                 <div class="swiper mySwiper" style="padding: 0 30px; box-sizing: border-box;">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-                                        </div>
-                                        <div class="swiper-slide">
-<%--                                            <img src="<c:url value='./img/poster.jpg'/>" alt="">--%>
-                                        </div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
+                                        <div class="swiper-slide"></div>
                                     </div>
                                     <div class="swiper-pagination"></div>
 
@@ -254,19 +164,17 @@
                         <div class="title_icon"><img src="<c:url value='/img/best_review.png'/>" alt="베스트 아이콘"></div>
                     </div>
                     <div class="review_box">
-                        ${reviewList}
                         <c:forEach var="review" items="${reviewList}">
-                            <div class="review">
-<%--                                <div class="review_movie_name">${review.movName}</div>--%>
-                                <div class="review_movie_name">영화 제목</div>
-<%--                                <div class="review_txt">${review.rvContent}</div>--%>
-<%--                                <div class="review_title">${review.userNickName}</div>--%>
-<%--                                <div class="star_icon"><img src="<c:url value='/img/star.png'/>" alt="★"></div>--%>
-<%--                                <div class="movie_star">${review.rvScore}</div>--%>
-<%--                                <div class="like_box">--%>
-<%--                                    <div class="like_icon"><img src="<c:url value='/img/heart_cnt.png'/>" alt="♥"></div>--%>
-<%--                                    <div class="like_cnt">${review.rvLike}</div>--%>
-<%--                                </div>--%>
+                            <div class="review" data-movId = "${review.movId}">
+                                <div class="review_movie_name">${review.movName}</div>
+                                <div class="review_txt">${review.rvContent}</div>
+                                <div class="review_title">${review.userNickName}</div>
+                                <div class="star_icon"><img src="<c:url value='/img/star.png'/>" alt="★"></div>
+                                <div class="movie_star">${review.rvScore}</div>
+                                <div class="like_box">
+                                    <div class="like_icon"><img src="<c:url value='/img/heart_cnt.png'/>" alt="♥"></div>
+                                    <div class="like_cnt">${review.rvLike}</div>
+                                </div>
                             </div>
                         </c:forEach>
                     </div>
@@ -276,7 +184,7 @@
                     <div class="title_box">
                         <div class="title">지브리 시리즈</div>
                         <div class="title_icon"><img src="<c:url value='/img/gibli.png'/>" alt="지브리 아이콘"></div>
-                        <div class="more_btn"><a href="">더보기</a></div>
+                        <div class="more_btn"><a href="<c:url value='/list/chart?title=series&val=gibli'/>">더보기</a></div>
                     </div>
                     <div class="poster_box gibliBox">
                         
@@ -287,7 +195,7 @@
                     <div class="title_box">
                         <div class="title">마블 시리즈</div>
                         <div class="title_icon"><img src="<c:url value='/img/marble.png'/>" alt="마블 아이콘"></div>
-                        <div class="more_btn"><a href="">더보기</a></div>
+                        <div class="more_btn"><a href="<c:url value='/list/chart?title=series&val=marble'/>">더보기</a></div>
                     </div>
                     <div class="poster_box marbleBox">
                         
@@ -298,7 +206,7 @@
                     <div class="title_box">
                         <div class="title">해리포터 시리즈</div>
                         <div class="title_icon"><img src="<c:url value='/img/glasses.png'/>" class="glasses" alt="해리포터 아이콘"></div>
-                        <div class="more_btn"><a href="">더보기</a></div>
+                        <div class="more_btn"><a href="<c:url value='/list/chart?title=series&val=harry'/>">더보기</a></div>
                     </div>
                     <div class="poster_box harryBox">
                         

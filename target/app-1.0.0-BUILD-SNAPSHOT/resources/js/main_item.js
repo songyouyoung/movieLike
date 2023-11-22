@@ -1,17 +1,19 @@
 $(document).ready(function() {
+    var c_path = (location.pathname).split("/")[1];
+
     // 베스트, 많이 보고 싶어하는 영화, 시리즈 출력
     function showMovieList(movieList, parentClass, viewSize, ranking){
         let i = 0;
         movieList.forEach(function(movie){
             let movie_item = "";
             if (viewSize == 10){ //랭킹
-                movie_item = `<a href="../movie/detail?movId=${movie.movId}">
+                movie_item = `<a href="/${c_path}/movie/detail?movId=${movie.movId}">
                                 <img src="https://image.tmdb.org/t/p/w500/${movie.movPoster}" alt="${movie.movName}">
                             </a>`;
                 movie_item += (ranking == "ranking" ? `<div class=\"ranking\">${i+1}</div>` : "");
             }else if(viewSize == 5){ //메인배너
                 src=""
-                movie_item = `<a href="../movie/detail?movId=${movie.movId}">
+                movie_item = `<a href="/${c_path}/movie/detail?movId=${movie.movId}">
                                 <iframe width="100%" height="100%"
                                     src="https://www.youtube.com/embed/${movie.movTrailer}?si=MLICGmo6npmC-CJj&amp;controls=0&autoplay=1&loop=1&rel=0&mute=1&playlist=${movie.movTrailer}"
                                     title="${movie.movName}"
@@ -22,7 +24,7 @@ $(document).ready(function() {
                                 </a>`;
             }else{
                 movie_item = `<div class="poster" data-movId="${movie.movId}">
-                                    <a href="../movie/detail?movId=${movie.movId}" class="poster">
+                                    <a href="/${c_path}/movie/detail?movId=${movie.movId}" class="poster">
                                         <img src="https://image.tmdb.org/t/p/w500/${movie.movPoster}" alt="${movie.movName}">
                                     </a>
                                 </div>`;
@@ -43,6 +45,21 @@ $(document).ready(function() {
     showMovieList(marbleList, ".marbleBox", 6, "");
     showMovieList(harryList, ".harryBox", 6, "");
 
+// 베스트 댓글 클릭했을 때 상세페이지로 이동
+    $(".review_box").on('click', '.review', function(){
+        let movId = $(this).data("movid");
+        location.href = "/" + c_path + "/movie/detail?movId="+movId;
+    });
+    
+// 검색버튼 눌렀을 때, 엔터쳤을 때 리스트 페이지로 이동
+    $(".search_bar").on('click', '.s_icon', function(){
+        location.href = "/" + c_path + '/list/chart?title=search&val=' + $(".search").val();
+    });
+    $(".search").keydown(function(){
+        if(event.keyCode == 13){
+            location.href = "/" + c_path + '/list/chart?title=search&val=' + $(".search").val();
+        }
+    });
 // 베스트 댓글 출력
 //     function review_content() {
 //         let review_item = `<div class="review_movie_name">영화제목</div>

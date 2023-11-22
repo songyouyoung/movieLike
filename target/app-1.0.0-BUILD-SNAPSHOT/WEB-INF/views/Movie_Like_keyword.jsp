@@ -78,7 +78,6 @@
         <input type="checkbox" id="disnep_chk">
         <input type="checkbox" id="wavve_chk">
         <input type="checkbox" id="appletv_chk">
-        <input type="checkbox" id="naverseries_chk">
 
         <!-- 리뷰 선택 -->
         <input type="checkbox" name="review_rd" id="review_500_chk" data-type = "radio">
@@ -150,7 +149,6 @@
                         <label for="disnep_chk"><span class="m_tdItem">디즈니+</span></label>
                         <label for="wavve_chk"><span class="m_tdItem">웨이브</span></label>
                         <label for="appletv_chk"><span class="m_tdItem">Apple TV+</span></label>
-                        <label for="naverseries_chk"><span class="m_tdItem">네이버 시리즈온</span></label>
                     </div>
                 </td>
             </tr>
@@ -227,7 +225,6 @@
                 <label for="disnep_chk"><span class="m_tagItem" id="disnep" data-ott = "337">#디즈니+</span></label>
                 <label for="wavve_chk"><span class="m_tagItem" id="wavve" data-ott = "356">#웨이브</span></label>
                 <label for="appletv_chk"><span class="m_tagItem" id="appletv" data-ott = "350">#Apple TV+</span></label>
-                <label for="naverseries_chk"><span class="m_tagItem" id="naverseries" data-ott = "96">#네이버 시리즈온</span></label>
 
                 <!-- 리뷰 check -->
                 <label for="review_500_chk"><span class="m_tagItem" id="review_500" data-review = "500">리뷰 500개 이상</span></label>

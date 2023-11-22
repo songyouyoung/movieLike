@@ -28,7 +28,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String showIndex(HttpSession session, Model model) throws JsonProcessingException {
-        Integer userId = (Integer) session.getAttribute("userId");
+        Integer userId = (Integer) session.getAttribute("liogdin");
         List<List<MovieDto>> movieList = service.showIndexMovies(userId);
         System.out.println("userId : " + userId);
         List<MovieDto> bannerList = movieList.get(0);
@@ -50,7 +50,6 @@ public class IndexController {
         String gibliString = mapper.writeValueAsString( gibliList );
         String marbleString = mapper.writeValueAsString( marbleList );
         String harryString = mapper.writeValueAsString( harryList );
-        String reviewString = mapper.writeValueAsString( reviewList );
 
         model.addAttribute( "bannerList", bannerString );
         model.addAttribute( "allBestList", allBestString );
@@ -59,7 +58,7 @@ public class IndexController {
         model.addAttribute( "gibliList", gibliString );
         model.addAttribute( "marbleList", marbleString );
         model.addAttribute( "harryList", harryString );
-        model.addAttribute( "reviewList", reviewString );
+        model.addAttribute( "reviewList", reviewList );
         return "index";
     }
     
@@ -67,7 +66,7 @@ public class IndexController {
     @GetMapping("/login")
     public String sessionMake(HttpServletRequest request){
         HttpSession session = request.getSession();
-        session.setAttribute("userId", 1);
+        session.setAttribute("liogdin", 1);
         return "redirect:/";
     }
 }

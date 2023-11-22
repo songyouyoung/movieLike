@@ -210,6 +210,7 @@ public class MovieDto {
                 ", actorList=" + actorList +
                 ", nowPage=" + nowPage +
                 ", pageSize=" + pageSize +
+                ", sort=" + sort +
                 '}';
     }
 }

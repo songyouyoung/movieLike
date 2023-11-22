@@ -17,25 +17,25 @@
         </if>
         order by rvRegDate desc, rvId desc
         limit #{nowPage} , #{pageSize}
-    </select>
 
+    </select>
     <!-- 베스트 3 리뷰 가져오기 -->
     <select id="selectBestReview" parameterType="int" resultType="reviewDto">
-        select r.rvId, r.movId, r.userId, r.rvScore, r.rvContent, r.rvRegDate, r.rvUpdate, r.rvLike, u.userNickName
+        select r.rvId, r.movId, r.rvScore, r.rvContent, r.rvLike, u.userNickName
         <choose>
             <when test="movId > 0">
                 from review r
-                    join user u
-                        on r.userId = u.userId
+                join user u
+                on r.userId = u.userId
                 where movId = #{movId}
             </when>
             <when test="movId == 0">
                 , m.movName
                 from review r
-                    join user u
-                        on r.userId = u.userId
-                    join movie m
-                        on r.movId = m.movId
+                join user u
+                on r.userId = u.userId
+                join movie m
+                on r.movId = m.movId
             </when>
         </choose>
         order by r.rvLike desc
@@ -47,11 +47,11 @@
     </insert>
 
     <!-- 회원이 좋아요 누른 리뷰인지 확인 -->
-    <select id="selectReviewLikeOne" parameterType="reviewDto" resultType="int">
-        select count(*) from reviewlike where rvId = #{rvId} and userId = #{userId}
+    <select id="selectReviewLikeOne" parameterType="map" resultType="int">
+        select count(userId) from reviewlike where rvId = #{rvId} and userId = #{userId}
     </select>
 
-    <insert id="insertReviewLike" parameterType="reviewDto">
+    <insert id="insertReviewLike" parameterType="map">
         insert into reviewlike(rvId, userId) values(#{rvId}, #{userId})
     </insert>
 
@@ -59,7 +59,7 @@
         update review set rvLike = rvLike + #{pmOne} where rvId = #{rvId}
     </update>
 
-    <delete id="deleteReviewLike" parameterType="reviewDto">
+    <delete id="deleteReviewLike" parameterType="map">
         delete from reviewlike where rvId = #{rvId} and userId = #{userId}
     </delete>
 

@@ -20,7 +20,6 @@ public class KeywordService {
     public List<MovieDto> keywordFind(MovieDto movieDto) throws UnsupportedEncodingException {
         // 영화데이터 출력
         List<MovieDto> movieList = movieDao.selectMovie(movieDto);
-        System.out.println(movieList);
         movieList = commonService.movieList(movieList);
         return movieList;
     }
