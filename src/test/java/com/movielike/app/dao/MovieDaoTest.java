@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -70,10 +72,19 @@ public class MovieDaoTest {
         assertTrue(movieDao.selectSeries(serName) != null);
     }
 
-//    @Test
-//    public void selectSearchMov() {
-//        String search = "";
-//        assertTrue(movieDao.selectSearchMov(search) != null);
-//    }
+    @Test
+    public void selectSearchMov() {
+        Map<String, String> search = new HashMap<>();
+
+        search.put("title", "myScore");
+        search.put("sort", "0");
+        search.put("nowPage", "0");
+        String userId = "1";
+
+        search.put("userId", userId);
+        search.put("val", "5");
+
+        assertTrue(movieDao.selectSearchMov(search) != null);
+    }
 
 }

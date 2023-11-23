@@ -17,7 +17,7 @@
 <body>
     <div id="wrap">
         <header class="header">
-            <div class="logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="로고 이미지"></a></div>
+            <div class="main_logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="로고 이미지"></a></div>
             <div class="h_left left_50"><a href="<c:url value='/list/chart?title=all'/>">영화 전체보기</a></div>
             <div class="h_left"><a href="">차트</a></div>
             <div class="h_left"><a href="<c:url value='/find/keyword'/>">키워드 찾기</a></div>
@@ -184,7 +184,7 @@
                     <div class="title_box">
                         <div class="title">지브리 시리즈</div>
                         <div class="title_icon"><img src="<c:url value='/img/gibli.png'/>" alt="지브리 아이콘"></div>
-                        <div class="more_btn"><a href="<c:url value='/list/chart?title=series&val=gibli'/>">더보기</a></div>
+                        <div class="more_btn"><a href="<c:url value='/list/chart?title=series&val=gibli&valName=지브리&nbsp;시리즈'/>">더보기</a></div>
                     </div>
                     <div class="poster_box gibliBox">
                         
@@ -195,7 +195,7 @@
                     <div class="title_box">
                         <div class="title">마블 시리즈</div>
                         <div class="title_icon"><img src="<c:url value='/img/marble.png'/>" alt="마블 아이콘"></div>
-                        <div class="more_btn"><a href="<c:url value='/list/chart?title=series&val=marble'/>">더보기</a></div>
+                        <div class="more_btn"><a href="<c:url value='/list/chart?title=series&val=marble&valName=마블&nbsp;시리즈'/>">더보기</a></div>
                     </div>
                     <div class="poster_box marbleBox">
                         
@@ -206,7 +206,7 @@
                     <div class="title_box">
                         <div class="title">해리포터 시리즈</div>
                         <div class="title_icon"><img src="<c:url value='/img/glasses.png'/>" class="glasses" alt="해리포터 아이콘"></div>
-                        <div class="more_btn"><a href="<c:url value='/list/chart?title=series&val=harry'/>">더보기</a></div>
+                        <div class="more_btn"><a href="<c:url value='/list/chart?title=series&val=harry&valName=해리포터&nbsp;시리즈'/>">더보기</a></div>
                     </div>
                     <div class="poster_box harryBox">
                         

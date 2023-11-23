@@ -5,22 +5,20 @@
     padding: 0 30px;
     box-sizing: border-box;
 }
-.logo {
+.main_logo {
     width: 250px;
-    height: 100%;
+    aspect-ratio: 1/0.4;
     float: left;
 }
-.logo img { width: 100%; height: 100%; }
+.main_logo img { width: 100%; height: 100%; }
 .h_left {
     float: left;
-    width: 130px;
-    height: 100%;
-    line-height: 100px;
+    height: 100px;
     color: #fff;
-    text-align: center;
-}
-.left_50 {
-    margin-left: 50px;
+    display: flex;
+    gap: 50px;
+    margin-left: 60px;
+    align-items: center;
 }
 .h_right {
     float: right;
@@ -44,16 +42,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
-@media screen and (max-width: 970px) {
-    .h_left {
-        display: none;
-    }
-}
-
-
 
 .footer {
     width: 100%;
+    height: 200px;
     background-color: #000;
     color: gray;
     font-size: 10px;
@@ -92,4 +84,76 @@
     height: 50px;
     float: left;
     line-height: 50px;
+}
+
+@media screen and (max-width: 900px) {
+    .h_left {
+        display: none;
+    }
+}
+@media screen and (max-width: 530px) {
+    
+}
+
+@media screen and (min-width: 280px) and (max-width: 480px) {
+    #wrap {
+        width: 100%;
+        height: 100%;
+    }
+    .header {
+        position: sticky !important;
+        height: 60px;
+        padding: 0;
+    }
+    .main_logo {
+        width: 130px;
+        height: auto;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+    .h_left {
+        width: 100%;
+        height: 40px;
+        margin: 0;
+        display: flex;
+        gap: 25px;
+        font-size: 11px;
+        justify-content: center;
+        background-color: #333;
+        border-top: 1px solid #545252;
+    }
+    .h_right {
+        position: absolute;
+        top: 0;
+        right: 0;
+        overflow: hidden;
+        font-size: 12px;
+        width: 140px;
+        height: 60px;
+        line-height: 60px;
+    }
+    .login, .join {
+        width: 70px;
+        font-size: 11px;
+    }
+    .footer {
+        height: 100px;
+    }
+    .f_box {
+        padding: 0;
+        margin: 10px auto;
+    }
+    .f_logo {
+        float: none;
+    }
+    .footer_content {
+        width: 200%;
+        margin: 0 auto;
+        padding: 0;
+    }
+    .f_txt1 {
+        height: auto;
+        float: none;
+        line-height: normal;
+    }
 }

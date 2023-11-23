@@ -16,7 +16,7 @@
 <body>
 <div id="wrap">
     <header class="header">
-        <div class="logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="로고 이미지"></a></div
+        <div class="main_logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="로고 이미지"></a></div
         <div class="h_left left_50"><a href="">영화 전체보기</a></div>
         <div class="h_left"><a href="./Movie_Like_find.html">차트</a></div>
         <div class="h_left"><a href="">키워드 찾기</a></div>

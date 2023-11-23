@@ -174,30 +174,44 @@
                     , person p, moviePerson mp
                     where ((m.movId = mp.movId) and (mp.perId = p.perId))
                         and ( m.movName like concat('%',#{val},'%') or m.movNameEng like concat('%',#{val},'%')
-                        or p.perName like concat('%',#{val},'%') );
+                        or p.perName like concat('%',#{val},'%') )
                 </when>
                 <when test="title=='series'">
                     , series s
                     where m.movId = s.movId
-                        and s.sName = #{val};
+                        and s.serName = #{val}
                 </when>
                 <when test="title=='genr'">
                     , movieGenre mg
                     where m.movId = mg.movId
-                        and mg.genrId = #{val}
+                        and mg.genrId = ${val}
                 </when>
                 <when test="title=='year'">
-                    where m.movDate BETWEEN #{startYear} and #{endYear}
+                    <choose>
+                        <when test="val == '1989'">
+                            where m.movDate <![CDATA[<]]> STR_TO_DATE(#{endYear}, '%Y%m%d')
+                        </when>
+                        <otherwise>
+                            where m.movDate BETWEEN STR_TO_DATE(#{startYear}, '%Y%m%d') and STR_TO_DATE(#{endYear}, '%Y%m%d')
+                        </otherwise>
+                    </choose>
                 </when>
                 <when test="title=='age'">
                     , watchedMovie mw, user u
                     where (u.userId = mw.userId and mw.movId = m.movId)
-                        and (u.userBirth BETWEEN #{startAge} and #{endAge})
+                    <choose>
+                        <when test="val == '50'">
+                            and u.userBirth <![CDATA[<=]]> STR_TO_DATE(#{startAge}, '%Y%m%d')
+                        </when>
+                        <otherwise>
+                            and (u.userBirth BETWEEN STR_TO_DATE(#{startAge}, '%Y%m%d') and STR_TO_DATE(#{endAge}, '%Y%m%d'))
+                        </otherwise>
+                    </choose>
                 </when>
                 <when test="title=='ott'">
                     , movieOtt mo
                     where m.movId = mo.movId
-                        and mo.ottId = #{val}
+                        and mo.ottId = ${val}
                 </when>
                 <when test="title=='country'">
                     , country c
@@ -207,18 +221,18 @@
                 <when test="title=='myView'">
                     , watchedMovie mw
                     where mw.movId = m.movId
-                        and mw.userId = #{userId}
+                        and mw.userId = ${userId}
                 </when>
                 <when test="title=='myLike'">
                     , myList um
                     where um.movId = m.movId
-                        and um.userId = #{userId}
+                        and um.userId = ${userId}
                 </when>
                 <when test="title=='myScore'">
                     , review r
                     where r.movId = m.movId
-                        and r.userId = #{userId}
-                        and r.rvScore = #{val}
+                        and r.userId = ${userId}
+                        and r.rvScore = ${val}
                 </when>
             </choose>
         <choose>
@@ -229,6 +243,6 @@
                 order by m.movScoreCnt, movScore
             </when>
         </choose>
+        limit ${nowPage}, 20
     </select>
-
 </mapper>

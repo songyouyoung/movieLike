@@ -1,6 +1,5 @@
 $(document).ready(function(){
     var nowPage = 0;
-    var endPage = 0;
     var pageSize = 20;
 // 위 키워드 선택 시 해당 키워드에 색 칠하기
     $(".m_tdItem, .m_tagItem").click(function (){
@@ -23,7 +22,6 @@ $(document).ready(function(){
 // 영화 리스트 불러오기
     $("input[type='checkbox']").change(function(){
         nowPage = 0;
-        endPage = 0;
         console.log("누름");
         showMovieList(0);
     });
@@ -31,7 +29,6 @@ $(document).ready(function(){
 // 정렬방법 다르게 선택 시 영화 리스트 다시 불러오기
     $(".select_r").change(function(){
         nowPage = 0;
-        endPage = 0;
         let sort = $('.select_r > option:checked').val() == "latest" ? 0 : 1;
         console.log(sort)
         $(".m_mvListBox").html("");
@@ -66,8 +63,6 @@ $(document).ready(function(){
             cursor: "wait"
         });
         $("input[type='checkbox']").attr("disabled", true);
-    // .m_tdItem:hover,
-    // .m_tagItem:hover
         let keyword = {genreList: genr, countryNameList: country, ottList: ott, movScore: score, movScoreCnt: review, nowPage: nowPage, pageSize: pageSize, sort: sort};
         $.ajax({
             type:'POST',       // 요청 메서드
@@ -109,7 +104,7 @@ $(document).ready(function(){
     let toHtml = function(movieList) {
         let keywordList = "";
         movieList = JSON.parse(movieList);
-        endPage += movieList.length;
+        nowPage += movieList.length;
 
         movieList.forEach(function(movie) {
             let dt = new Date(movie.movDate);
@@ -170,19 +165,17 @@ $(document).ready(function(){
         $(".select_r").css({
             "display": "block"
         });
-        if(endPage % pageSize == 0) {
+        if(nowPage % pageSize == 0) {
             $(".m_moreBox").css({
                 "display": "block"
             });
         }else{
-            //$(".m_moreBox").html("");
             $(".m_moreBox").css({
                 "display": "none"
             });
         }
     }
     $(".m_moreBox").click(function (){
-        nowPage = endPage;
         let sort = $('.select_r > option:checked').val() == "latest" ? 0 : 1;
         console.log(sort)
         showMovieList(sort);
@@ -190,7 +183,6 @@ $(document).ready(function(){
 
 // 영화 선택 시 상세 페이지로 가기
     $(".m_mvListBox").on('click', '.m_mvList', function(){
-        //$(`#${checkId}`).data("type")
         let movId = $(this).data("movid");
         location.href = "../movie/detail?movId="+movId;
     });

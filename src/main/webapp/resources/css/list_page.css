@@ -1,0 +1,142 @@
+#wrap img {
+    width: 100%; height: 100%;
+}
+.container {
+    width: 100%;
+    overflow: hidden;
+    background-color: #222;
+    padding-bottom: 200px;
+    color: #fff;
+}
+.title_box {
+    border-bottom: 1px solid gray;
+    padding: 30px 20px 20px;
+    overflow: hidden;
+}
+.group_title {
+    font-size: 2em;
+    float: left;
+    font-weight: 900;
+}
+.select_r {
+    float: right;
+    outline: none;
+    margin-top: 15px;
+    font-size: 16px;
+    padding: 3px 5px;
+}
+
+.search_bar {
+    width: 600px;
+    height: 50px;
+    margin: 100px auto;
+    position: relative;
+    border-radius: 50px;
+    overflow: hidden;
+}
+.search {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0 20px;
+    border: none;
+    outline: none;
+}
+.s_icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+.s_icon img {
+    color: gray;
+    filter: opacity(0.5) drop-shadow(0 0 0 gray);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.content_box {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 30px 50px;
+}
+.content {
+    width: calc((100% - 30px * 4) / 5);
+    cursor: pointer;
+}
+.poster {
+    width: 100%;
+    aspect-ratio: 1 / 1.5;
+}
+.movie_name {
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+.movie_year {
+    float: left;
+    margin: 14px 20px 0 0;
+    font-size: 1em;
+}
+.star_icon {
+    width: 20px;
+    height: 20px;
+}
+.avg_box {
+    margin-top: 10px;
+    float: right;
+    display: flex;
+    align-items: baseline;
+}
+.movie_avg {
+    margin: 0 5px 0 7px;
+    font-size: 1.2em;
+}
+.movie_avg_cnt {
+    font-size: 1em;
+}
+
+@media screen and (min-width: 280px) and (max-width: 480px) {
+    .title_box {
+        padding: 15px;
+    }
+    .group_title {
+        font-size: 1.3em;
+    }
+    .select_r {
+        margin-top: 0px;
+        font-size: 0.6em;
+    }
+    .content_box {
+        gap: 20px;
+        padding: 20px 30px;
+    }
+    .content {
+        width: calc((100% - 20px * 1) / 2);
+    }
+    .movie_name {
+        font-size: 1em;
+    }
+    .movie_year {
+        margin: 9px 10px 0 0;
+        font-size: 0.5em;
+    }
+    .star_icon {
+        width: 15px;
+        height: 15px;
+    }
+    .movie_avg {
+        margin-left: 5px;
+        font-size: 0.7em;
+    }
+    .movie_avg_cnt {
+        font-size: 0.5em;
+    }
+    .avg_box {
+        margin-top: 5px;
+    }
+}
