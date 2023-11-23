@@ -26,7 +26,6 @@ public class ListController {
     @GetMapping("/list/chart")
     public String showListMovie(String title, String val, String sort, String nowPage, HttpSession session, Model model){
         List<MovieDto> movieList = listUpMovie(title, val, sort, nowPage, session);
-        System.out.println("movieList : " + movieList);
 
         model.addAttribute("title", title);
         model.addAttribute("val", val);
@@ -40,9 +39,16 @@ public class ListController {
 //    public ResponseEntity<List<MovieDto>> showListMovieAjax(@RequestBody String title, @RequestBody String val, @RequestBody String sort, @RequestBody String nowPage, HttpSession session){
     public ResponseEntity<List<MovieDto>> showListMovieAjax(@RequestBody Map<String, String> keyword, HttpSession session){
         System.out.print("ajax -> ");
-        List<MovieDto> movieList = listUpMovie(keyword.get("s_title"), keyword.get("s_val"), keyword.get("sort"), keyword.get("nowPage"), session);
-
-        return new ResponseEntity<List<MovieDto>>(movieList, HttpStatus.OK);
+        try {
+            List<MovieDto> movieList = listUpMovie(keyword.get("s_title"), keyword.get("s_val"), keyword.get("sort"), keyword.get("nowPage"), session);
+            if (movieList == null || movieList.isEmpty()){
+                throw new Exception("출력할 값이 없습니다. ");
+            }
+            return new ResponseEntity<List<MovieDto>>(movieList, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<List<MovieDto>> (HttpStatus.BAD_REQUEST); // 400
+        }
     }
 
     public List<MovieDto> listUpMovie(String title, String val, String sort, String nowPage, HttpSession session){

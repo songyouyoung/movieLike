@@ -58,9 +58,15 @@ $(document).ready(function(){
         if(genr == "" && country == "" && ott == "" && review == 0 && score == 0){
             return mvBox_null("키워드를 골라 원하는 영화를 찾아보세요");
         }
-        $(".m_tdItem, .m_tagItem").css({
-            pointerEvents: "none",
+        $(".m_table, .m_tagBox").css({
             cursor: "wait"
+        });
+        $(".m_tagItem").parent().css({
+            cursor: "wait"
+        });
+        $(".m_tdItem, .m_tagItem").css({
+            cursor: "wait",
+            pointerEvents: "none"
         });
         $("input[type='checkbox']").attr("disabled", true);
         let keyword = {genreList: genr, countryNameList: country, ottList: ott, movScore: score, movScoreCnt: review, nowPage: nowPage, pageSize: pageSize, sort: sort};
@@ -74,17 +80,29 @@ $(document).ready(function(){
                 //console.log("received="+result);       // result는 서버가 전송한 데이터
                 $(".m_mvListBox").append(toHtml(result));
                 showPage();
-                $(".m_tdItem, .m_tagItem").css({
-                    pointerEvents: "auto",
+                $(".m_table, .m_tagBox").css({
+                    cursor: "auto"
+                });
+                $(".m_tagItem").parent().css({
                     cursor: "pointer"
+                });
+                $(".m_tdItem, .m_tagItem").css({
+                    cursor: "pointer",
+                    pointerEvents: "auto"
                 });
                 $("input[type='checkbox']").removeAttr("disabled");
             },
             error : function(){
                 mvBox_null("해당 키워드에 맞는 영화가 없습니다");
-                $(".m_tdItem, .m_tagItem").css({
-                    pointerEvents: "auto",
+                $(".m_table, .m_tagBox").css({
+                    cursor: "auto"
+                });
+                $(".m_tagItem").parent().css({
                     cursor: "pointer"
+                });
+                $(".m_tdItem, .m_tagItem").css({
+                    cursor: "pointer",
+                    pointerEvents: "auto"
                 });
                 $("input[type='checkbox']").removeAttr("disabled");
             }

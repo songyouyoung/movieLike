@@ -1,5 +1,7 @@
 $(document).ready(function() {
     var c_path = (location.pathname).split("/")[1];
+    let nowPage = movieLength;
+    let ajaxCheck = true;
 // 들어온 위치에 따른 title설정.
     let select_r = `<select class="select_r">
                                 <option value="latest" selected>최신순</option>
@@ -12,6 +14,7 @@ $(document).ready(function() {
                                     <div class="s_icon"><img src="../img/search.png" alt="search"></div>
                                 </div>`;
         $(searchBar + select_r).appendTo(".title_box");
+        if (nowPage == 0){ mvBox_null("해당 검색어에 맞는 영화가 없습니다"); }
     }else{
         let title = "";
         if(s_title == "all"){ title = `영화 전체 보기`; }
@@ -43,20 +46,28 @@ $(document).ready(function() {
     });
 
 //무한 스크롤 영화 리스트 출력
-    let nowPage = movieLength;
+    let scroll_chk = true;
     let pageSize = 20;
     let d_height = $(document).height();
-    if(nowPage == pageSize){
-        $(window).scroll(function() {
-            console.log("nowPage : " + nowPage)
-            let s_bot = $(window).scrollTop() + $(window).height();
-            if (s_bot + 100 >= d_height) {
-                let sort = $('.select_r > option:checked').val() == "latest" ? 0 : 1;
-                showMovieList(sort);
-                d_height = $(document).height();
-            }
-        });
-    }
+    // $(window).scroll(function () {
+    $(window).on('mousewheel DOMMouseScroll', function(){
+        let s_bot = $(window).scrollTop() + $(window).height();
+        if(scroll_chk && ajaxCheck && nowPage % pageSize == 0 && s_bot + 600 >= d_height && event.wheelDelta < 0){
+            event.preventDefault();
+            scroll_chk = false;
+
+            let sort = $('.select_r > option:checked').val() == "latest" ? 0 : 1;
+            showMovieList(sort);
+        }
+    });
+
+// 정렬방법 다르게 선택 시 영화 리스트 다시 불러오기
+    $(".select_r").change(function(){
+        nowPage = 0;
+        let sort = $('.select_r > option:checked').val() == "latest" ? 0 : 1;
+        $(".content_box").html("");
+        showMovieList(sort);
+    });
 
 // 영화 리스트 출력 메소드
     function showMovieList(sort){
@@ -66,9 +77,6 @@ $(document).ready(function() {
             });
             return mvBox_null("검색어를 입력해 원하는 영화를 찾아보세요");
         }
-        $("body").css({
-            pointerenter:"none"
-        });
         let keyword = {s_title: s_title, s_val: s_val, s_valName: s_valName, nowPage: nowPage, sort: sort};
         $.ajax({
             type:'POST',       // 요청 메서드
@@ -82,18 +90,19 @@ $(document).ready(function() {
                 $(".select_r").css({
                     "display": "block"
                 });
-                $("body").css({
-                    pointerenter:"auto"
-                });
+                scroll_chk = true;
+                d_height = $(document).height();
+                ajaxCheck = true;
             },
             error : function(){
-                if (s_title == "search") { mvBox_null("해당 검색어에 맞는 영화가 없습니다"); }
-                $(".select_r").css({
-                    "display": "none"
-                });
-                $("body").css({
-                    pointerenter:"auto"
-                });
+                if (nowPage == 0){
+                    if (s_title == "search") { mvBox_null("해당 검색어에 맞는 영화가 없습니다"); }
+                    $(".select_r").css({
+                        "display": "none"
+                    });
+                }
+                scroll_chk = true;
+                ajaxCheck = false;
             }
         }); // $.ajax()
     }
