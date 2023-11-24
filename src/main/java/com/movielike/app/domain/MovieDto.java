@@ -48,6 +48,13 @@ public class MovieDto {
         this.sort = sort;
     }
 
+    public MovieDto(double movScore, int movScoreCnt, List<OttDto> ottList, List<String> genreList) {
+        this.movScore = movScore;
+        this.movScoreCnt = movScoreCnt;
+        this.ottList = ottList;
+        this.genreList = genreList;
+    }
+
     public int getMovId() {
         return movId;
     }

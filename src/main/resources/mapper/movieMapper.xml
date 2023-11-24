@@ -245,4 +245,38 @@
         </choose>
         limit ${nowPage}, 20
     </select>
+
+    <!-- ....................................... -->
+    <!-- ............상세 페이지............... -->
+    <!-- ....................................... -->
+    <!--  영화 ID를 받아 영화 정보 가져오기 -->
+    <select id="selectMovieDetail" parameterType="int" resultType="movieDto">
+        select * from movie where movId = #{movId}
+    </select>
+    <!-- 영화 ID를 받아 제작 국가 가져오기 -->
+    <select id="selectMovieCountry" parameterType="int" resultType="String">
+        select cName from country where movId = #{movId}
+    </select>
+    <!-- 영화 ID를 받아 영화 장르 가져오기 -->
+    <select id="selectMovieGenre" parameterType="int" resultType="String">
+        select genrName from genre
+        join moviegenre m on genre.genrId = m.genrId
+        where movId = #{movId}
+    </select>
+    <!-- 영화 ID를 받아 해당 영화를 볼 수 있는 OTT 정보 가져오기 -->
+    <select id="selectMovieOtt" parameterType="int" resultType="ottDto">
+        select ott.ottId, ottName from ott join movieott mo on ott.ottId = mo.ottId where movId = #{movId}
+    </select>
+    <!-- 영화 ID를 받아 감독 / 배우 정보 받아오기 -->
+    <select id="selectMoviePerson" parameterType="int" resultType="personDto">
+        select mp.perId ,perName, mp.perjob, perImgSrc from person join movieperson mp on mp.perId = person.perId where movId = #{movId} order by mp.perJob
+    </select>
+    <!-- 영화 상세페이지 들어간 횟수 업데이트 -->
+    <update id="updateSearchCnt" parameterType="int">
+        update movie set movSearchCnt = movSearchCnt + 1 where movId = #{movId}
+    </update>
+    <!-- 영화 리뷰 점수 합산 -->
+    <update id="updateMovieScore" parameterType="map">
+        update movie set movScore = movScore + #{rvScore}, movScoreCnt = movScoreCnt + 1 where movId = #{movId}
+    </update>
 </mapper>

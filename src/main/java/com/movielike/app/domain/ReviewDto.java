@@ -14,6 +14,8 @@ public class ReviewDto {
     private int rvLike;
     private boolean rvLikeChk;
     private String movName;
+    private int nowPage;
+    private int pageSize;
 
     public ReviewDto() {
     }
@@ -21,6 +23,11 @@ public class ReviewDto {
     public ReviewDto(int rvId, int userId) {
         this.rvId = rvId;
         this.userId = userId;
+    }
+
+    public ReviewDto(int rvId, String rvContent) {
+        this.rvId = rvId;
+        this.rvContent = rvContent;
     }
 
     public ReviewDto(int movId, int userId, int rvScore, String rvContent) {
@@ -118,6 +125,22 @@ public class ReviewDto {
         this.movName = movName;
     }
 
+    public int getNowPage() {
+        return nowPage;
+    }
+
+    public void setNowPage(int nowPage) {
+        this.nowPage = nowPage;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
     @Override
     public String toString() {
         return "ReviewDto{" +
@@ -132,6 +155,8 @@ public class ReviewDto {
                 ", rvLike=" + rvLike +
                 ", rvLikeChk=" + rvLikeChk +
                 ", movName=" + movName +
+                ", nowPage=" + nowPage +
+                ", pageSize=" + pageSize +
                 '}';
     }
 }

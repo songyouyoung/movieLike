@@ -32,8 +32,6 @@ public class ReviewDao {
         System.out.println("dao map: " + map);
         return session.selectOne(namespace + "selectReviewLikeOne", map);
     }
-
-
     public int insertReviewLike(Map<String, Integer> map) {
         return session.insert(namespace + "insertReviewLike", map);
     }
@@ -44,5 +42,17 @@ public class ReviewDao {
 
     public int deleteReviewLike(Map<String, Integer> map) {
         return session.delete(namespace + "deleteReviewLike", map);
+    }
+
+    public int selectReviewCnt(int movId) {
+        return session.selectOne(namespace + "selectReviewCnt", movId);
+    }
+
+    public int updateReview(ReviewDto reviewDto) {
+        return session.update(namespace + "updateReview", reviewDto);
+    }
+
+    public int deleteReview(int rvId) {
+        return session.delete(namespace + "deleteReview", rvId);
     }
 }

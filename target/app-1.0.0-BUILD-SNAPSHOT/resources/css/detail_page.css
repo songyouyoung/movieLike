@@ -1,30 +1,38 @@
+
+
 #wrap img {
     width: 100%; height: 100%;
 }
 .container {
     width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     background-color: #222;
     padding-bottom: 200px;
     color: #fff;
 }
 .content1 {
     max-width: 1400px;
+    width: 100%;
     overflow: hidden;
     margin: 0 auto;
-    padding-top: 100px;
+    padding: 100px 30px 0;
+    box-sizing: border-box;
     position: relative;
 }
 .detail_poster {
-    width: 400px;
+    width: 30%;
+    aspect-ratio: 1 / 1.4;
     float: left;
 }
 .detail_content {
     float: left;
     padding: 0 30px;
-    width: calc(100% - 460px);
+    box-sizing: border-box;
+    width: 70%;
 }
 .movie_title {
-    font-size: 50px;
+    font-size: 3em;
     float: left;
     width: max-content;
     max-width: 800px;
@@ -36,33 +44,52 @@
 }
 .detail_top {
     overflow: hidden;
+    margin-bottom: 15px;
 }
 .movie_country {
-    margin-top: 20px;
-}
-.movie_genre, .movie_ott {
-    font-size: 20px;
     margin-top: 10px;
+}
+.movie_genre {
+    margin-top: 10px;
+}
+.movie_ott {
+    font-size: 12px;
+    text-align: center;
+}
+.movie_ott_box {
+    padding: 20px 0;
+    overflow: hidden;
+}
+.ott_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto 10px;
+}
+.float_L {
+    float: left;
+    margin-right: 20px;
 }
 .star_icon {
     width: 25px;
     height: 25px;
-    float: left;
 }
 .avg_box {
-    margin-top: 20px;
-    overflow: hidden;
+    margin-top: 10px;
+    display: flex;
+    align-items: baseline;
 }
 .movie_avg {
-    float: left;
     margin-left: 10px;
     font-size: 24px;
 }
 .best_review_box {
-    width: calc(100% - 420px);
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
+    width: 70%;
+    float: left;
+    padding: 0 30px;
+    box-sizing: border-box;
+    margin-top: 20px;
 }
 .best_title {
     float: left;
@@ -76,13 +103,12 @@
 }
 .best_box {
     width: 100%;
-    height: 250px;
     display: flex;
     gap: 20px;
     padding-top: 20px;
 }
 .best {
-    width: calc(100% / 3);
+    width: 100%;
     background-color: aliceblue;
     border-radius: 20px;
     color: #000;
@@ -98,17 +124,21 @@
     margin: -5px 5px 0 20px;
 }
 .best_review_txt {
-    height: 150px;
+    height: 120px;
     padding: 10px 0;
+}
+.nofilter {
+    filter: none !important;
+    cursor: default !important;
 }
 .click_box {
     width: 30%;
     position: absolute;
-    top: 250px;
-    right: 0px;
+    top: 48%;
+    right: 20px;
 }
-.click_box1 { 
-    float: left; 
+.click_box1 {
+    float: left;
     width: calc(100% / 4)
 }
 .click_icon {
@@ -119,12 +149,29 @@
     margin: 0 auto;
     cursor: pointer;
 }
-#jjim, #check { display: none;}
-#jjim:checked ~ .jjim_box .click_icon { /* 누르면 빨간색으로 색상 변경 */
-    filter: invert(16%) sepia(89%) saturate(6054%) hue-rotate(358deg) brightness(97%) contrast(113%); 
+#jjim, #check, #like { display: none;}
+/*
+#jjim:checked ~ .jjim_box .click_icon { /* �꾨Ⅴ硫� 鍮④컙�됱쑝濡� �됱긽 蹂�寃�
+    filter: invert(16%) sepia(89%) saturate(6054%) hue-rotate(358deg) brightness(97%) contrast(113%);
+    animation: scaleup 1s;
 }
+*/
+
+.jjim_color {
+    filter: invert(16%) sepia(89%) saturate(6054%) hue-rotate(358deg) brightness(97%) contrast(113%);
+    animation: scaleup 1s;
+}
+
+/*
 #check:checked ~ .check_box .click_icon {
     filter: invert(61%) sepia(40%) saturate(1733%) hue-rotate(212deg) brightness(92%) contrast(104%);
+    animation: scaleup 1s;
+}
+*/
+
+.watched_color {
+    filter: invert(61%) sepia(40%) saturate(1733%) hue-rotate(212deg) brightness(92%) contrast(104%);
+    animation: scaleup 1s;
 }
 
 .click_menu {
@@ -137,10 +184,11 @@
     max-width: 1400px;
     overflow: hidden;
     margin: 0 auto;
+    padding: 0px 30px;
 }
 .title_txt {
     font-size: 25px;
-    margin: 40px 0 15px;
+    margin: 40px 0 10px;
 }
 .txt {
     line-height: 30px;
@@ -166,9 +214,11 @@
 }
 .preview {
     max-width: 1400px;
+    height: 50vw;
 }
-.preview video {
+.preview iframe {
     width: 100%;
+    height: 100%;
 }
 .review_box {
     position: relative;
@@ -176,12 +226,36 @@
 .write_box {
     overflow: hidden;
 }
+.star_score_box {
+    padding: 10px 0;
+    overflow: hidden;
+    width: 200px;
+}
+.star_score {
+    width: 30px;
+    height: 30px;
+    filter: grayscale(100%);
+    float: right;
+    margin-right: 10px;
+}
+.star_none {
+    display: none;
+}
+#star1:checked ~ .star_score,
+#star2:checked ~ .star_score,
+#star3:checked ~ .star_score,
+#star4:checked ~ .star_score,
+#star5:checked ~ .star_score {
+    filter: none;
+}
 .review_write {
     width: 88%;
     height: 50px;
     float: left;
     padding: 0 20px;
     box-sizing: border-box;
+    border-radius: 10px;
+    outline: none;
 }
 .review_write_btn {
     width: 10%;
@@ -189,14 +263,22 @@
     background: #A785EF;
     color: #fff;
     border: none;
+    border-radius: 10px;
     padding: 0;
     float: right;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.review_write_btn:hover {
+    background: #8454eb;
+    transition: all 0.3s;
 }
 
 
 .review_list_box {
     color: lightgray;
     overflow: hidden;
+    position: relative;
 }
 .list_line {
     width: 100%;
@@ -207,7 +289,7 @@
 .review_title_box { overflow: hidden;}
 .select_r {
     position: absolute;
-    top: 190px;
+    top: 230px;
     right: 0;
     outline: none;
 }
@@ -229,65 +311,385 @@
 .write_date {
     float: right;
 }
-.review_content {
-    margin: 10px 0 20px;
+.update_box {
+    display: flex;
+    gap: 7px;
+    color: gray;
+    font-size: 14px;
 }
-.like_box {
-    float: right;
+.update_btn {
+    cursor: pointer;
+}
+.like_box_chk {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
 }
 .like_icon, .like_bin {
     width: 25px;
     height: 25px;
-    float: left;
     margin-right: 10px;
+    color: #fff;
+    filter: opacity(0.5) drop-shadow(0 0 0 #fff);
+    cursor: pointer;
+}
+.like_box {
+    display: flex;
+    align-items: center;
+}
+.like_icon_box {
+    float: left;
 }
 .like_cnt {
-    float: left;
     line-height: 25px;
 }
-@media screen and (max-width:1350px) {
-    .movie_year {
-        margin: 0;
+
+@keyframes scaleup {
+    0% {
+        transform: scale(1);
     }
-    .movie_country {
-        margin-top: 10px;
+    50% {
+        transform: scale(1.15);
     }
-    .avg_box {
-        margin-top: 10px;
+    100% {
+        transform: scale(1);
     }
 }
 
-@media screen and (max-width:900px) {
-    .detail_poster {
-        width: 300px;
-    }
-    .click_box {
-        width: 30%;
-        position : static;
-        top: 250px;
-        right: 0px;
-        float: left;
-        padding: 5px 20px;
-    }
-    .click_icon {
-        width: 30px;
-        height: 30px;
+#login_move_popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 280px;
+    background-color: #fff;
+    border: 1px solid gray;
+    color: gray;
+    display: none;
+    z-index: 9999;
+}
+.login_page_move_icon {
+    width: 100px;
+    height: 100px;
+    margin: 30px auto;
+}
+.login_txt {
+    text-align: center;
+    font-size: 22px;
+}
+.popup_btn_box {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 30px;
+}
+.popup_btn {
+    padding: 10px 20px;
+    background: #a785efd1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.popup_close_btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    margin: 20px;
+    cursor: pointer;
+}
+.page_box {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.like_color {
+    filter: invert(16%) sepia(89%) saturate(6054%) hue-rotate(358deg) brightness(97%) contrast(113%);
+    animation: scaleup 1s;
+}
+
+.review_content {
+    margin: 10px 0 20px;
+    border: none;
+    background: none;
+    outline: none;
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 10px 0;
+}
+
+.review_content_update {
+    color: #000;
+    padding: 10px;
+    background: #ffffff;
+}
+
+.num {
+    cursor: pointer;
+}
+
+.page_clicked {
+    color: #A785EF;
+}
+
+@media screen and (max-width: 1200px) {
+    .content1 {
+        width: 100%;
+        padding: 50px 30px 0;
     }
     .best_review_box {
-        width: calc(100% - 320px);
+        width: 100%;
+        padding: 0;
+    }
+    .click_box {
+        width: 45%;
+        position: static;
+        overflow: hidden;
+        padding-top: 30px;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .click_box {
+        width: 100%;
+        padding: 30px 80px;
+        box-sizing: border-box;
+    }
+}
+@media screen and (max-width: 800px) {
+    .detail_poster {
+        width: 100%;
+    }
+    .detail_content {
+        width: 100%;
+        margin-top: 30px;
+        padding: 0;
+
     }
     .movie_title {
-        font-size: 30px;
+        float: none;
+        font-size: 2.5em;
     }
     .movie_year {
-        margin-top: 13px;
-    }
-    .movie_country {
-        margin-top: 50px;
+        float: none;
+        margin: 20px 0 0;
+        display: inline-block;
     }
     .best_box {
-        height: 130px;
-        padding-top: 0;
+        flex-wrap: wrap;
+    }
+}
+@media screen and (max-width: 650px) {
+    .click_box {
+        width: 100%;
+        padding: 30px;
+    }
+}
+
+@media screen and (min-width: 280px) and (max-width: 480px) {
+    .container {
+        padding-bottom: 100px;
+    }
+    .content1 {
+        width: 100%;
+        padding: 30px;
+        box-sizing: border-box;
+    }
+    .detail_poster {
+        width: 100%;
+    }
+    .detail_content {
+        width: 100%;
+        padding: 20px 0;
+        margin: 0;
+    }
+    .movie_title {
+        font-size: 1.4em;
+        float: none;
+        padding: 0;
+        height: auto;
+    }
+    .movie_year {
+        float: left;
+        margin: 10px 0 0 0;
+        font-size: 0.8em;
+    }
+    .movie_title_eng {
+        margin-top: 10px;
+        font-size: 0.8em;
+    }
+    .movie_country {
+        font-size: 0.6em;
+    }
+    .movie_genre {
+        font-size: 1em;
+    }
+    .movie_ott_box {
+        padding: 10px 0;
+    }
+    .ott_img {
+        width: 35px;
+        height: 35px;
+        margin: 0 auto 7px;
+    }
+    .movie_ott {
+        font-size: 0.7em;
+    }
+    .star_icon {
+        width: 20px;
+        height: 20px;
+    }
+    .avg_box {
+        margin: 0;
+    }
+    .movie_avg {
+        font-size: 1em;
+    }
+    .click_box {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        position: static;
+        overflow: hidden;
+    }
+    .click_icon {
+        width: 25px;
+        height: 25px;
+    }
+    .click_menu {
+        font-size: 0.4em;
+    }
+    .best_review_box {
+        width: 100%;
+        padding: 0;
+        margin-top: 10%;
+    }
+    .best_title {
+        float: left;
+        font-size: 1em;
+    }
+    .best_icon {
+        width: 20px;
+        height: 20px;
+        margin-top: -2px;
+    }
+    .best {
+        font-size: 0.5em;
+    }
+    .best_box {
+        width: 100%;
+        display: flex;
+        gap: 20px;
+        padding-top: 20px;
+        flex-wrap: wrap;
+    }
+    .star_icon_best {
+        width: 15px;
+        height: 15px;
+    }
+    .best_review_txt {
+        height: 90px;
+    }
+    .like_icon {
+        width: 15px;
+        height: 15px;
+    }
+    .content2 {
+        width: 100%;
+        margin: 0;
+        padding: 0 30px;
+        box-sizing: border-box;
+    }
+    .title_txt {
+        font-size: 1em;
+        margin: 20px 0 10px;
+    }
+    .txt {
+        font-size: 10px;
+    }
+    .actor_box1 {
+        width: 70px;
+    }
+    .photo {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+    }
+    .photo_name {
+        font-size: 0.5em;
+    }
+    .preview {
+        width: 100%;
+    }
+    .star_score {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+    .star_score_box {
+        padding: 0 0 10px 0;
+        width: 130px;
+    }
+    .select_r {
+        top: 140px;
+    }
+    .review_write {
+        width: 80%;
+        height: 40px;
+    }
+    .review_write_btn {
+        width: 18%;
+        height: 40px;
+    }
+    .nickname, .movie_avg1, .write_date, .update_box, .like_cnt {
+        font-size: 0.6em;
+    }
+    .movie_avg1 {
+        margin-top: 3px;
+    }
+    .star_icon1 {
+        width: 15px;
+        height: 15px;
     }
 
+    #login_move_popup {
+        width: 300px;
+        height: 210px;
+    }
+    .login_page_move_icon {
+        width: 70px;
+        height: 70px;
+        margin: 20px auto;
+    }
+    .login_txt {
+        font-size: 0.8em;
+    }
+    .popup_btn_box {
+        margin-top: 20px;
+    }
+    .popup_btn {
+        font-size: 0.7em;
+    }
+    .swal-wide {
+        width: 250px !important;
+    }
+}
+
+.num {
+    cursor: pointer;
+}
+
+.page_clicked {
+    color: #A785EF;
+}
+
+.prev_btn {
+    display: none;
 }

@@ -1,0 +1,161 @@
+#wrap img {
+    width: 100%; height: 100%;
+}
+.login_bg {
+    width: 100%;
+    height: 100vh;
+    background: url(../img/login_bg.jpg) no-repeat center / cover;
+    filter: brightness(50%) blur(10px);
+}
+.container {
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 140px;
+}
+.logo {
+    width: 250px;
+    height: 100%;
+    margin: 0 auto;
+}
+.title {
+    font-size: 24px;
+    text-align: center;
+    padding: 20px 0;
+    letter-spacing: 3px;
+    font-weight: 900;
+    color: #fff;
+}
+.search_form {
+    width: 450px;
+    margin: 10px auto;
+    border: 1px solid gray;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #333;
+    box-shadow: 1px 1px 20px 5px #555;
+    color: #fff;
+    padding: 20px;
+}
+.join_form table {
+    margin: 0 auto;
+    padding: 10px;
+}
+.login_input {
+    border: none;
+    width: 300px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 10px;
+    outline: none;
+}
+.phone_input {
+    width: 97px;
+    border: none;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 10px;
+    outline: none;
+}
+.birthday {
+    width: 97px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+th {
+    padding: 5px;
+}
+.th1 {
+    width: 30%;
+    color: #fff;
+    line-height: 25px;
+}
+tr {
+    border: 1px solid #fff;
+}
+.search_btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 30px;
+    background: #A785EF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+.popup_content {
+    width: 400px;
+    padding: 20px;
+    background-color: #555;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.update_btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 30px;
+    background: #A785EF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.password_input {
+    border: none;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 10px;
+    outline: none;
+    margin-top: 10px;
+}
+
+
+@media screen and (min-width: 280px) and (max-width: 480px) {
+    #wrap {
+        width: 100%;
+    }
+    .logo {
+        width: 200px;
+    }
+    .title {
+        font-size: 20px;
+    }
+    .search_form {
+        width: 250px;
+        padding: 10px;
+    }
+    .th1 {
+        font-size: 12px;
+    }
+    .login_input {
+        width: 178px;
+        padding: 5px
+    }
+    .phone_input {
+        width: 56px;
+        padding: 5px
+    }
+    .birthday {
+        width: 56px;
+        padding: 5px;
+        font-size: 10px;
+    }
+}
+

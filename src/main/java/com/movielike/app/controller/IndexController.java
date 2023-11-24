@@ -63,10 +63,10 @@ public class IndexController {
     }
     
     // 임시 세션값 생성
-    @GetMapping("/login")
-    public String sessionMake(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        session.setAttribute("liogdin", 1);
-        return "redirect:/";
-    }
+//    @GetMapping("/login")
+//    public String sessionMake(HttpServletRequest request){
+//        HttpSession session = request.getSession();
+//        session.setAttribute("liogdin", 1);
+//        return "redirect:/";
+//    }
 }

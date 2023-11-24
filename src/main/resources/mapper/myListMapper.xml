@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movielike.app.dao.myListMapper">
+    <select id="selectMDmylist" parameterType="myListDto" resultType="int">
+        select count(*) from mylist where userId = #{userId} and movId = #{movId}
+    </select>
+
+    <insert id="insertMyList" parameterType="myListDto">
+        insert into mylist(movId, userId) values (#{movId}, #{userId})
+    </insert>
+
+    <delete id="deleteMyList" parameterType="myListDto">
+        delete from mylist where movId = #{movId} and userId = #{userId}
+    </delete>
+</mapper>

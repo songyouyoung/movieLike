@@ -60,9 +60,6 @@ birthDateEl.addEventListener('focus', function() {
     }
 });
 
-
-
-
 // 전화번호 자동 탭 이동 
 $('.phone_input').on('keyup', function() {
     if(this.value.length == this.maxLength) {

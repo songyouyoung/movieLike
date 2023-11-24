@@ -19,7 +19,7 @@
         <header class="header">
             <div class="main_logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="로고 이미지"></a></div>
             <div class="h_left left_50"><a href="<c:url value='/list/chart?title=all'/>">영화 전체보기</a></div>
-            <div class="h_left"><a href="">차트</a></div>
+            <div class="h_left"><a href="<c:url value='/find/chart'/>">차트</a></div>
             <div class="h_left"><a href="<c:url value='/find/keyword'/>">키워드 찾기</a></div>
             <div class="h_right">
                 <div class="login"><a href="">로그인</a></div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.movielike.app.dao.userMapper">
+    <select id="findEmail" parameterType="userDto" resultType="String">
+        select userEmail from user where userName = #{userName} and userPhone = #{userPhone} and userBirth = #{userBirth}
+    </select>
+    <select id="selectUserInfo" parameterType="userDto" resultType="int">
+        select count(userId) from user where userEmail = #{userEmail} and userName = #{userName} and userPhone = #{userPhone}
+    </select>
+    <update id="updatePassword" parameterType="userDto">
+        update user set userPw = #{userPw} where userEmail = #{userEmail}
+    </update>
+</mapper>

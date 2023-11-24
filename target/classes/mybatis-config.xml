@@ -8,5 +8,8 @@
         <typeAlias alias="personDto" type="com.movielike.app.domain.PersonDto" />
         <typeAlias alias="ottDto" type="com.movielike.app.domain.OttDto" />
         <typeAlias alias="reviewDto" type="com.movielike.app.domain.ReviewDto" />
+        <typeAlias alias="myListDto" type="com.movielike.app.domain.MyListDto" />
+        <typeAlias alias="watchedMovieDto" type="com.movielike.app.domain.WatchedMovieDto" />
+        <typeAlias alias="userDto" type="com.movielike.app.domain.UserDto" />
     </typeAliases>
 </configuration>

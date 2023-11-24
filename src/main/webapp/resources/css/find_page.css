@@ -46,28 +46,33 @@
 }
 .find_content_box {
     width: 100%;
-    height: 300px;
     display: flex;
     gap: 20px;
-}
-.content_list {
-    background-color: #fff;
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
+    flex-wrap: wrap;
 }
 .content_list4 {
     width: calc(100% / 4);
 }
 .content_list5 {
-    width: calc(100% / 5);
+    width: calc((100% - 20px * 4) / 5);
+    height: 170px;
+    border-radius: 20px;
     position: relative;
+    overflow: hidden;
 }
 .content_list6 {
-    width: calc(100% / 6);
+    width: calc((100% - 20px * 5) / 6);
+    height: 200px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
 }
-.content_list8 {
-    width: calc(100% / 8);
+.content_list {
+    height: 300px;
+    background-color: #fff;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
 }
 .btn_be_ne {
     width: 50px;
@@ -90,21 +95,110 @@
     right: -30px;
 }
 
-.action_movie {
+.adventure {
     width: 100%;
     height: 100%;
-    background: url(../img/action_movie.png) no-repeat center / cover;
+    background: url(../img/adventure.jpg) no-repeat center / cover;
 }
+.fantasy {
+    width: 100%;
+    height: 100%;
+    background: url(../img/fantasy.jpg) no-repeat center / cover;
+}
+.animation {
+    width: 100%;
+    height: 100%;
+    background: url(../img/animation.jpg) no-repeat center / cover;
+}
+.drama {
+    width: 100%;
+    height: 100%;
+    background: url(../img/drama.jpg) no-repeat center / cover;
+}
+.horror {
+    width: 100%;
+    height: 100%;
+    background: url(../img/horror.png) no-repeat center / cover;
+}
+.action {
+    width: 100%;
+    height: 100%;
+    background: url(../img/action.jpg) no-repeat center / cover;
+}
+.comedy {
+    width: 100%;
+    height: 100%;
+    background: url(../img/comedy.jpg) no-repeat center / cover;
+}
+.history {
+    width: 100%;
+    height: 100%;
+    background: url(../img/history.jpg) no-repeat center / cover;
+}
+.western {
+    width: 100%;
+    height: 100%;
+    background: url(../img/western.jpg) no-repeat center / cover;
+}
+.thriller {
+    width: 100%;
+    height: 100%;
+    background: url(../img/thriller.jpg) no-repeat center / cover;
+}
+.crime {
+    width: 100%;
+    height: 100%;
+    background: url(../img/crime.jpg) no-repeat center / cover;
+}
+.documentary {
+    width: 100%;
+    height: 100%;
+    background: url(../img/documentary.png) no-repeat center / cover;
+}
+.sf_image {
+    width: 100%;
+    height: 100%;
+    background: url(../img/sf_image.avif) no-repeat center / cover;
+}
+.mystery {
+    width: 100%;
+    height: 100%;
+    background: url(../img/mystery.jpg) no-repeat center / cover;
+}
+.music {
+    width: 100%;
+    height: 100%;
+    background: url(../img/music.jpg) no-repeat center / cover;
+}
+.romance {
+    width: 100%;
+    height: 100%;
+    background: url(../img/romance.jpg) no-repeat center / cover;
+}
+.family {
+    width: 100%;
+    height: 100%;
+    background: url(../img/family.jpg) no-repeat center / cover;
+}
+.war {
+    width: 100%;
+    height: 100%;
+    background: url(../img/war.jpg) no-repeat center / cover;
+}
+
 .content_list_title {
     position: absolute;
-    top: 50%;
+    bottom: 0;
     left: 0;
     width: 100%;
     text-align: center;
-    transform: translateY(-50%);
-    font-size: 25px;
-    padding: 20px 0;
-    background: #ffffffa3;
+    font-size: 20px;
+    height: 60px;
+    line-height: 60px;
+    background: #0000009e;
+    cursor: pointer;
+    color: #fff;
+    transition: all 0.5s;
 }
 .korea_movie {
     width: 100%;
@@ -125,4 +219,106 @@
     width: 100%;
     height: 100%;
     background: url(../img/japan.png) no-repeat center / cover;
+}
+.china_movie {
+    width: 100%;
+    height: 100%;
+    background: url(../img/china.png) no-repeat center / cover;
+}
+
+.h_100 {
+    height: 100%;
+}
+.netflex_movie {
+    background: url(../img/netflex.jpg) no-repeat center / contain #000;
+}
+.appletv {
+    background: url(../img/appletv.png) no-repeat center / contain #fefefe;
+    transform: scale(1.5);
+}
+.naver_series {
+    background: url(../img/naver_series.png) no-repeat center / contain #f5f5f5;
+    transform: scale(1.2);
+}
+.watcha {
+    background: url(../img/watcha.png) no-repeat center / contain #fff;
+}
+.wavve {
+    background: url(../img/wavve.jpg) no-repeat center / contain #fefefe;
+    transform: scale(1.5);
+}
+.disnep {
+    background: url(../img/disnep.jpg) no-repeat center / contain #020e42;
+}
+.googleplay_movies {
+    background: url(../img/googleplay_movies.jpg) no-repeat center / contain #fff ;
+}
+
+
+.age10 {
+    width: 100%;
+    height: 100%;
+    background: url(../img/age10.png) no-repeat center / cover;
+}
+.age20 {
+    width: 100%;
+    height: 100%;
+    background: url(../img/age20.png) no-repeat center / cover;
+}
+.age30 {
+    width: 100%;
+    height: 100%;
+    background: url(../img/age30.png) no-repeat center / cover;
+}
+.age40 {
+    width: 100%;
+    height: 100%;
+    background: url(../img/age40.png) no-repeat center / cover;
+}
+.age50 {
+    width: 100%;
+    height: 100%;
+    background: url(../img/age50.png) no-repeat center / cover;
+}
+
+.bg1 {
+    width: 100%;
+    height: 100%;
+    background: url(../img/bg1.jpg) no-repeat center / cover;
+}
+.bg2 {
+    width: 100%;
+    height: 100%;
+    background: url(../img/bg2.jpg) no-repeat center / cover;
+}
+.bg3 {
+    width: 100%;
+    height: 100%;
+    background: url(../img/bg3.jpg) no-repeat center / cover;
+}
+.bg4 {
+    width: 100%;
+    height: 100%;
+    background: url(../img/bg4.jpg) no-repeat center / cover;
+}
+.bg5 {
+    width: 100%;
+    height: 100%;
+    background: url(../img/bg5.jpg) no-repeat center / cover;
+}
+.content_hover:hover .content_list_title {
+    height: 300px;
+    line-height: 300px;
+    padding: 0;
+    opacity: 0.7;
+    font-size: 25px;
+    transition: all 0.5s;
+}
+.country_hover:hover .content_list_title {
+    height: 170px;
+    line-height: 170px;
+    padding: 0;
+    opacity: 0.7;
+    font-size: 25px;
+    transition: all 0.5s;
 }

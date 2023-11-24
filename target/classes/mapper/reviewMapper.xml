@@ -9,15 +9,23 @@
         select r.*, u.userNickName from review r
         join user u
         on r.userId = u.userId
+        where true
         <if test="movId != null and movId > 0">
-            where movId = #{movId}
+            and movId = #{movId}
         </if>
         <if test="userId != null and userId > 0">
-            where userId = #{userId}
+            and userId = #{userId}
         </if>
-        order by rvRegDate desc, rvId desc
+        order by
+        <choose>
+            <when test="mode == 1">
+                rvLike desc, rvId desc
+            </when>
+            <otherwise>
+                rvRegDate desc, rvId desc
+            </otherwise>
+        </choose>
         limit #{nowPage} , #{pageSize}
-
     </select>
     <!-- 베스트 3 리뷰 가져오기 -->
     <select id="selectBestReview" parameterType="int" resultType="reviewDto">
@@ -51,6 +59,10 @@
         select count(userId) from reviewlike where rvId = #{rvId} and userId = #{userId}
     </select>
 
+    <select id="selectReviewCnt" parameterType="int" resultType="int">
+        select count(rvId) from review where movId = #{movId}
+    </select>
+
     <insert id="insertReviewLike" parameterType="map">
         insert into reviewlike(rvId, userId) values(#{rvId}, #{userId})
     </insert>
@@ -63,4 +75,11 @@
         delete from reviewlike where rvId = #{rvId} and userId = #{userId}
     </delete>
 
+    <update id="updateReview" parameterType="reviewDto">
+        update review set rvContent = #{rvContent}, rvUpDate = now() where rvId = #{rvId}
+    </update>
+
+    <delete id="deleteReview" parameterType="int">
+        delete from review where rvId = #{rvId}
+    </delete>
 </mapper>

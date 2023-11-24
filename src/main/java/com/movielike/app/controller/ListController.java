@@ -52,7 +52,8 @@ public class ListController {
     }
 
     public List<MovieDto> listUpMovie(String title, String val, String sort, String nowPage, HttpSession session){
-        String userId = (String) session.getAttribute("liogdin");
+        String userId = String.valueOf((Integer)session.getAttribute("liogdin"));
+        System.out.println("userId1 : " + userId);
         nowPage = (nowPage == null? "0" : nowPage);
         sort = (sort == null? "0" : sort);
 

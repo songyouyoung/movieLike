@@ -3,6 +3,7 @@ package com.movielike.app.dao;
 import com.movielike.app.domain.MovieDto;
 import com.movielike.app.domain.OttDto;
 import com.movielike.app.domain.PersonDto;
+import com.movielike.app.domain.ReviewDto;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -66,6 +67,32 @@ public class MovieDao {
 
     public List<MovieDto> selectSearchMov(Map search) {
         return session.selectList(namespace+"selectSearchMov" , search);
+    }
+
+/////////////////////////////////
+////////// 상세 페이지 ///////////
+/////////////////////////////////
+    public MovieDto selectMovieDetail(int movId) {
+        return session.selectOne(namespace + "selectMovieDetail", movId);
+    }
+    public List<String> selectMovieCountry(int movId) {
+        return session.selectList(namespace + "selectMovieCountry", movId);
+    }
+    public List<String> selectMovieGenre(int movId) {
+        return session.selectList(namespace + "selectMovieGenre", movId);
+    }
+    public List<OttDto> selectMovieOtt(int movId) {
+        return session.selectList(namespace + "selectMovieOtt", movId);
+    }
+    public List<PersonDto> selectMoviePerson(int movId) {
+        return session.selectList(namespace + "selectMoviePerson", movId);
+    }
+    public int updateSearchCnt(int movId) {
+        return session.update(namespace + "updateSearchCnt", movId);
+    }
+
+    public int updateMovieScore(ReviewDto reviewDto) {
+        return session.update(namespace + "updateMovieScore", reviewDto);
     }
 }
 
