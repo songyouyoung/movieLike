@@ -129,12 +129,15 @@ $(document).ready(function(){
             let year = dt.getFullYear();
             let month = dt.getMonth()+1 < 10 ? "0" + (dt.getMonth()+1) : dt.getMonth()+1;
             let date = dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate();
-            let ottList = "";
+            let ottList =  `<div class="m_mvOttBox">`;
             movie.ottList.forEach(function (ott, i){
-                ottList += `<div class="m_mvOttBox">
-                                <span class="m_mvOtt"><img src= "../img/ott/${ott.ottId}.png" alt="${ott.ottName}">${ott.ottName}</span>
+                ottList += `<div class="m_mvOtt">
+                                <img src= "../img/ott/${ott.ottId}.png" alt="${ott.ottName}">
+                                <div class="ott_txt">${ott.ottName}</div>
                             </div>`;
             });
+
+            ottList += `</div>`;
 
             let dirName = "감독 : ";
             movie.actorList.forEach(function (dir, i){

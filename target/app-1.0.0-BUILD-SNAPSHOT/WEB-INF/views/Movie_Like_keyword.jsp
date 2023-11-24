@@ -16,14 +16,16 @@
 <body>
 <div id="wrap">
     <header class="header">
-        <div class="main_logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="로고 이미지"></a></div>
-        <div class="h_left left_50"><a href="">영화 전체보기</a></div>
-        <div class="h_left"><a href="./Movie_Like_find.html">차트</a></div>
-        <div class="h_left"><a href="">키워드 찾기</a></div>
+        <div class="main_logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="MovieLike"></a></div>
+        <div class="h_left">
+            <div><a href="<c:url value='/list/chart?title=all'/>">영화 전체보기</a></div>
+            <div><a href="<c:url value='/find/chart'/>">차트</a></div>
+            <div><a href="<c:url value='/find/keyword'/>">키워드 찾기</a></div>
+        </div>
         <div class="h_right">
-            <div class="login"><a href="">로그인</a></div>
+            <div class="login"><a href="./Movie_Like_login.html">로그인</a></div>
             <div class="line"></div>
-            <div class="join"><a href="">회원가입</a></div>
+            <div class="join"><a href="./Movie_Like_join.html">회원가입</a></div>
         </div>
     </header>
 
@@ -239,16 +241,18 @@
         </div>
 
         <div class="m_mvBox">
-            <select class="select_r">
-                <option value="latest" selected>최신순</option>
-                <option value="popularity">인기순</option>
-            </select>
+            <div class="select_box">
+                <select class="select_r">
+                    <option value="latest" selected>최신순</option>
+                    <option value="popularity">인기순</option>
+                </select>
+            </div>
             <div class="m_mvListBox">
                 <!-- chk:: javascript에서 값 불러올 예정 -->
                 <div class="nodata_txt">키워드를 골라 원하는 영화를 찾아보세요</div>
             </div>
         </div>
-        <div class="m_moreBox">더보기▽</div>
+        <div class="m_moreBox">more</div>
 
     </main>
 </div>

@@ -18,13 +18,13 @@ $(document).ready(function() {
     }else{
         let title = "";
         if(s_title == "all"){ title = `영화 전체 보기`; }
-        else if (s_title == "year"){ title = `${s_val}년대` + s_val == "1989" ? " 이전" : "" + " 영화 보기"; }
-        else if (s_title == "age"){ title = `${s_val}대` + s_val == "50" ? " 이상" : "" + " 영화 보기"; }
+        else if (s_title == "year"){ title = (s_val == "1989" ? "1990년대 이전" : (s_val + `년대`)) + " 영화 보기"; }
+        else if (s_title == "age"){ title = s_val + `대` + (s_val == "50" ? " 이상" : "") + " 영화 보기"; }
         else if (s_title == "myView"){ title = `내가 본 영화`; }
         else if (s_title == "myLike"){ title = `내가 찜한 영화`; }
-        else if (s_title == "myScore"){ title = `내가 ${s_val}점 준 영화`; }
-        else if (s_title == "country"){ title = `${s_val} 영화 보기`; }
-        else { title = `${s_valName} 영화 보기`; }
+        else if (s_title == "myScore"){ title = `내가 ` + s_val + `점 준 영화`; }
+        else if (s_title == "country"){ title = s_val + `영화 보기`; }
+        else { title = s_valName  + ` 영화 보기`; }
         let group_title = `<div class="group_title">${title}</div>`;
         $(group_title + select_r).appendTo(".title_box");
     }
@@ -97,6 +97,7 @@ $(document).ready(function() {
             error : function(){
                 if (nowPage == 0){
                     if (s_title == "search") { mvBox_null("해당 검색어에 맞는 영화가 없습니다"); }
+                    else{ mvBox_null("해당 분류에 맞는 영화가 없습니다"); }
                     $(".select_r").css({
                         "display": "none"
                     });

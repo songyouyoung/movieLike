@@ -76,13 +76,22 @@ public class MovieDaoTest {
     public void selectSearchMov() {
         Map<String, String> search = new HashMap<>();
 
-        search.put("title", "myScore");
+        search.put("title", "year");
+
+        int year = Integer.parseInt("2000");
+        if ("2000" == "1989"){
+            search.put("endYear", (year + 1) + "0101");
+        }else{
+            search.put("startYear", year + "0101");
+            search.put("endYear", (year + 10) + "0101");
+        }
+
         search.put("sort", "0");
         search.put("nowPage", "0");
-        String userId = "1";
+        String userId = null;
 
         search.put("userId", userId);
-        search.put("val", "5");
+        search.put("val", "2000");
 
         assertTrue(movieDao.selectSearchMov(search) != null);
     }

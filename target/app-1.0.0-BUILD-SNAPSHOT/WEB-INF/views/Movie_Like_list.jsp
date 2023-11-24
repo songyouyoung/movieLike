@@ -18,16 +18,16 @@
 <body>
     <div id="wrap">
         <header class="header">
-            <div class="main_logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="movieLike"></a></div>
+            <div class="main_logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="MovieLike"></a></div>
             <div class="h_left">
                 <div><a href="<c:url value='/list/chart?title=all'/>">영화 전체보기</a></div>
-                <div><a href="./Movie_Like_find.html">차트</a></div>
+                <div><a href="<c:url value='/find/chart'/>">차트</a></div>
                 <div><a href="<c:url value='/find/keyword'/>">키워드 찾기</a></div>
             </div>
             <div class="h_right">
-                <div class="login"><a href="">로그인</a></div>
+                <div class="login"><a href="./Movie_Like_login.html">로그인</a></div>
                 <div class="line"></div>
-                <div class="join"><a href="">회원가입</a></div>
+                <div class="join"><a href="./Movie_Like_join.html">회원가입</a></div>
             </div>
         </header>
         <main class="container">

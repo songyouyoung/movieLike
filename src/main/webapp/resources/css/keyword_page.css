@@ -29,6 +29,7 @@
     padding: 10px 0px;
     border-bottom: 1px solid #7d7d7d;
     display: flex;
+    height: 35px;
 }
 .m_tr:last-child{border: 0;}
 .m_th{
@@ -42,7 +43,7 @@
     float: left;
 }
 
-.genre_list {  
+.genre_list {
     width: 1410px;
     padding-bottom: 10px;
 }
@@ -123,7 +124,8 @@
 }
 .avg_box {
     margin-top: 20px;
-    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
 }
 .movie_avg {
     float: left;
@@ -132,26 +134,46 @@
 }
 .movie_avg_cnt {
     float: left;
-    margin: 10px;
+    margin: 0 10px;
     color: #777;
 }
+.m_mvListBox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 .m_mvList {
-    width: calc(100% / 2);
+    width: calc((100% - 20px) / 2);
     overflow: hidden;
     float: left;
     margin-top: 30px;
     cursor: pointer;
 }
-.m_mvOtt {
-    padding: 10px 0;
+.m_mvOttBox {
     overflow: hidden;
+    padding: 10px 0;
 }
+.m_mvOtt {
+    float: left;
+    margin-right: 20px;
+}
+.m_mvOtt img {
+    display: block;
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 10px;
+    margin: 0 auto 10px;
+}
+
 .ott_img {
     width: 50px;
     height: 50px;
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 10px;
+}
+.ott_txt{
+    text-align: center;
 }
 .float_L {
     float: left;
@@ -192,7 +214,7 @@ input {
 #family_chk:checked ~ .m_tagBox #family,
 #war_chk:checked ~ .m_tagBox #war,
 #tvmovie_chk:checked ~ .m_tagBox #tvmovie,
-/* 국가 */
+    /* 국가 */
 #korea_chk:checked ~ .m_tagBox #korea,
 #america_chk:checked ~ .m_tagBox #america,
 #uk_chk:checked ~ .m_tagBox #uk,
@@ -211,25 +233,27 @@ input {
 #mexico_chk:checked ~ .m_tagBox #mexico,
 #switzerland_chk:checked ~ .m_tagBox #switzerland,
 
-/* OTT */
+    /* OTT */
 #netflex_chk:checked ~ .m_tagBox #netflex,
 #watcha_chk:checked ~ .m_tagBox #watcha,
 #disnep_chk:checked ~ .m_tagBox #disnep,
 #wavve_chk:checked ~ .m_tagBox #wavve,
 #appletv_chk:checked ~ .m_tagBox #appletv,
 #naverseries_chk:checked ~ .m_tagBox #naverseries,
-/* 리뷰 */
+    /* 리뷰 */
 #review_500_chk:checked ~ .m_tagBox #review_500,
 #review_400_chk:checked ~ .m_tagBox #review_400,
 #review_300_chk:checked ~ .m_tagBox #review_300,
-/* 평점 */
+    /* 평점 */
 #score5_chk:checked ~ .m_tagBox #score5,
 #score4_chk:checked ~ .m_tagBox #score4,
 #score3_chk:checked ~ .m_tagBox #score3
 {
     display: inline-block;
 }
-
+.select_box {
+    overflow: hidden;
+}
 .select_r {
     float: right;
     outline: none;
