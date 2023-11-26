@@ -29,7 +29,6 @@
     padding: 10px 0px;
     border-bottom: 1px solid #7d7d7d;
     display: flex;
-    height: 35px;
 }
 .m_tr:last-child{border: 0;}
 .m_th{

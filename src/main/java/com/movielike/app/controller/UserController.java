@@ -63,14 +63,27 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<String> showFindPassword(@RequestBody UserDto userDto) {
         try {
-            if(userService.updatePassword(userDto) == 1) {
-//                return new ResponseEntity<String>("비밀번호 수정하였습니다!",HttpStatus.OK);
-                return ResponseEntity.ok().build();
+            if(userService.selectUserInfo(userDto) == 1) {
+                return new ResponseEntity<String>("ok!",HttpStatus.OK);
             } else {
-                return ResponseEntity.badRequest().build();
+                return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
             }
         } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PostMapping("/update/userPassword")
+    @ResponseBody
+    public ResponseEntity<String> updatePassword(@RequestBody UserDto userDto) {
+        try {
+            System.out.println(userDto);
+            userService.updatePassword(userDto);
+            return new ResponseEntity<>("ok", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
 }

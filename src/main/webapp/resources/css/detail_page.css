@@ -424,6 +424,7 @@
     box-sizing: border-box;
     border-radius: 10px;
     padding: 10px 0;
+    resize: none;
 }
 
 .review_content_update {
@@ -693,3 +694,4 @@
 .prev_btn {
     display: none;
 }
+

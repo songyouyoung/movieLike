@@ -13,4 +13,39 @@
     <update id="updatePassword" parameterType="userDto">
         update user set userPw = #{userPw} where userEmail = #{userEmail}
     </update>
+    <delete id="deleteUser" parameterType="int">
+        delete from user where userId = #{userId}
+    </delete>
+
+<!--    송유영 추가-->
+<!-- ....................................... -->
+<!-- ..............회원 정보 수정............. -->
+<!-- ....................................... -->
+<!--    회원 정보 불러오기. 장르는 movieMapper에 있음-->
+    <select id="selectUser" parameterType="int" resultType="userDto">
+        select userId, userEmail, userPw, userName, userBirth, userNickName, userPhone, userRegDate
+        from user
+        where userId = #{userId}
+    </select>
+
+<!--    회원 정보 수정-->
+    <update id="updateUser" parameterType="userDto">
+        update user
+            set userEmail = #{userEmail}
+            , userPw = #{userPw}
+            , userName = #{userName}
+            , userBirth = #{userBirth}
+            , userNickName = #{userNickName}
+            , userPhone = #{userPhone}
+        where userId = #{userId};
+    </update>
+    <delete id="deleteUserGenre" parameterType="int">
+        delete from userGenre
+            where userId = #{userId}
+    </delete>
+    <insert id="insertUserGenre" parameterType="genreDto">
+        <foreach collection="list" item="item" separator=" ">
+            insert into userGenre (genrId, userId) values (${item.genrName}, #{item.userId});
+        </foreach>
+    </insert>
 </mapper>

@@ -91,8 +91,19 @@ public class MovieDao {
         return session.update(namespace + "updateSearchCnt", movId);
     }
 
-    public int updateMovieScore(ReviewDto reviewDto) {
-        return session.update(namespace + "updateMovieScore", reviewDto);
+    public int updateMovieScore(Map<String, Integer> map) {
+        return session.update(namespace + "updateMovieScore", map);
+    }
+
+    /////////////////////////////////
+    ////////// 마이 페이지 ///////////
+    /////////////////////////////////
+    public int updateScore(List<Map<String, Integer>> mapList) {
+        return session.update(namespace + "updateScore", mapList);
+    }
+
+    public int updateScoreMap(Map<String, Integer> mapList) {
+        return session.update(namespace + "updateScoreMap", mapList);
     }
 }
 

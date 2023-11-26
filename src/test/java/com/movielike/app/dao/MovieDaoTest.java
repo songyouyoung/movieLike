@@ -20,6 +20,9 @@ public class MovieDaoTest {
     @Autowired
     MovieDao movieDao;
 
+    @Autowired
+    ReviewDao reviewDao;
+
     @Test
     public void selectMovie() {
         List<OttDto> ottList = new ArrayList<>();
@@ -94,6 +97,11 @@ public class MovieDaoTest {
         search.put("val", "2000");
 
         assertTrue(movieDao.selectSearchMov(search) != null);
+    }
+
+    @Test
+    public void selectUserReview() {
+        System.out.println((reviewDao.selectUserReview(2)));
     }
 
 }

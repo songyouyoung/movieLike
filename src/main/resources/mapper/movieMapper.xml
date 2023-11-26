@@ -277,6 +277,14 @@
     </update>
     <!-- 영화 리뷰 점수 합산 -->
     <update id="updateMovieScore" parameterType="map">
-        update movie set movScore = movScore + #{rvScore}, movScoreCnt = movScoreCnt + 1 where movId = #{movId}
+        update movie set movScore = movScore + #{rvScore}, movScoreCnt = movScoreCnt + #{pmOne} where movId = #{movId}
+    </update>
+    <!-- 수빈    -->
+    <update id="updateScore" parameterType="int">
+        <foreach collection="list" item="item" separator=";" close=";">
+            update movie
+            set movScore = movScore - ${item.rvScore}, movScoreCnt = movScoreCnt - 1
+            where movId = ${item.movId}
+        </foreach>
     </update>
 </mapper>

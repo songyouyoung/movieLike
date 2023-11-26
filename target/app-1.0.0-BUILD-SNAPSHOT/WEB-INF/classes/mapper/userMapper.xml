@@ -13,4 +13,21 @@
     <update id="updatePassword" parameterType="userDto">
         update user set userPw = #{userPw} where userEmail = #{userEmail}
     </update>
+    <select id="selectPassword" parameterType="int" resultType="String">
+        select userPw from user where userId = #{userId}
+    </select>
+    <delete id="deleteUser" parameterType="int">
+        delete from user where userId = #{userId}
+    </delete>
+
+<!--    송유영 추가-->
+<!--    회원 정보 수정-->
+    <update id="updateUser" parameterType="map">
+        update user
+            set userEmail
+        where userId = ${userId};
+        update userGenre
+            set
+        where userId = ${userId};
+    </update>
 </mapper>
