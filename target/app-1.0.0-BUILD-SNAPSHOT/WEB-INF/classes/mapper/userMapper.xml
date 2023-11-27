@@ -28,6 +28,26 @@
         where userId = #{userId}
     </select>
 
+<!--    회원 중복 체크-->
+    <!-- 아이디 중복 체크1 -->
+    <select id="checkIdModify" parameterType="userDto" resultType="int">
+        select count(userId) from user
+            where userEmail = #{userEmail}
+                and NOT userId = #{userId}
+    </select>
+    <!-- 닉네임 중복체크 -->
+    <select id="checkNickModify" parameterType="userDto" resultType="int">
+        select count(userId) from user
+            where userNickName = #{userNickName}
+                and NOT userId = #{userId}
+
+    </select>
+    <!-- 핸드폰번호 중복체크 -->
+    <select id="checkPhoneModify" parameterType="userDto" resultType="int">
+        select count(userId) from user
+            where userPhone = #{userPhone}
+                and NOT userId = #{userId}
+    </select>
 <!--    회원 정보 수정-->
     <update id="updateUser" parameterType="userDto">
         update user

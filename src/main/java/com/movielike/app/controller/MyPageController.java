@@ -82,29 +82,20 @@ public class MyPageController {
 
     @PostMapping("/myPage/modifyUser")
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> modifyUser(@RequestBody Map<String, Object> user, HttpSession httpSession) {
+    public ResponseEntity<String> modifyUser(@RequestBody Map<String, Object> user, HttpSession httpSession) {
         Integer loginId = (int)httpSession.getAttribute("liogdin");
+        String success = "";
         try {
-//            System.out.println("user : " + user);
-//            System.out.println("user.user : " + user.get("user"));
-//
-//            ObjectMapper mapper = new ObjectMapper();
-//            UserDto userDto = mapper.convertValue(user.get("user"), UserDto.class);
-//            System.out.println("user.user : " + userDto);
-//
-//            List<GenreDto> genreDto = (List<GenreDto>) user.get("userGenre");
-//            System.out.println("++++++");
-//            System.out.println("userId : " + userDto.getUserId());
-//            System.out.println("userGenre : " + genreDto);
-            boolean update = userService.updateUser(user);
-            System.out.println("update : " + update);
-            if (update) {
-                return new ResponseEntity<Map<String, Object>>(userService.selectUser(loginId), HttpStatus.OK);
+            success = userService.updateUser(user);
+            System.out.println("success : " + success);
+            if (success.equals("")) {
+                return new ResponseEntity<String>(success, HttpStatus.OK);
             }else {
-                return new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<String>(success, HttpStatus.BAD_REQUEST);
             }
         } catch (Exception e) {
-            return new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
+            e.printStackTrace();
+            return new ResponseEntity<String>(success, HttpStatus.BAD_REQUEST);
         }
     }
 }

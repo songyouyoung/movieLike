@@ -37,6 +37,15 @@ public class UserDao {
 /////////////////////////////////
 ///////// 회원 정보 수정 //////////
 /////////////////////////////////
+    public int checkIdModify(UserDto userDto){
+        return session.selectOne(namespace + "checkIdModify", userDto);
+    }
+    public int checkNickModify(UserDto userDto){
+        return session.selectOne(namespace + "checkNickModify", userDto);
+    }
+    public int checkPhoneModify(UserDto userDto){
+        return session.selectOne(namespace + "checkPhoneModify", userDto);
+    }
     public UserDto selectUser(int userId) {
         return session.selectOne(namespace + "selectUser", userId);
     }
@@ -51,4 +60,11 @@ public class UserDao {
     public int insertUserGenre(List<GenreDto> genreDto){
         return session.insert(namespace + "insertUserGenre", genreDto);
     }
+
+    ///////////////// 주영
+    public int checkId(String email) {
+        return session.selectOne(namespace + "checkId", email);
+    }
+    public int checkNick(String nickname) {return session.selectOne(namespace + "checkNick", nickname);}
+    public int checkPhone(String Phone) {return session.selectOne(namespace + "checkPhone", Phone);}
 }

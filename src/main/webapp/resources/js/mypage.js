@@ -1,10 +1,4 @@
 var c_path = (location.pathname).split("/")[1];
-// 정규 표현식
-const expPwText = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/; // 비밀번호 정규 표현식
-const expNameText = /^[가-힣]+$/; // 이름 정규 표현식 (한글만 허용)
-const expHpText = /^\d{3}-\d{3,4}-\d{4}$/; // 전화번호 정규 표현식
-const expEmailText = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const expNicknameText = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/; // 닉네임 정규 표현식
 
 function genreClick(id) {
     location.href = "./list/chart?title=genr&val=" + id
@@ -18,7 +12,6 @@ function moveList(type, count) {
     if (count == 0) {
         return;
     }
-
     location.href =  "./list/chart?title=" + type;
 }
 
@@ -59,14 +52,19 @@ function updateCheck(str) {
                         zIndex : "9"
                     });
                     $("#popup #email").prop("value", data.user.userEmail);
+                    $("#popup #password").prop("value", "");
+                    $("#popup #password_chk").prop("value", "");
                     $("#popup #name").prop("value", data.user.userName);
                     let dt = new Date(data.user.userBirth);
                     let year = dt.getFullYear();
                     let month = dt.getMonth()+1 < 10 ? "0" + (dt.getMonth()+1) : dt.getMonth()+1;
                     let date = dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate();
-                    $("#popup #birth_year>option").html(year);
-                    $("#popup #birth_month>option").html(month);
-                    $("#popup #birth_date>option").html(date);
+                    // $("#popup #birth_year>option").html(year);
+                    $("#popup #birth_year").val(year);
+                    // $("#popup #birth_month>option").html(month);
+                    $("#popup #birth_month").val(month);
+                    // $("#popup #birth_date>option").html(date);
+                    $("#popup #birth_date").val(date);
                     $("#popup .birthday").prop('disabled',true);
                     let phone = (data.user.userPhone).split("-");
                     $("#popup #hp1").prop("value", phone[0]);
@@ -111,38 +109,74 @@ $(document).mouseup(function (e){
 // 송유영 작업
 // 회원정보 수정
 function updatePopup() {
-    let userPhone = $('#phone_fir').val() + "-" + $('#phone_sec').val() + "-" + $('#phone_third').val()
-    let user = {userId: sessionId, userEmail: $("#email").val(), userPw: $('#password').val(), userName: $('#name').val(), userNickName: $('#nickname').val(), userPhone: userPhone};
-    let userGenre = [];
-    for (let i = 0; i < $(".genre_checkbox").length; i++){
-        if($(".genre_checkbox").eq(i).prop("checked") == true){
-            userGenre.push({genrId : $(".genre_checkbox").eq(i).data("genre"), userId : sessionId});
+    console.log(sendit());
+    if(sendit()) {
+        let userPhone = $('#hp1').val() + "-" + $('#hp2').val() + "-" + $('#hp3').val()
+        console.log("userPhone : " + userPhone);
+        let user = {
+            userId: sessionId,
+            userEmail: $("#email").val(),
+            userPw: $('#password').val(),
+            userName: $('#name').val(),
+            userNickName: $('#nickname').val(),
+            userPhone: userPhone
+        };
+        let userGenre = [];
+        for (let i = 0; i < $(".genre_checkbox").length; i++) {
+            if ($(".genre_checkbox").eq(i).prop("checked") == true) {
+                userGenre.push({genrId: $(".genre_checkbox").eq(i).data("genr"), userId: sessionId});
+            }
         }
+        console.log(userGenre);
+        $.ajax({
+            type: 'POST',
+            url: '/' + c_path + '/myPage/modifyUser',
+            headers: {"content-type": "application/json"},
+            dataType: 'text',
+            data: JSON.stringify({user: user, userGenre: userGenre}),
+            success: function (data) {
+                Swal.fire({
+                    position: "center",
+                    zIndex: 99999,
+                    icon: "success",
+                    title: "회원정보가 수정되었습니다.",
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    location.replace(location.pathname);
+                });
+            },
+            error: function (e) {
+                if (e.responseText != ""){
+                    let error = (e.responseText).split(",");
+                    console.log(error);
+                    console.log(error.length);
+                    for(let i = 0; i < error.length-1; i++){
+                        console.log(error[i]);
+                        if (error[i] == "id"){
+                            handleDuplicateCheck(1, '.id_ok', '.id_already', '#email');
+                        }else if(error[i] == "nick"){
+                            handleDuplicateCheck(1, '.nick_ok', '.nick_already', '#nickname');
+                        }else if(error[i] == "phone"){
+                            handleDuplicateCheck(1, '.ph_ok', '.ph_already', '.phone_input');
+                        }else{
+                            Swal.fire({
+                                title: "개인정보 수정 ERROR. \n 관리자에게 전달해주세요.",
+                            }).then(() => {
+                                location.replace(location.pathname);
+                            });
+                        }
+                    }
+                }else {
+                    Swal.fire({
+                        title: "개인정보 수정 ERROR. \n 관리자에게 전달해주세요.",
+                    }).then(() => {
+                        location.replace(location.pathname);
+                    });
+                }
+            }
+        });
     }
-    $.ajax({
-        type:'POST',
-        url: '/' + c_path + '/myPage/modifyUser',
-        headers: {"content-type": "application/json"},
-        dataType: 'text',
-        data: JSON.stringify({user : user, userGenre : userGenre}),
-        success : function(data) {
-            Swal.fire({
-                position: "center",
-                zIndex: 99999,
-                icon: "success",
-                title: "회원정보가 수정되었습니다.",
-                showConfirmButton: false,
-                timer: 1500
-            }).then(() => {
-                location.replace(location.pathname);
-            });
-        },
-        error : function(e) {
-            Swal.fire({
-                title: "개인정보 수정 ERROR. \n 관리자에게 전달해주세요.",
-            });
-        }
-    });
 }
 
 function unregister() {
@@ -166,108 +200,108 @@ function unregister() {
   });
 }
 
-
-// 생년월일 선택 부분 
-// 년
-const birthYearEl = document.querySelector('#birth_year')
-let today = new Date();
-let year = today.getFullYear();
-
-isYearOptionExisted = false;
-birthYearEl.addEventListener('focus', function() {
-    if(!isYearOptionExisted) {
-        isYearOptionExisted = true;
-        for(var i = 1940; i<=year; i++) {
-            const YearOption = document.createElement('option')
-            YearOption.setAttribute('value', i)
-            YearOption.innerText = i
-
-            this.appendChild(YearOption);
-        }
-    }
-});
-
-// 월
-var birthMonthEl = document.querySelector('#birth_month') 
-
-// 일
-var birthDateEl = document.querySelector('#birth_date') 
-
-isMonthOptionExisted = false;
-birthMonthEl.addEventListener('focus', function() {
-    if(!isMonthOptionExisted) {
-        isMonthOptionExisted = true;
-        for(i=1; i<=12;i++) {
-            const MonthOption = document.createElement('option')
-            MonthOption.setAttribute('value', i)
-            MonthOption.innerText = i
-
-            this.appendChild(MonthOption);
-        }
-    }
-});
-
-
-birth_month.addEventListener('change', function() {
-
-    var chk_month = birth_month.options[birth_month.selectedIndex].value;
-    console.log(chk_month);
-
-
-    isDateOptionExisted = false;
-    if(chk_month == 2) {
-        birthDateEl.addEventListener('focus', function() {
-            if(!isDateOptionExisted) {
-                $('#birth_date').empty(); // .empty() : 지정한 요소의 하위 요소를 제거
-                isDateOptionExisted = true;
-                for(i=1; i<=28;i++) {
-                    const DateOption = document.createElement('option')
-                    DateOption.setAttribute('value', i)
-                    DateOption.innerText = i
-
-                    this.appendChild(DateOption);
-                }
-                isDateOptionExisted = false;
-            }
-        });
-    }
-    else if(chk_month == 4 || chk_month == 6 || chk_month == 9 || chk_month == 11) {
-        isDateOptionExisted = false;
-        birthDateEl.addEventListener('focus', function() {
-            if(!isDateOptionExisted) {
-                $('#birth_date').empty();
-                isDateOptionExisted = true;
-                for(i=1; i<=30;i++) {
-
-                    var DateOption = document.createElement('option')
-                    
-                    DateOption.setAttribute('value', i)
-                    DateOption.innerText = i
-
-                    this.appendChild(DateOption);
-                }
-                isDateOptionExisted = false;
-            }
-        });
-    }
-    else {
-        isDateOptionExisted = false;
-        birthDateEl.addEventListener('focus', function() {
-            if(!isDateOptionExisted) {
-                $('#birth_date').empty();
-                isDateOptionExisted = true;
-                for(i=1; i<=31;i++) {
-                    const DateOption = document.createElement('option')
-                    DateOption.setAttribute('value', i)
-                    DateOption.innerText = i
-
-                    this.appendChild(DateOption);
-                }
-                isDateOptionExisted = false;
-            }
-        });
-    }
-})
+// 송유영 주석. 생년월일 변경 안할거라 필요없음.
+// // 생년월일 선택 부분
+// // 년
+// const birthYearEl = document.querySelector('#birth_year')
+// let today = new Date();
+// let year = today.getFullYear();
+//
+// isYearOptionExisted = false;
+// birthYearEl.addEventListener('focus', function() {
+//     if(!isYearOptionExisted) {
+//         isYearOptionExisted = true;
+//         for(var i = 1940; i<=year; i++) {
+//             const YearOption = document.createElement('option')
+//             YearOption.setAttribute('value', i)
+//             YearOption.innerText = i
+//
+//             this.appendChild(YearOption);
+//         }
+//     }
+// });
+//
+// // 월
+// var birthMonthEl = document.querySelector('#birth_month')
+//
+// // 일
+// var birthDateEl = document.querySelector('#birth_date')
+//
+// isMonthOptionExisted = false;
+// birthMonthEl.addEventListener('focus', function() {
+//     if(!isMonthOptionExisted) {
+//         isMonthOptionExisted = true;
+//         for(i=1; i<=12;i++) {
+//             const MonthOption = document.createElement('option')
+//             MonthOption.setAttribute('value', i)
+//             MonthOption.innerText = i
+//
+//             this.appendChild(MonthOption);
+//         }
+//     }
+// });
+//
+//
+// birth_month.addEventListener('change', function() {
+//
+//     var chk_month = birth_month.options[birth_month.selectedIndex].value;
+//     console.log(chk_month);
+//
+//
+//     isDateOptionExisted = false;
+//     if(chk_month == 2) {
+//         birthDateEl.addEventListener('focus', function() {
+//             if(!isDateOptionExisted) {
+//                 $('#birth_date').empty(); // .empty() : 지정한 요소의 하위 요소를 제거
+//                 isDateOptionExisted = true;
+//                 for(i=1; i<=28;i++) {
+//                     const DateOption = document.createElement('option')
+//                     DateOption.setAttribute('value', i)
+//                     DateOption.innerText = i
+//
+//                     this.appendChild(DateOption);
+//                 }
+//                 isDateOptionExisted = false;
+//             }
+//         });
+//     }
+//     else if(chk_month == 4 || chk_month == 6 || chk_month == 9 || chk_month == 11) {
+//         isDateOptionExisted = false;
+//         birthDateEl.addEventListener('focus', function() {
+//             if(!isDateOptionExisted) {
+//                 $('#birth_date').empty();
+//                 isDateOptionExisted = true;
+//                 for(i=1; i<=30;i++) {
+//
+//                     var DateOption = document.createElement('option')
+//
+//                     DateOption.setAttribute('value', i)
+//                     DateOption.innerText = i
+//
+//                     this.appendChild(DateOption);
+//                 }
+//                 isDateOptionExisted = false;
+//             }
+//         });
+//     }
+//     else {
+//         isDateOptionExisted = false;
+//         birthDateEl.addEventListener('focus', function() {
+//             if(!isDateOptionExisted) {
+//                 $('#birth_date').empty();
+//                 isDateOptionExisted = true;
+//                 for(i=1; i<=31;i++) {
+//                     const DateOption = document.createElement('option')
+//                     DateOption.setAttribute('value', i)
+//                     DateOption.innerText = i
+//
+//                     this.appendChild(DateOption);
+//                 }
+//                 isDateOptionExisted = false;
+//             }
+//         });
+//     }
+// })
 
 // 차트
 function chartInit(data) {

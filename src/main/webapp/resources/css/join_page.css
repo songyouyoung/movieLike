@@ -161,6 +161,37 @@ tr {
     float: left;
 }
 
+/* ajax 전용 css */
+#id_ok{
+    color: #34aadc;
+    display: none;
+}
+
+#id_already{
+    color: rgb(255, 120, 203);
+    display: none;
+}
+
+#nick_ok{
+    color: #34aadc;
+    display: none;
+}
+
+#nick_already{
+    color: rgb(255, 120, 203);
+    display: none;
+}
+
+#ph_ok{
+    color: #34aadc;
+    display: none;
+}
+
+#ph_already{
+    color: rgb(255, 120, 203);
+    display: none;
+}
+
 @media screen and (min-width: 280px) and (max-width: 480px) {
     #wrap {
         width: 100%;

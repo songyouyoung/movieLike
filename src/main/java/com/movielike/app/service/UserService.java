@@ -44,21 +44,34 @@ public class UserService {
         return userAll;
     }
 //    회원 정보 수정
-    public boolean updateUser(Map<String, Object> user){
+    public String updateUser(Map<String, Object> user){
+        String success = "";
         ObjectMapper mapper = new ObjectMapper();
         UserDto userDto = mapper.convertValue(user.get("user"), UserDto.class);
-        List<GenreDto> genreDtoList = (List<GenreDto>) user.get("userGenre");
         System.out.println("userDto : " + userDto);
-        System.out.println("genreDtoList : " + genreDtoList);
+        List<GenreDto> genreDtoList = (List<GenreDto>) user.get("userGenre");
 
+        int checkIdModify = userDao.checkIdModify(userDto);
+        success += checkIdModify > 0 ? "id," : "";
+        System.out.println("checkIdModify : " + checkIdModify + ", success : " + success);
+
+        int checkNickModify = userDao.checkNickModify(userDto);
+        success += checkNickModify > 0 ? "nick," : "";
+        System.out.println("checkNickModify : " + checkNickModify + ", success : " + success);
+
+        int checkPhoneModify = userDao.checkPhoneModify(userDto);
+        success += checkPhoneModify > 0 ? "phone," : "";
+        System.out.println("checkPhoneModify : " + checkPhoneModify + ", success : " + success);
+
+        if(!success.equals("")){
+            return success;
+        }
         int updateUserAll = userDao.updateUser(userDto);
-        System.out.println("updateUserAll : " + updateUserAll);
+        System.out.println(updateUserAll);
+        success += updateUserAll <= 0 ? "update," : "";
         int deleteUserGenre = userDao.deleteUserGenre(userDto.getUserId());
-        System.out.println("deleteUserGenre : " + deleteUserGenre);
         int insertUserGenre = userDao.insertUserGenre(genreDtoList);
-        System.out.println("insertUserGenre : " + insertUserGenre);
 
-        boolean success = updateUserAll > 0 && deleteUserGenre > 0 && insertUserGenre > 0;
         return success;
     }
 

@@ -38,7 +38,7 @@
                     <tr>
                         <th class="th1">비밀번호</th>
                         <th>
-                            <input type="password" name="userPw" id="password" class="login_input" minlength="8" maxlength="16" placeholder=" 비밀번호 - 영문(대,소),숫자,특수문자 포함 8자 이상 " oninput="check_pw();">
+                            <input type="password" name="userPw" id="password" class="login_input" minlength="8" maxlength="16" placeholder="영문(대,소),숫자,특수문자 포함 8자 이상" oninput="check_pw();">
                             <div class="warning_box">
                                 <img src="<c:url value='/img/warning.png'/>" alt="" class="warning">
                                 <div id="password_error" class="error">비밀번호 - 영문(대,소),숫자,특수문자 포함 8자 이상 입력해주세요.</div>
@@ -50,7 +50,7 @@
                     <tr>
                         <th class="th1">비밀번호 확인</th>
                         <th>
-                            <input type="password" name="password_chk" id="password_chk" class="login_input" minlength="8" maxlength="16" placeholder=" 비밀번호 확인 " oninput="check_pw();">
+                            <input type="password" name="password_chk" id="password_chk" class="login_input" minlength="8" maxlength="16" placeholder="비밀번호 확인" oninput="check_pw();">
                             <div class="warning_box">
                                 <img src="<c:url value='/img/warning.png'/>" alt="" class="warning">
                                 <div id="email_error" class="error">비밀번호가 일치하지 않습니다.</div>
@@ -101,43 +101,43 @@
                     <tr>
                         <th class="th1">나의 영화 취향<br>(선택)</th>
                         <th>
-                            <input type="checkbox" name="genre_chk" id="genre1" class="genre_checkbox" onclick="count_check(this)"data-gern="10749" >
+                            <input type="checkbox" name="genre_chk" id="genre1" class="genre_checkbox" onclick="count_check(this)" data-genr="10749" >
                             <span class="genre_label_chk"><label for="genre1"><span class="genre">로맨스</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre2" class="genre_checkbox" onclick="count_check(this)" data-gern="28">
+                            <input type="checkbox" name="genre_chk" id="genre2" class="genre_checkbox" onclick="count_check(this)" data-genr="28">
                             <span class="genre_label_chk"><label for="genre2"><span class="genre">액션</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre3" class="genre_checkbox" onclick="count_check(this)"data-gern="16">
+                            <input type="checkbox" name="genre_chk" id="genre3" class="genre_checkbox" onclick="count_check(this)" data-genr="16">
                             <span class="genre_label_chk"><label for="genre3"><span class="genre">애니메이션</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre4" class="genre_checkbox" onclick="count_check(this)"data-gern="27">
+                            <input type="checkbox" name="genre_chk" id="genre4" class="genre_checkbox" onclick="count_check(this)" data-genr="27">
                             <span class="genre_label_chk"><label for="genre4"><span class="genre">공포</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre5" class="genre_checkbox" onclick="count_check(this)"data-gern="35">
+                            <input type="checkbox" name="genre_chk" id="genre5" class="genre_checkbox" onclick="count_check(this)" data-genr="35">
                             <span class="genre_label_chk"><label for="genre5"><span class="genre">코미디</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre6" class="genre_checkbox" onclick="count_check(this)"data-gern="14">
+                            <input type="checkbox" name="genre_chk" id="genre6" class="genre_checkbox" onclick="count_check(this)" data-genr="14">
                             <span class="genre_label_chk"><label for="genre6"><span class="genre">판타지</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre7" class="genre_checkbox" onclick="count_check(this)"data-gern="12">
+                            <input type="checkbox" name="genre_chk" id="genre7" class="genre_checkbox" onclick="count_check(this)" data-genr="12">
                             <span class="genre_label_chk"><label for="genre7"><span class="genre">모험</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre8" class="genre_checkbox" onclick="count_check(this)"data-gern="9648">
+                            <input type="checkbox" name="genre_chk" id="genre8" class="genre_checkbox" onclick="count_check(this)" data-genr="9648">
                             <span class="genre_label_chk"><label for="genre8"><span class="genre">미스터리</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre9" class="genre_checkbox" onclick="count_check(this)"data-gern="53">
+                            <input type="checkbox" name="genre_chk" id="genre9" class="genre_checkbox" onclick="count_check(this)" data-genr="53">
                             <span class="genre_label_chk"><label for="genre9"><span class="genre">스릴러</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre10" class="genre_checkbox" onclick="count_check(this)"data-gern="18">
+                            <input type="checkbox" name="genre_chk" id="genre10" class="genre_checkbox" onclick="count_check(this)" data-genr="18">
                             <span class="genre_label_chk"><label for="genre10"><span class="genre">드라마</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre11" class="genre_checkbox" onclick="count_check(this)"data-gern="99">
+                            <input type="checkbox" name="genre_chk" id="genre11" class="genre_checkbox" onclick="count_check(this)" data-genr="99">
                             <span class="genre_label_chk"><label for="genre11"><span class="genre">다큐멘터리</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre12" class="genre_checkbox" onclick="count_check(this)"data-gern="37">
+                            <input type="checkbox" name="genre_chk" id="genre12" class="genre_checkbox" onclick="count_check(this)" data-genr="37">
                             <span class="genre_label_chk"><label for="genre12"><span class="genre">서부</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre13" class="genre_checkbox" onclick="count_check(this)"data-gern="878">
+                            <input type="checkbox" name="genre_chk" id="genre13" class="genre_checkbox" onclick="count_check(this)" data-genr="878">
                             <span class="genre_label_chk"><label for="genre13"><span class="genre">SF</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre14" class="genre_checkbox" onclick="count_check(this)"data-gern="80">
+                            <input type="checkbox" name="genre_chk" id="genre14" class="genre_checkbox" onclick="count_check(this)" data-genr="80">
                             <span class="genre_label_chk"><label for="genre14"><span class="genre">범죄</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre15" class="genre_checkbox" onclick="count_check(this)"data-gern="36">
+                            <input type="checkbox" name="genre_chk" id="genre15" class="genre_checkbox" onclick="count_check(this)" data-genr="36">
                             <span class="genre_label_chk"><label for="genre15"><span class="genre">역사</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre16" class="genre_checkbox" onclick="count_check(this)"data-gern="10402">
+                            <input type="checkbox" name="genre_chk" id="genre16" class="genre_checkbox" onclick="count_check(this)" data-genr="10402">
                             <span class="genre_label_chk"><label for="genre16"><span class="genre">음악</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre17" class="genre_checkbox" onclick="count_check(this)"data-gern="10751">
+                            <input type="checkbox" name="genre_chk" id="genre17" class="genre_checkbox" onclick="count_check(this)" data-genr="10751">
                             <span class="genre_label_chk"><label for="genre17"><span class="genre">가족</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre18" class="genre_checkbox" onclick="count_check(this)"data-gern="10752">
+                            <input type="checkbox" name="genre_chk" id="genre18" class="genre_checkbox" onclick="count_check(this)" data-genr="10752">
                             <span class="genre_label_chk"><label for="genre18"><span class="genre">전쟁</span></label></span>
-                            <input type="checkbox" name="genre_chk" id="genre19" class="genre_checkbox" onclick="count_check(this)"data-gern="10770">
+                            <input type="checkbox" name="genre_chk" id="genre19" class="genre_checkbox" onclick="count_check(this)" data-genr="10770">
                             <span class="genre_label_chk"><label for="genre19"><span class="genre">TV 영화</span></label></span>
                         </th>
                     </tr>
