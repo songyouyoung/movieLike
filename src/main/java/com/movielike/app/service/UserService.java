@@ -1,15 +1,16 @@
 package com.movielike.app.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movielike.app.dao.MovieDao;
 import com.movielike.app.dao.UserDao;
 import com.movielike.app.domain.GenreDto;
 import com.movielike.app.domain.UserDto;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.asm.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -43,10 +44,20 @@ public class UserService {
         return userAll;
     }
 //    회원 정보 수정
-    public boolean updateUser(UserDto userDto, List<GenreDto> genreDto){
+    public boolean updateUser(Map<String, Object> user){
+        ObjectMapper mapper = new ObjectMapper();
+        UserDto userDto = mapper.convertValue(user.get("user"), UserDto.class);
+        List<GenreDto> genreDtoList = (List<GenreDto>) user.get("userGenre");
+        System.out.println("userDto : " + userDto);
+        System.out.println("genreDtoList : " + genreDtoList);
+
         int updateUserAll = userDao.updateUser(userDto);
+        System.out.println("updateUserAll : " + updateUserAll);
         int deleteUserGenre = userDao.deleteUserGenre(userDto.getUserId());
-        int insertUserGenre = userDao.insertUserGenre(genreDto);
+        System.out.println("deleteUserGenre : " + deleteUserGenre);
+        int insertUserGenre = userDao.insertUserGenre(genreDtoList);
+        System.out.println("insertUserGenre : " + insertUserGenre);
+
         boolean success = updateUserAll > 0 && deleteUserGenre > 0 && insertUserGenre > 0;
         return success;
     }

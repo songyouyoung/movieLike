@@ -10,7 +10,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -24,7 +26,7 @@ public class UserDaoTest {
 
     @Test
     public void selectUser() {
-        userDao.selectUser(2);
+        System.out.println("user : " + userService.selectUser(2));
     }
 
     @Test
@@ -38,6 +40,11 @@ public class UserDaoTest {
         genreDtoList.add(genreDto1);
         genreDtoList.add(genreDto2);
         genreDtoList.add(genreDto3);
-        userService.updateUser(userDto, genreDtoList);
+//        userService.updateUser(userDto, genreDtoList);
+        Map<String, String> map = new HashMap<>();
+        map.put("user", "gg");
+        map.put("gernr", "ee");
+        System.out.println("map : " + map);
+        System.out.println("map : " + map.get("user"));
     }
 }

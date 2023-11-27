@@ -1,3 +1,11 @@
+var c_path = (location.pathname).split("/")[1];
+// 정규 표현식
+const expPwText = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/; // 비밀번호 정규 표현식
+const expNameText = /^[가-힣]+$/; // 이름 정규 표현식 (한글만 허용)
+const expHpText = /^\d{3}-\d{3,4}-\d{4}$/; // 전화번호 정규 표현식
+const expEmailText = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const expNicknameText = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/; // 닉네임 정규 표현식
+
 function genreClick(id) {
     location.href = "./list/chart?title=genr&val=" + id
 }
@@ -22,38 +30,68 @@ $('.btn_myreview a').click(function() {
     }, 1000)    
 })
 
-function updateCheck() {
+// 송유영 작업
+// 비밀번호 확인하고 회원정보 폼 뜨기
+function updateCheck(str) {
     // var user_password = prompt('비밀번호를 입력해주세요');
     (async () => {
         const { value: user_password } = await Swal.fire({
             title: '비밀번호를 입력해주세요',
-            input: 'text',
+            text: str,
+            input: 'password',
             confirmButtonColor: "#a785efb8"
         });
+        if (user_password == ""){
+            return updateCheck("");
+        }
+        if (user_password == undefined){
+            return;
+        }
         $.ajax({
             type:'POST',
-            url: '/app/myPage/modifyInfo',
+            url: '/' + c_path + '/myPage/modifyInfo',
             headers: {"content-type": "application/json"},
             success : function(data) {
-                if(data == user_password) {
-                var popup = document.getElementById("popup");
-                popup.style.visibility = "visible";
-                popup.style.opacity = "1";
-                popup.style.zIndex = "9"
-                } else {
-                    Swal.fire({
-                        title: "비밀번호가 일치하지 않습니다.",
+                if(data.user.userPw == user_password) {
+                    $("#popup").css({
+                        visibility : "visible",
+                        opacity : "1",
+                        zIndex : "9"
                     });
+                    $("#popup #email").prop("value", data.user.userEmail);
+                    $("#popup #name").prop("value", data.user.userName);
+                    let dt = new Date(data.user.userBirth);
+                    let year = dt.getFullYear();
+                    let month = dt.getMonth()+1 < 10 ? "0" + (dt.getMonth()+1) : dt.getMonth()+1;
+                    let date = dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate();
+                    $("#popup #birth_year>option").html(year);
+                    $("#popup #birth_month>option").html(month);
+                    $("#popup #birth_date>option").html(date);
+                    $("#popup .birthday").prop('disabled',true);
+                    let phone = (data.user.userPhone).split("-");
+                    $("#popup #hp1").prop("value", phone[0]);
+                    $("#popup #hp2").prop("value", phone[1]);
+                    $("#popup #hp3").prop("value", phone[2]);
+                    $("#popup #nickname").prop("value", data.user.userNickName);
+                    (data.userGenre).forEach(function (genre, index){
+                        for (let i = 0; i < $(".genre_checkbox").length; i++){
+                            if($(".genre_checkbox").eq(i).data("genr") == genre){
+                                $(".genre_checkbox").eq(i).prop("checked", true);
+                                break;
+                            }
+                        }
+                    });
+                } else {
+                    return updateCheck("비밀번호가 일치하지 않습니다.");
                 }
             },
             error : function(e) {
                 Swal.fire({
                     title: "개인정보 수정 ERROR. \n 관리자에게 전달해주세요.",
                 });
-            }})
+            }
+        });
     })()
-
-    // 비밀번호 확인하고 회원정보 폼 뜨기
 }
 
 function closePopup() {
@@ -70,15 +108,41 @@ $(document).mouseup(function (e){
   }
 });
 
+// 송유영 작업
+// 회원정보 수정
 function updatePopup() {
-  Swal.fire({
-    position: "center",
-    zIndex: 99999,
-    icon: "success",
-    title: "회원정보가 수정되었습니다.",
-    showConfirmButton: false,
-    timer: 1500
-  });
+    let userPhone = $('#phone_fir').val() + "-" + $('#phone_sec').val() + "-" + $('#phone_third').val()
+    let user = {userId: sessionId, userEmail: $("#email").val(), userPw: $('#password').val(), userName: $('#name').val(), userNickName: $('#nickname').val(), userPhone: userPhone};
+    let userGenre = [];
+    for (let i = 0; i < $(".genre_checkbox").length; i++){
+        if($(".genre_checkbox").eq(i).prop("checked") == true){
+            userGenre.push({genrId : $(".genre_checkbox").eq(i).data("genre"), userId : sessionId});
+        }
+    }
+    $.ajax({
+        type:'POST',
+        url: '/' + c_path + '/myPage/modifyUser',
+        headers: {"content-type": "application/json"},
+        dataType: 'text',
+        data: JSON.stringify({user : user, userGenre : userGenre}),
+        success : function(data) {
+            Swal.fire({
+                position: "center",
+                zIndex: 99999,
+                icon: "success",
+                title: "회원정보가 수정되었습니다.",
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                location.replace(location.pathname);
+            });
+        },
+        error : function(e) {
+            Swal.fire({
+                title: "개인정보 수정 ERROR. \n 관리자에게 전달해주세요.",
+            });
+        }
+    });
 }
 
 function unregister() {
@@ -101,8 +165,6 @@ function unregister() {
     }
   });
 }
-
-   
 
 
 // 생년월일 선택 부분 
@@ -207,8 +269,7 @@ birth_month.addEventListener('change', function() {
     }
 })
 
-// 차트 
-
+// 차트
 function chartInit(data) {
     const ctx = document.getElementById('myChart');
     const chart = new Chart(ctx, {

@@ -1,5 +1,6 @@
 package com.movielike.app.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movielike.app.domain.*;
 import com.movielike.app.service.MyPageService;
 import com.movielike.app.service.UserService;
@@ -74,6 +75,34 @@ public class MyPageController {
         Integer loginId = (int)httpSession.getAttribute("liogdin");
         try {
             return new ResponseEntity<Map<String, Object>>(userService.selectUser(loginId), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/myPage/modifyUser")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> modifyUser(@RequestBody Map<String, Object> user, HttpSession httpSession) {
+        Integer loginId = (int)httpSession.getAttribute("liogdin");
+        try {
+//            System.out.println("user : " + user);
+//            System.out.println("user.user : " + user.get("user"));
+//
+//            ObjectMapper mapper = new ObjectMapper();
+//            UserDto userDto = mapper.convertValue(user.get("user"), UserDto.class);
+//            System.out.println("user.user : " + userDto);
+//
+//            List<GenreDto> genreDto = (List<GenreDto>) user.get("userGenre");
+//            System.out.println("++++++");
+//            System.out.println("userId : " + userDto.getUserId());
+//            System.out.println("userGenre : " + genreDto);
+            boolean update = userService.updateUser(user);
+            System.out.println("update : " + update);
+            if (update) {
+                return new ResponseEntity<Map<String, Object>>(userService.selectUser(loginId), HttpStatus.OK);
+            }else {
+                return new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
+            }
         } catch (Exception e) {
             return new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
         }

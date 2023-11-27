@@ -34,7 +34,6 @@
             set userEmail = #{userEmail}
             , userPw = #{userPw}
             , userName = #{userName}
-            , userBirth = #{userBirth}
             , userNickName = #{userNickName}
             , userPhone = #{userPhone}
         where userId = #{userId};
@@ -44,8 +43,9 @@
             where userId = #{userId}
     </delete>
     <insert id="insertUserGenre" parameterType="genreDto">
-        <foreach collection="list" item="item" separator=" ">
-            insert into userGenre (genrId, userId) values (${item.genrName}, #{item.userId});
-        </foreach>
+        insert into userGenre (genrId, userId) values
+            <foreach collection="list" item="item" separator=",">
+                (${item.genrId}, #{item.userId})
+            </foreach>
     </insert>
 </mapper>

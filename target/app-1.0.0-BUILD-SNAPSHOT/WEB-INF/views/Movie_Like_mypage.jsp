@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="sessionId" value="${ pageContext.request.getSession(false).getAttribute('liogdin')!=null? pageContext.request.getSession(false).getAttribute('liogdin'):null}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,114 +45,134 @@
                 <div class="update_icon">
                     <img src="./img/set.png" alt="" class="icon_hover">
                     <div class="update_hover_box">
-                        <div class="my_change_btn" onclick="updateCheck()">개인정보변경</div>
-                        <div id="popup" class="popup">
-                          <div class="popup_content">
-                            <div class="title">회원정보수정</div>
+                        <div class="my_change_btn" onclick="updateCheck('')">개인정보변경</div>
+                        <div class="my_end_btn" onclick="unregister()">회원탈퇴</div>
+                    </div>
+                    <div id="popup" class="popup">
+                        <div class="popup_content">
                             <table>
                                 <tr>
-                                    <th class="th1">아이디</th>
+                                    <th class="th1">이메일</th>
                                     <th>
-                                        <input type="email" class="login_input" id="email" name="email" placeholder="이메일 형식으로 입력해주세요" readonly value="aaa@naver.com">
+                                        <span id="id_ok" class="id_ok">중복된 이메일이 아닙니다.</span>
+                                        <span id="id_already" class="id_already">이미 사용중인 이메일입니다.</span>
+                                        <%--                            <input type="email" class="login_input" id="email" name="userEmail" placeholder="이메일 형식으로 입력해주세요" oninput = "checkId()">--%>
+                                        <input type="email" class="login_input" id="email" name="userEmail" placeholder="이메일 형식으로 입력해주세요" onblur= "checkId()" minlength="10" maxlength="25" >
+                                        <div class="warning_box">
+                                            <img src="<c:url value='/img/warning.png'/>" alt="" class="warning">
+                                            <div id="email_error" class="error">이메일 형식으로 입력해주세요</div>
+                                            <div class="failure-message hide">영어 또는 숫자만 가능합니다</div>
+                                        </div>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th class="th1">비밀번호</th>
                                     <th>
-                                        <input type="password" name="password" id="password" class="login_input" minlength="6" placeholder="비밀번호 - 6자 이상">
+                                        <input type="password" name="userPw" id="password" class="login_input" minlength="8" maxlength="16" placeholder=" 비밀번호 - 영문(대,소),숫자,특수문자 포함 8자 이상 " oninput="check_pw();">
+                                        <div class="warning_box">
+                                            <img src="<c:url value='/img/warning.png'/>" alt="" class="warning">
+                                            <div id="password_error" class="error">비밀번호 - 영문(대,소),숫자,특수문자 포함 8자 이상 입력해주세요.</div>
+                                        </div>
+                                        <div class = "pw-text"> <%-- ajax 텍스트--%>
+                                        </div>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th class="th1">비밀번호 확인</th>
                                     <th>
-                                        <input type="password" name="password_chk" id="password_chk" class="login_input" placeholder="비밀번호 - 6자 이상">
+                                        <input type="password" name="password_chk" id="password_chk" class="login_input" minlength="8" maxlength="16" placeholder=" 비밀번호 확인 " oninput="check_pw();">
+                                        <div class="warning_box">
+                                            <img src="<c:url value='/img/warning.png'/>" alt="" class="warning">
+                                            <div id="password_match_error" class="error">비밀번호가 일치하지 않습니다.</div>
+                                        </div>
+                                        <div class = "ok-text"> <%-- ajax 텍스트--%>
+                                        </div>
                                     </th>
                                 </tr>
                                 <tr>
                                     <th class="th1">이름</th>
-                                    <th><input type="text" name="name" class="login_input"></th>
+                                    <th><input type="text" name="userName" id="name" class="login_input" placeholder="이름 입력 (한글만가능)" minlength="2" maxlength="10"></th>
                                 </tr>
                                 <tr>
                                     <th class="th1">생년월일</th>
                                     <th>
-                                        <select class="birthday" name="birth_year" id="birth_year">
-                                            <option selected>연도</option>
+                                        <select class="birthday" name="userBirth1" id="birth_year">
+                                            <option selected disabled>출생연도</option>
                                         </select>
-                                        <select class="birthday" name="birth_month" id="birth_month">
+                                        <select class="birthday" name="userBirth2" id="birth_month">
                                             <option value="월" selected disabled>월</option>
                                         </select>
-                                        <select class="birthday" name="birth_date" id="birth_date">
-                                            <option value="일" selected>일</option>
+                                        <select class="birthday" name="userBirth3" id="birth_date">
+                                            <option value="일" selected disabled>일</option>
                                         </select>
                                     </th>
                                 </tr>
+                                <span id="ph_ok" class="ph_ok">중복된 번호가 아닙니다.</span>
+                                <span id="ph_already" class="ph_already">이미 사용중인 번호입니다.</span>
                                 <tr>
                                     <th class="th1">전화번호</th>
                                     <th>
-                                        <input type="text" name="phone" class="phone_input" maxlength="3"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-                                        <input type="text" class="phone_input" maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-                                        <input type="text" class="phone_input" maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+                                        <input type="text" name="userPhone1" class="phone_input" id="hp1" minlength=2 maxlength="3"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="3자 이상" onblur= "checkph()" >
+                                        <input type="text" name="userPhone2" class="phone_input" id="hp2" minlength="3"   maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="4자 이상"  onblur= "checkph()">
+                                        <input type="text" name="userPhone3" class="phone_input" id="hp3" minlength="3"  maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="4자 이상"  onblur= "checkph()">
                                     </th>
                                 </tr>
                                 <tr>
                                     <th class="th1">닉네임</th>
-                                    <th><input type="text" name="nickname" class="login_input"></th>
+                                    <th> <p><span id="nick_ok" style="font-size:12px;" class="nick_ok">중복된 닉네임이 아닙니다.</span><span id="nick_already" style="font-size:12px;" class="nick_already">이미 사용중인 닉네임입니다.</span>
+                                        <input type="text" name="userNickname" id="nickname" class="login_input" placeholder="한글 초성 및 모음 제외한 2자 이상 16자 이하," onblur= "checkNick()"></th>
                                 </tr>
                                 <tr>
-                                    <th class="th1">나의 영화 취향<br>(선택)</th>
+                                    <th class="th1">나의 영화 취향<br><span class="genre_sub">(최대 3개 선택)</span></th>
                                     <th>
-                                        <input type="checkbox" id="genre1" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre1" class="genre_checkbox" data-gern="10749">
                                         <span class="genre_label_chk"><label for="genre1"><span class="genre">로맨스</span></label></span>
-                                        <input type="checkbox" id="genre2" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre2" class="genre_checkbox"  data-gern="28">
                                         <span class="genre_label_chk"><label for="genre2"><span class="genre">액션</span></label></span>
-                                        <input type="checkbox" id="genre3" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre3" class="genre_checkbox" data-gern="16">
                                         <span class="genre_label_chk"><label for="genre3"><span class="genre">애니메이션</span></label></span>
-                                        <input type="checkbox" id="genre4" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre4" class="genre_checkbox" data-gern="27">
                                         <span class="genre_label_chk"><label for="genre4"><span class="genre">공포</span></label></span>
-                                        <input type="checkbox" id="genre5" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre5" class="genre_checkbox" data-gern="35">
                                         <span class="genre_label_chk"><label for="genre5"><span class="genre">코미디</span></label></span>
-                                        <input type="checkbox" id="genre6" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre6" class="genre_checkbox" data-gern="14">
                                         <span class="genre_label_chk"><label for="genre6"><span class="genre">판타지</span></label></span>
-                                        <input type="checkbox" id="genre7" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre7" class="genre_checkbox" data-gern="12">
                                         <span class="genre_label_chk"><label for="genre7"><span class="genre">모험</span></label></span>
-                                        <input type="checkbox" id="genre8" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre8" class="genre_checkbox" data-gern="9648">
                                         <span class="genre_label_chk"><label for="genre8"><span class="genre">미스터리</span></label></span>
-                                        <input type="checkbox" id="genre9" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre9" class="genre_checkbox" data-gern="53">
                                         <span class="genre_label_chk"><label for="genre9"><span class="genre">스릴러</span></label></span>
-                                        <input type="checkbox" id="genre10" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre10" class="genre_checkbox" data-gern="18">
                                         <span class="genre_label_chk"><label for="genre10"><span class="genre">드라마</span></label></span>
-                                        <input type="checkbox" id="genre11" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre11" class="genre_checkbox" data-gern="99">
                                         <span class="genre_label_chk"><label for="genre11"><span class="genre">다큐멘터리</span></label></span>
-                                        <input type="checkbox" id="genre12" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre12" class="genre_checkbox" data-gern="37">
                                         <span class="genre_label_chk"><label for="genre12"><span class="genre">서부</span></label></span>
-                                        <input type="checkbox" id="genre13" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre13" class="genre_checkbox" data-gern="878">
                                         <span class="genre_label_chk"><label for="genre13"><span class="genre">SF</span></label></span>
-                                        <input type="checkbox" id="genre14" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre14" class="genre_checkbox" data-gern="80">
                                         <span class="genre_label_chk"><label for="genre14"><span class="genre">범죄</span></label></span>
-                                        <input type="checkbox" id="genre15" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre15" class="genre_checkbox" data-gern="36">
                                         <span class="genre_label_chk"><label for="genre15"><span class="genre">역사</span></label></span>
-                                        <input type="checkbox" id="genre16" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre16" class="genre_checkbox" data-gern="10402">
                                         <span class="genre_label_chk"><label for="genre16"><span class="genre">음악</span></label></span>
-                                        <input type="checkbox" id="genre17" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre17" class="genre_checkbox" data-gern="10751">
                                         <span class="genre_label_chk"><label for="genre17"><span class="genre">가족</span></label></span>
-                                        <input type="checkbox" id="genre18" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre18" class="genre_checkbox" data-gern="10752">
                                         <span class="genre_label_chk"><label for="genre18"><span class="genre">전쟁</span></label></span>
-                                        <input type="checkbox" id="genre19" class="genre_checkbox">
+                                        <input type="checkbox" name="genre_chk" id="genre19" class="genre_checkbox" data-gern="10770">
                                         <span class="genre_label_chk"><label for="genre19"><span class="genre">TV 영화</span></label></span>
                                     </th>
                                 </tr>
-
-
                                 <tr>
                                     <th colspan="2">
-                                      <input type="button" class="user_update_btn" value="수정" onclick="updatePopup()">
-                                      <input type="button" class="user_update_btn" value="취소" onclick="closePopup()">
+                                        <input type="button" class="user_update_btn" value="수정" onclick="updatePopup()">
+                                        <input type="button" class="user_update_btn" value="취소" onclick="closePopup()">
                                     </th>
                                 </tr>
                             </table>
-                          </div>
                         </div>
-                        <div class="my_end_btn" onclick="unregister()">회원탈퇴</div>
                     </div>
                 </div>
                 <div class="btn_box">
@@ -223,7 +244,7 @@
                                 <c:if test="${i <= totalPages}">
                                     <div class="num">
                                         <a href="?page=${i}&pageSize=${pageSize}&orderType=${orderType}"
-                                           style="${i eq currentPage ? 'color: red;' : ''}">
+                                           style="${i eq currentPage ? 'color: #A785EF;' : ''}">  <%-- 송유영 color 수정 --%>
                                                 ${i}
                                         </a>
                                     </div>
@@ -269,7 +290,11 @@
         </c:forEach>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var sessionId = '<c:out value="${sessionId}"/>';
+    </script>
     <script src="<c:url value='/js/mypage.js'/>"></script>
+    <script src="<c:url value='/js/join.js'/>"></script>
     <script>
         $(window).load(function(){
             /*

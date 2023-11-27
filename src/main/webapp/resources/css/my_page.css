@@ -1,6 +1,9 @@
 #wrap img {
     width: 100%; height: 100%;
 }
+#wrap {
+    position: relative;
+}
 .container {
     width: 100%;
     overflow: hidden;
@@ -33,22 +36,25 @@
     top: 0;
     right: 0;    
     margin: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 80px;
+    padding-left: 110px;
+    cursor: pointer;
+}
+.update_hover_box {
+    width: 150px;
+    transform: translateX(-130px);
+    display: none;
 }
 .my_change_btn, .my_end_btn {
-    width: 130px;
     text-align: center;
     background: #A785EF;
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
     margin-top: 10px;
-    transform: translateX(-140px);
-    display: none;
     cursor: pointer;
 }
-.update_icon:hover .my_change_btn, 
-.update_icon:hover .my_end_btn {
+.update_icon:hover .update_hover_box {
     display: block;
 }
 .btn_box {
@@ -155,7 +161,7 @@
 .update_box {
     display: flex;
     gap: 7px;
-    color: #808080;
+    color: gray;
     font-size: 14px;
     float: right;
 }
@@ -176,15 +182,26 @@
     float: left;
     line-height: 25px;
 }
-
+.page_box {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.num, .prev_btn, .next_btn {
+    cursor: pointer;
+}
 
 
 .img_box {
     width: 30vw;
     position: absolute;
-    bottom: 0;
+    top: 300px;
     right: 0;
+    /* animation: gif_move 10s; */
 }
+
 
 
 .popup {
@@ -220,6 +237,26 @@
     cursor: pointer;
     border-radius: 10px;
     margin-left: 10px;
+}
+#swal2-content {
+    color: red;
+}
+@keyframes gif_move {
+    0% {
+        bottom: 0;
+        right: 0;
+        transform: rotate(0);
+    }
+    50% {
+        bottom: 0;
+        left: 0;
+        transform: rotate(180deg);
+    }
+    100% {
+        top: 10%;
+        right: 0%;
+        transform: rotate(0);
+    }
 }
 
 @media screen and (min-width: 280px) and (max-width: 480px) {
@@ -297,17 +334,4 @@
     .like_cnt {
         font-size: 0.6em;
     }
-
-    .page_box {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-        align-items: center;
-        margin-top: 50px;
-    }
-    .num, .prev_btn, .next_btn {
-        cursor: pointer;
-    }
-
-
 }

@@ -184,7 +184,10 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "project.structure.last.edited": "프로젝트",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "File.Encoding",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -201,6 +204,9 @@
       <recent name="$PROJECT_DIR$/src/main/webapp/resources/js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user1\Documents\GitHub\movieLike\src\main\webapp\resources\js" />
+      <recent name="C:\Users\user1\Documents\GitHub\movieLike\src\main\webapp\WEB-INF\views" />
+      <recent name="C:\Users\user1\Documents\GitHub\movieLike\src\main\webapp\resources\css" />
       <recent name="$PROJECT_DIR$/src/main/webapp/resources/js" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
@@ -216,7 +222,7 @@
       <recent name="com.movielike.app.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserDaoTest.updateUser">
+  <component name="RunManager" selected="Tomcat 서버.Tomcat 9.0.82">
     <configuration name="UserDaoTest.selectUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <extension name="coverage">
@@ -250,6 +256,7 @@
       </method>
     </configuration>
     <configuration name="Tomcat 9.0.82" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.82" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="app:war exploded">
