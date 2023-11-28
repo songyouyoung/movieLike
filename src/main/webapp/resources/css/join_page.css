@@ -160,8 +160,11 @@ tr {
     height: 20px;
     float: left;
 }
+.genre_sub {
+    font-size: 14px;
+}
 
-/* ajax 전용 css */
+
 #id_ok{
     color: #34aadc;
     display: none;
@@ -191,6 +194,8 @@ tr {
     color: rgb(255, 120, 203);
     display: none;
 }
+
+p{margin:0;}
 
 @media screen and (min-width: 280px) and (max-width: 480px) {
     #wrap {

@@ -77,16 +77,17 @@ public class MyPageService {
     }
 
     public void deleteUserInfo(int userId) {
-//        userDao.deleteUser(userId);
-//        myListDao.deleteAllMyList(userId);
-//        watchedMovieDao.deleteAllWatchedMovie(userId);
+        userDao.deleteUser(userId);
+        myListDao.deleteAllMyList(userId);
+        watchedMovieDao.deleteAllWatchedMovie(userId);
 
         // 작성했던 리뷰 조회
         List<Map<String, Integer>> userReviewList =  reviewDao.selectUserReview(userId);
-        movieDao.updateScore(userReviewList);
-
-        reviewDao.deleteAllReview(userId);
-        reviewDao.deleteAllReviewLike(userId);
+        System.out.println("userReviewList : " + userReviewList);
+        if(!userReviewList.isEmpty()) {
+            movieDao.updateScore(userReviewList);
+            reviewDao.deleteAllReview(userId);
+            reviewDao.deleteAllReviewLike(userId);
+        }
     }
-
 }

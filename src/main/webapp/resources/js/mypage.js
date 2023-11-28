@@ -1,5 +1,4 @@
 var c_path = (location.pathname).split("/")[1];
-
 function genreClick(id) {
     location.href = "./list/chart?title=genr&val=" + id
 }
@@ -12,6 +11,7 @@ function moveList(type, count) {
     if (count == 0) {
         return;
     }
+
     location.href =  "./list/chart?title=" + type;
 }
 
@@ -20,7 +20,7 @@ $('.btn_myreview a').click(function() {
     let href = $(this).attr('href')
     $('html, body').animate({
         scrollTop: $(href).offset().top
-    }, 1000)    
+    }, 1000)
 })
 
 // 송유영 작업
@@ -59,18 +59,15 @@ function updateCheck(str) {
                     let year = dt.getFullYear();
                     let month = dt.getMonth()+1 < 10 ? "0" + (dt.getMonth()+1) : dt.getMonth()+1;
                     let date = dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate();
-                    // $("#popup #birth_year>option").html(year);
-                    $("#popup #birth_year").val(year);
-                    // $("#popup #birth_month>option").html(month);
-                    $("#popup #birth_month").val(month);
-                    // $("#popup #birth_date>option").html(date);
-                    $("#popup #birth_date").val(date);
+                    $("#popup #birth_year").html(`<option value="${year}" selected disabled>${year}</option>`);
+                    $("#popup #birth_month").html(`<option value="${month}" selected disabled>${month}</option>`);
+                    $("#popup #birth_date").html(`<option value="${date}" selected disabled>${date}</option>`);
                     $("#popup .birthday").prop('disabled',true);
                     let phone = (data.user.userPhone).split("-");
                     $("#popup #hp1").prop("value", phone[0]);
                     $("#popup #hp2").prop("value", phone[1]);
                     $("#popup #hp3").prop("value", phone[2]);
-                    $("#popup #nickname").prop("value", data.user.userNickName);
+                    $("#popup #nickname").prop("value", data.user.userNickname);
                     (data.userGenre).forEach(function (genre, index){
                         for (let i = 0; i < $(".genre_checkbox").length; i++){
                             if($(".genre_checkbox").eq(i).data("genr") == genre){
@@ -98,13 +95,18 @@ function closePopup() {
   popup.style.opacity = "0";
 }
 
-// 외부영역 클릭 시 팝업 닫기
-$(document).mouseup(function (e){
-  var Popup = $(".popup");
-  if(Popup.has(e.target).length === 0){
-    closePopup();
-  }
+// esc눌렀을 때 팝업 닫기
+$(document).keydown(function(event) {
+    if ( event.keyCode == 27 || event.which == 27 ) {
+        closePopup();
+    }
 });
+// $(document).mouseup(function (e){
+//   var Popup = $(".popup");
+//   if(Popup.has(e.target).length === 0){
+//     closePopup();
+//   }
+// });
 
 // 송유영 작업
 // 회원정보 수정
@@ -118,7 +120,7 @@ function updatePopup() {
             userEmail: $("#email").val(),
             userPw: $('#password').val(),
             userName: $('#name').val(),
-            userNickName: $('#nickname').val(),
+            userNickname: $('#nickname').val(),
             userPhone: userPhone
         };
         let userGenre = [];
@@ -180,24 +182,66 @@ function updatePopup() {
 }
 
 function unregister() {
-  Swal.fire({
-    title: "정말 탈퇴하시겠습니까?",
-    text: "탈퇴시 모든 개인정보가 삭제됩니다.",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#AD8B73",
-    cancelButtonColor: "#BEBCBA",
-    confirmButtonText: "네",
-    cancelButtonText: "아니요"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire({
-        title: "회원 탈퇴",
-        text: "탈퇴되었습니다.",
-        icon: "success"
-      });
-    }
-  });
+    (async () => {
+        const { value: user_password } = await Swal.fire({
+            title: '비밀번호를 입력해주세요',
+            input: 'password',
+            confirmButtonColor: "#a785efb8"
+        });
+        // 송유영 추가
+        if (user_password == undefined){
+            return;
+        }
+        $.ajax({
+            type:'POST',
+            url: '/' + c_path + '/myPage/selectUserId',
+            headers: {"content-type": "application/json"},
+            success : function(data) {
+                if(data == user_password) {
+                    Swal.fire({
+                        title: "정말 탈퇴하시겠습니까?",
+                        text: "탈퇴시 모든 개인정보가 삭제됩니다.",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#AD8B73",
+                        cancelButtonColor: "#BEBCBA",
+                        confirmButtonText: "네",
+                        cancelButtonText: "아니요"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                type:'POST',
+                                url: '/' + c_path + '/myPage/delete/user',
+                                headers: {"content-type": "application/json"},
+                                success : function(data) {
+                                    if(data != null) {
+                                        Swal.fire({
+                                            title: "회원 탈퇴 성공",
+                                        }).then(() => {
+                                            location.replace(location.pathname);
+                                        });
+                                    }
+                                },
+                                error : function(e) {
+                                    Swal.fire({
+                                        title: "회원 탈퇴 실패. \n 관리자에게 전달해주세요.",
+                                    });
+                                }})
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        title: "비밀번호가 일치하지 않습니다.",
+                    });
+                }
+            },
+            error : function(e) {
+                Swal.fire({
+                    title: "회원 탈퇴 ERROR. \n 관리자에게 전달해주세요.",
+                });
+            }})
+    })()
+
 }
 
 // 송유영 주석. 생년월일 변경 안할거라 필요없음.
@@ -243,10 +287,7 @@ function unregister() {
 //
 //
 // birth_month.addEventListener('change', function() {
-//
 //     var chk_month = birth_month.options[birth_month.selectedIndex].value;
-//     console.log(chk_month);
-//
 //
 //     isDateOptionExisted = false;
 //     if(chk_month == 2) {
@@ -304,6 +345,7 @@ function unregister() {
 // })
 
 // 차트
+
 function chartInit(data) {
     const ctx = document.getElementById('myChart');
     const chart = new Chart(ctx, {
@@ -413,3 +455,79 @@ $textarea.oninput = (event) => {
   $target.style.height = 0;
   $target.style.height = DEFAULT_HEIGHT + $target.scrollHeight + 'px';
 };
+
+var inputText = "";
+$(document).on('click', '.review_update', function () {
+    $(this).text("수정");
+    $(this).next().text("취소");
+    $(this).addClass("modify_btn");
+    $(this).next().addClass("cancel_btn");
+    let inputBox = $(this).parent().parent().find("textarea")
+    inputBox.prop("readOnly", false);
+    inputBox.css("color","black");
+    inputBox.css("padding", "10px");
+    inputBox.css("background", "white");
+    inputText = inputBox.val();
+    inputBox.focus();
+    inputBox.prop("value", "");
+    inputBox.prop("value",inputText);
+})
+
+$(document).on('click', '.modify_btn', function () {
+    let inputBox = $(this).parent().parent().find("textarea");
+    let rvId = $(this).parent().parent().find("#reviewId");
+
+    $.ajax({
+        type: 'POST',
+        url: '/' + c_path + '/review/modify',
+        headers: {"content-type" : "application/json"},
+        dataType:'text',
+        data: JSON.stringify({rvId: rvId.val(), rvContent: inputBox.val()}),
+        success: function (result) {
+            location.reload();
+        }
+    })
+});
+
+$(document).on('click', '.review_delete', function () {
+    if($(this).text() == "삭제") {
+        let rvId = $(this).parent().parent().find("#reviewId").val();
+        reviewDelete(rvId);
+    } else {
+        let inputBox = $(this).parent().parent().find("textarea");
+        $(this).text("삭제");
+        $(this).prev().removeClass("modify_btn");
+        $(this).removeClass("cancel_btn");
+        inputBox.prop("readOnly", true);
+        inputBox.prop("style", "");
+        inputBox.prop("value",inputText);
+        inputBox.css("height", 0);
+        inputBox.css("height", DEFAULT_HEIGHT + inputBox[0].scrollHeight + 'px');
+    }
+})
+
+function reviewDelete(rvId) {
+    Swal.fire({
+        title: '삭제하시겠습니까?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: "#AD8B73",
+        cancelButtonColor: "#BEBCBA",
+        confirmButtonText: '확인',
+        cancelButtonText: '취소',
+        reverseButtons: false,
+    }).then(result => {
+        if (!result.isConfirmed) return;
+        $.ajax({
+            type:'POST',
+            url: '/' + c_path + '/review/delete',
+            headers: {"content-type": "application/json"},
+            data: JSON.stringify(rvId),
+            success : function(data) {
+                location.reload();
+            },
+            error : function(e) {
+                console.log(e);
+            }
+        });
+    })}

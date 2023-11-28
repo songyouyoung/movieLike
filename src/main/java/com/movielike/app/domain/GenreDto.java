@@ -28,12 +28,4 @@ public class GenreDto {
     public void setUserId(int userId) {
         this.userId = userId;
     }
-
-    public GenreDto() {
-    }
-
-    public GenreDto(String genrName, int userId) {
-        this.genrName = genrName;
-        this.userId = userId;
-    }
 }

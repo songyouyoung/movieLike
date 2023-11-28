@@ -1,4 +1,5 @@
 let genr_arr = [];
+var c_path = (location.pathname).split("/")[1];
 
 //아이디,비밀번호,전화번호,생년월일,닉네임 체크
 function sendit() {
@@ -93,6 +94,7 @@ function sendit() {
         nickname.focus();
         return false;
     }
+    //송유영 추가
     return true;
 }
 
@@ -227,7 +229,7 @@ function checkId() {
     let email = $('#email').val().trim();
     if(email !== "" ) {
         $.ajax({
-            url: "/app/checkId",
+            url: "/" + c_path + "/checkId",
             type: 'post',
             data: {userEmail: email},
             success: function (cnt) {
@@ -246,7 +248,7 @@ function checkNick() {
     let nickname = $('#nickname').val().trim();
     if(nickname !== "") {
         $.ajax({
-            url: "/app/checkNick",
+            url: "/" + c_path + "/checkNick",
             type: 'post',
             data: {userNickname: nickname},
             success: function (cnt) {
@@ -268,7 +270,7 @@ function checkph() {
     let phoneNum = hp1 + "-" + hp2 + "-" + hp3;
     if(phoneNum.length === 13) {
         $.ajax({
-            url: "/app/checkPhone",
+            url: "/" + c_path + "/checkPhone",
             type: 'post',
             data: {userPhone: phoneNum},
             success: function (cnt) {
@@ -295,3 +297,6 @@ function checkSignUpButton() {
         joinSubmitButton.css("background-color", "#808080"); // 회색 배경색으로 설정
     }
 }
+
+
+

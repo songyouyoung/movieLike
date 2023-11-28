@@ -154,6 +154,7 @@
     color: #b6b6b6;
     border-radius: 10px;
     line-height: 18px;
+    resize: none;
 }
 .review_movie_name {
     float: left;
@@ -237,9 +238,6 @@
     cursor: pointer;
     border-radius: 10px;
     margin-left: 10px;
-}
-#swal2-content {
-    color: red;
 }
 @keyframes gif_move {
     0% {
@@ -334,4 +332,8 @@
     .like_cnt {
         font-size: 0.6em;
     }
+}
+
+#swal2-content {
+    color: red;
 }

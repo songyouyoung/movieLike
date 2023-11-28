@@ -5,8 +5,6 @@
 <%@ page session="false" %> <%-- 이 페이지에서는 세션을 새로 생성 안하겠다 라는 뜻 --%>
 <c:set var="sessionId" value="${ pageContext.request.getSession(false).getAttribute('liogdin')!=null? pageContext.request.getSession(false).getAttribute('liogdin'):null}" />
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,24 +14,13 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <link rel="icon" href="<c:url value='/img/favicon.ico'/>">
     <link rel="stylesheet" href="<c:url value='/css/common.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/detail_page.css'/>">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
 <span id="sId" style="display: none">${sessionId}</span>
 <div id="wrap">
-    <header class="header">
-        <div class="main_logo"><a href="/"><img src="<c:url value='/img/logo.png'/>" alt="로고 이미지"></a></div>
-        <div class="h_left left_50"><a href="">영화 전체보기</a></div>
-        <div class="h_left"><a href="">차트</a></div>
-        <div class="h_left"><a href="<c:url value='/find/keyword'/>">키워드 찾기</a></div>
-        <div class="h_right">
-            <div class="login"><a href="">로그인</a></div>
-            <div class="line"></div>
-            <div class="join"><a href="">회원가입</a></div>
-        </div>
-    </header>
+    <jsp:include page="header.jsp"/>
     <main class="container">
         <div class="content1">
             <div class="detail_poster"><img src="https://image.tmdb.org/t/p/w500${mv.movPoster}" alt=""></div>
@@ -55,7 +42,6 @@
                                 </c:forEach>
                 </div>
                 <div class="movie_ott_box">
-
                     <c:if test="${not empty mv.ottList}">
                         <c:forEach var="ott" items="${mv.ottList}">
                             <div class="float_L">
@@ -65,7 +51,6 @@
                         </c:forEach>
                     </c:if>
                 </div>
-
                 <div class="avg_box">
                     <div class="star_icon"><img src="<c:url value='/img/star.png'/>" alt=""></div>
                     <div class="movie_avg">
@@ -113,7 +98,7 @@
                 <div class="login_page_move_icon"><img src="<c:url value='/img/login_page_move.png'/>" alt=""></div>
                 <div class="login_txt">로그인이 필요한 기능입니다.</div>
                 <div class="popup_btn_box">
-                    <div class="popup_btn"><a href="./Movie_Like_login.html">로그인</a></div>
+                    <div class="popup_btn"><a href="<c:url value='/login/login'/>">로그인</a></div>
                     <div class="popup_btn" onclick="closeLoginPopup()">취소</div>
                 </div>
                 <div class="popup_close_btn" onclick="closeLoginPopup()"><img src="<c:url value='/img/close_btn.png'/>" alt=""></div>
@@ -127,7 +112,7 @@
                         <div class="best_box">
                             <c:forEach items="${bestRvList}" var="bestRv">
                                 <div class="best">
-                                    <div class="best_review_id">${bestRv.userNickName}</div>
+                                    <div class="best_review_id">${bestRv.userNickname}</div>
                                     <div class="star_icon_best"><img src="<c:url value='/img/star.png'/>" alt=""></div>
                                     <div class="movie_star_best">${bestRv.rvScore}</div>
                                     <div class="best_review_txt">${bestRv.rvContent}</div>
@@ -169,7 +154,7 @@
                 <div class="title_txt">예고편 영상</div>
                 <div class="preview">
                     <iframe
-                            src="https://www.youtube.com/embed/${mv.movTrailer}?si=MLICGmo6npmC-CJj&amp;controls=0&autoplay=1&loop=1&rel=0"
+                            src="https://www.youtube.com/embed/${mv.movTrailer}?si=MLICGmo6npmC-CJj&amp;controls=0&autoplay=1&mute=1&loop=1&rel=0"
                             title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -211,28 +196,7 @@
             </div>
         </div>
     </main>
-    <footer class="footer">
-        <div class="footer_content">
-            <div class="f_box">
-                <div class="f_logo"><img src="<c:url value='/img/logo.png'/>" alt=""></div>
-                <div class="f_txt1">© 2023 by ML, Inc. All rights reserved.</div>
-            </div>
-            <div class="f_box">
-                <div>Project Name: Movie Like</div>
-                <div class="name">
-                    <div>Team: 문수빈</div>
-                    <div class="f_line"></div>
-                    <div>김주영</div>
-                    <div class="f_line"></div>
-                    <div>송유영</div>
-                    <div class="f_line"></div>
-                    <div>전은서</div>
-                    <div class="f_line"></div>
-                    <div>박정선</div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <jsp:include page="footer.jsp"/>
 </div>
 <script src="<c:url value='/js/detail.js'/>"></script>
 <script>
@@ -359,12 +323,13 @@
                 }
                 const DEFAULT_HEIGHT = 30; // textarea 기본 height
                 const $textarea = document.querySelector('.review_content');
-
-                $textarea.oninput = (event) => {
-                    const $target = event.target;
-                    $target.style.height = 0;
-                    $target.style.height = DEFAULT_HEIGHT + $target.scrollHeight + 'px';
-                };
+                if ($textarea != null) {
+                    $textarea.oninput = (event) => {
+                        const $target = event.target;
+                        $target.style.height = 0;
+                        $target.style.height = DEFAULT_HEIGHT + $target.scrollHeight + 'px';
+                    };
+                }
             },
             error   : function(){
                 alert("error 리뷰 다 불러오기");
@@ -451,7 +416,7 @@
         reviewList.forEach(function(review) {
             let rvId = review.rvId;
             let userId = review.userId;
-            let nickname = review.userNickName;
+            let nickname = review.userNickname;
             let rvScore = review.rvScore;
             let rvContent = review.rvContent.replaceAll(" ", "&nbsp");
             let rvLike = review.rvLike;

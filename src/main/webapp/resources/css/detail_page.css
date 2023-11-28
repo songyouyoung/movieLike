@@ -151,7 +151,7 @@
 }
 #jjim, #check, #like { display: none;}
 /*
-#jjim:checked ~ .jjim_box .click_icon { /* �꾨Ⅴ硫� 鍮④컙�됱쑝濡� �됱긽 蹂�寃�
+#jjim:checked ~ .jjim_box .click_icon { /* 占쎄쑬�ㅿ쭖占� ��몿而숋옙�깆몵嚥∽옙 占쎈맩湲� 癰귨옙野껓옙
     filter: invert(16%) sepia(89%) saturate(6054%) hue-rotate(358deg) brightness(97%) contrast(113%);
     animation: scaleup 1s;
 }
@@ -198,6 +198,18 @@
     gap: 25px;
     overflow-x: auto;
 }
+.actor_box::-webkit-scrollbar {
+    height: 10px;
+}
+.actor_box::-webkit-scrollbar-thumb {
+    background-color: #979797a3;
+    border-radius: 10px;
+}
+.actor_box::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0);
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
 .actor_box1 {
     width: 100px;
 }
@@ -207,6 +219,10 @@
     border-radius: 50%;
     background-color: #fff;
     overflow: hidden;
+    display: flex;
+}
+#wrap.photo img {
+    height: auto !important;
 }
 .photo_name {
     text-align: center;
@@ -273,7 +289,6 @@
     background: #8454eb;
     transition: all 0.3s;
 }
-
 
 .review_list_box {
     color: lightgray;
@@ -694,4 +709,3 @@
 .prev_btn {
     display: none;
 }
-

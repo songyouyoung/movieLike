@@ -13,8 +13,15 @@ $(document).ready(function() {
                                     <input type="text" class="search" placeholder="영화 제목, 감독 배우를 검색해주세요" value="${s_val}">
                                     <div class="s_icon"><img src="../img/search.png" alt="search"></div>
                                 </div>`;
-        $(searchBar + select_r).appendTo(".title_box");
-        if (nowPage == 0){ mvBox_null("해당 검색어에 맞는 영화가 없습니다"); }
+        if(s_val == ""){
+            $(searchBar).appendTo(".title_box");
+            mvBox_null("검색어를 입력해 원하는 영화를 찾아보세요");
+        } else if (nowPage == 0){
+            $(searchBar).appendTo(".title_box");
+            mvBox_null("해당 검색어에 맞는 영화가 없습니다");
+        } else {
+            $(searchBar + select_r).appendTo(".title_box");
+        }
     }else{
         let title = "";
         if(s_title == "all"){ title = `영화 전체 보기`; }
@@ -80,7 +87,7 @@ $(document).ready(function() {
         let keyword = {s_title: s_title, s_val: s_val, s_valName: s_valName, nowPage: nowPage, sort: sort};
         $.ajax({
             type:'POST',       // 요청 메서드
-            url: '/app/list/chart',  // 요청 URI
+            url: '/' + c_path + '/list/chart',  // 요청 URI
             headers : { "content-type": "application/json"}, // 요청 헤더
             dataType : 'text', // 전송받을 데이터의 타입
             data : JSON.stringify(keyword),  // 서버로 전송할 데이터. stringify()로 직렬화 필요.
@@ -127,7 +134,7 @@ $(document).ready(function() {
                                     <div class="movie_year">${year}</div>
                                 <div class="avg_box">
                                     <div class="star_icon"><img src="../img/star.png" alt="★"></div>
-                                    <div class="movie_avg">${movie.movScore}</div>
+                                    <div class="movie_avg">${(movie.movScore).toFixed(1)}</div>
                                     <div class="movie_avg_cnt">( ${(movie.movScoreCnt).toLocaleString("ko")} )</div>
                                 </div>
                             </div>`;

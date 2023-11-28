@@ -22,15 +22,6 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
-    @GetMapping("/login")
-    public String login(HttpServletResponse response, HttpServletRequest request) throws Exception {
-        /* 세션 */
-        HttpSession session = request.getSession();
-        session.setAttribute("liogdin", 2);
-        return "redirect:/";
-    }
-
     @GetMapping("/show/findEmail")
     public String showFindEmail() {
         return "find_id";
@@ -83,5 +74,7 @@ public class UserController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+
     }
+
 }

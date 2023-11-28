@@ -12,4 +12,8 @@
         JOIN genre g ON ug.genrId = g.genrId
         WHERE ug.userId = #{userId}
     </select>
+    <!-- 주영 -->
+    <select id="select" parameterType="int" resultType="genreDto">
+        select * from genre where genreId = #{genreId}
+    </select>
 </mapper>

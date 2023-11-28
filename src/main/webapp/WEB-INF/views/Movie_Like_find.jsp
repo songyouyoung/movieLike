@@ -10,24 +10,11 @@
     <link rel="icon" href="<c:url value='/img/favicon.ico'/>">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <link rel="stylesheet" href="<c:url value='/css/common.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/header.css'/>">
     <link rel="stylesheet" href="<c:url value='/css/find_page.css'/>">
 </head>
 <body>
     <div id="wrap">
-        <header class="header">
-            <div class="main_logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="MovieLike"></a></div>
-            <div class="h_left">
-                <div><a href="<c:url value='/list/chart?title=all'/>">영화 전체보기</a></div>
-                <div><a href="<c:url value='/find/chart'/>">차트</a></div>
-                <div><a href="<c:url value='/find/keyword'/>">키워드 찾기</a></div>
-            </div>
-            <div class="h_right">
-                <div class="login"><a href="./Movie_Like_login.html">로그인</a></div>
-                <div class="line"></div>
-                <div class="join"><a href="./Movie_Like_join.html">회원가입</a></div>
-            </div>
-        </header>
+        <jsp:include page="header.jsp"/>
         <main class="container">
             <div class="content">
                 <div class="content_box">
@@ -285,29 +272,7 @@
                 </div>
             </div>
         </main>
-
-        <footer class="footer">
-            <div class="footer_content">
-                <div class="f_box">
-                    <div class="f_logo"><img src="<c:url value='/img/logo.png'/>"></div>
-                    <div class="f_txt1">© 2023 by ML, Inc. All rights reserved.</div>
-                </div>
-                <div class="f_box">
-                    <div>Project Name: Movie Like</div>
-                    <div class="name">
-                        <div>Team: 문수빈</div> 
-                        <div class="f_line"></div> 
-                        <div>김주영</div>
-                        <div class="f_line"></div> 
-                        <div>송유영</div>
-                        <div class="f_line"></div> 
-                        <div>전은서</div>
-                        <div class="f_line"></div> 
-                        <div>박정선</div>
-                </div>
-            </div>
-        </div>
-        </footer>
+        <jsp:include page="footer.jsp"/>
     </div>
 </body>
 </html>

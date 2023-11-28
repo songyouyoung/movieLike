@@ -65,7 +65,7 @@ public class MovieDaoTest {
 
     @Test
     public void selectBest(){
-        String search = "";
+        String search = "netflix";
         assertTrue(movieDao.selectBest(search) != null);
     }
 

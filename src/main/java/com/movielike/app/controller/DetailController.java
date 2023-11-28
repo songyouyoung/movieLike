@@ -123,12 +123,9 @@ public class DetailController {
 
     @PostMapping("/review/read/all")
     @ResponseBody
-    public ResponseEntity<List<ReviewDto>> readReviewAll(@RequestBody Map<String, Integer> map, HttpSession session, Model model) {
+    public ResponseEntity<List<ReviewDto>> readReviewAll(@RequestBody Map<String, Integer> map, HttpSession session) {
         try {
             List<ReviewDto> rvAllresult = detailService.selectMovieReviewList(map);
-            System.out.println("map: " + map);
-            System.out.println("rvall: " + rvAllresult);
-
             // 위에서 해당 영화의 리뷰 리스트를 가져온다.
             // 리뷰 리스트에서 rvId를 가져오고, 현재 로그인한 userId를 넘겨준다.
             Integer curr_id = (Integer)session.getAttribute("liogdin");

@@ -51,9 +51,7 @@
                     </tr>
                 </table>
             </form>
-            
         </main>
-
     </div>
     <script>
         $(document).on('click', '#find_id', function () {

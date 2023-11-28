@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,11 +30,34 @@ public class UserDao {
         return session.selectOne(namespace + "selectUserInfo", userDto);
     }
 
+    public String selectPassword(int userId) { return session.selectOne(namespace + "selectPassword", userId);}
+
     public int deleteUser(int userId) {
         return session.delete(namespace + "deleteUser", userId);
     }
+    public int insertUser(UserDto userDto) {
+        return session.insert(namespace + "insertUser", userDto);
+    }
 
-//    송유영 추가
+    ///////////////// 주영
+    public int checkId(String email) {
+        return session.selectOne(namespace + "checkId", email);
+    }
+    public int checkNick(String nickname) {return session.selectOne(namespace + "checkNick", nickname);}
+    public int checkPhone(String Phone) {return session.selectOne(namespace + "checkPhone", Phone);}
+    public UserDto selectUser(String userEmail, String userPw) {
+        // MyBatis를 통해 Mapper에서 SQL 구문 실행
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("userEmail", userEmail);
+        paramMap.put("userPw", userPw);
+        UserDto result = session.selectOne(namespace + "chkUserInfo", paramMap);
+        return result;
+    }
+
+    //////////// 수빈
+    public int selectUserId(String email) {return session.selectOne(namespace + "selectUserId", email);}
+
+    //    송유영 추가
 /////////////////////////////////
 ///////// 회원 정보 수정 //////////
 /////////////////////////////////
@@ -60,11 +84,4 @@ public class UserDao {
     public int insertUserGenre(List<GenreDto> genreDto){
         return session.insert(namespace + "insertUserGenre", genreDto);
     }
-
-    ///////////////// 주영
-    public int checkId(String email) {
-        return session.selectOne(namespace + "checkId", email);
-    }
-    public int checkNick(String nickname) {return session.selectOne(namespace + "checkNick", nickname);}
-    public int checkPhone(String Phone) {return session.selectOne(namespace + "checkPhone", Phone);}
 }

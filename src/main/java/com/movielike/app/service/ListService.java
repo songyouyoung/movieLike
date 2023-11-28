@@ -46,6 +46,8 @@ public class ListService {
                 search.put("startAge", (year - age - 10 + 1) + "0101");
                 search.put("endAge", (year - age + 1) + "0101");
             }
+            System.out.println("search : " + search);
+            return movieDao.selectSearchMovAge(search);
         } else if (title.equals("myView") || title.equals("myLike") || title.equals("myScore") ) {
             search.put("userId", userId);
         }

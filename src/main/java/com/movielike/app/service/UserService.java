@@ -5,20 +5,19 @@ import com.movielike.app.dao.MovieDao;
 import com.movielike.app.dao.UserDao;
 import com.movielike.app.domain.GenreDto;
 import com.movielike.app.domain.UserDto;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.asm.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserService {
     @Autowired
     UserDao userDao;
-//    송유영 추가
-    @Autowired
-    MovieDao movieDao;
+    @Autowired //    송유영 추가
+    MovieDao movieDao; //    송유영 추가
 
     public String findEmail(UserDto userDto) {
         return userDao.findEmail(userDto);
@@ -32,7 +31,7 @@ public class UserService {
         return userDao.selectUserInfo(userDto);
     }
 
-//    송유영 추가
+    //    송유영 추가
 /////////////////////////////////
 ///////// 회원 정보 수정 //////////
 /////////////////////////////////
@@ -43,7 +42,7 @@ public class UserService {
         userAll.put("userGenre", movieDao.selectUserGenre(userId));
         return userAll;
     }
-//    회원 정보 수정
+    //    회원 정보 수정
     public String updateUser(Map<String, Object> user){
         String success = "";
         ObjectMapper mapper = new ObjectMapper();
@@ -67,12 +66,13 @@ public class UserService {
             return success;
         }
         int updateUserAll = userDao.updateUser(userDto);
-        System.out.println(updateUserAll);
+        System.out.println("updateUserAll : " + updateUserAll);
         success += updateUserAll <= 0 ? "update," : "";
         int deleteUserGenre = userDao.deleteUserGenre(userDto.getUserId());
-        int insertUserGenre = userDao.insertUserGenre(genreDtoList);
-
+        System.out.println("genreDtoList : " + genreDtoList);
+        if (!genreDtoList.isEmpty()) {
+            int insertUserGenre = userDao.insertUserGenre(genreDtoList);
+        }
         return success;
     }
-
 }

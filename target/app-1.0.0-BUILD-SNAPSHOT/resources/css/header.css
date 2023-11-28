@@ -92,9 +92,11 @@
     }
 }
 @media screen and (max-width: 530px) {
-    
+    .main_logo {
+        width: 200px;
+        margin-top: 10px;
+    }
 }
-
 @media screen and (min-width: 280px) and (max-width: 480px) {
     #wrap {
         width: 100%;
@@ -110,6 +112,7 @@
         height: auto;
         padding: 5px;
         box-sizing: border-box;
+        margin: 0;
     }
     .h_left {
         width: 100%;

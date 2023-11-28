@@ -1,6 +1,6 @@
 package com.movielike.app.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.movielike.app.dao.UserDao;
 import com.movielike.app.domain.*;
 import com.movielike.app.service.MyPageService;
 import com.movielike.app.service.UserService;
@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +20,9 @@ public class MyPageController {
     @Autowired
     MyPageService myPageService;
     @Autowired
-    UserService userService;
+    UserDao userDao;
+    @Autowired // 송유영 추가
+    UserService userService; // 송유영 추가
 
 
     @GetMapping("/myPage")
@@ -30,48 +31,76 @@ public class MyPageController {
             @RequestParam(required = false, defaultValue = "10") int pageSize,
             @RequestParam(required = false, defaultValue = "new") String orderType,
             Model model, HttpSession session) {
-        session.setAttribute("loginNick","hello@hanmail.com");
 
-        Integer loginId = (int)session.getAttribute("liogdin");
+        if(session.getAttribute("liogdin") != null) {
+            Integer loginId = Integer.parseInt(session.getAttribute("liogdin").toString());
 
-        List<ReviewDto> reviews = myPageService.reviewFind(page, pageSize, orderType, loginId);
-        int totalItems = myPageService.reviewCount(loginId);
-        model.addAttribute("reviews_count", reviews.size());
-        System.out.println("review:  : " + reviews);
-        model.addAttribute("review_list", reviews);
+            List<ReviewDto> reviews = myPageService.reviewFind(page, pageSize, orderType, loginId);
+            int totalItems = myPageService.reviewCount(loginId);
+            model.addAttribute("reviews_count", reviews.size());
+            model.addAttribute("review_list", reviews);
 
-        int totalPages = (int) Math.ceil((double) totalItems / pageSize);
+            int totalPages = (int) Math.ceil((double) totalItems / pageSize);
 
+            List<WatchedMovieDto> watchedMovies = myPageService.watchedMovieFind(loginId);
+            model.addAttribute("watched_count", watchedMovies.size());
 
-        List<WatchedMovieDto> watchedMovies = myPageService.watchedMovieFind(loginId);
-        model.addAttribute("watched_count", watchedMovies.size());
+            List<MyListDto> myList = myPageService.myListFind(loginId);
+            model.addAttribute("list_count", myList.size());
 
-        List<MyListDto> myList = myPageService.myListFind(loginId);
-        model.addAttribute("list_count", myList.size());
+            // 평점 차트
+            List<ReviewScoreDto> reviewScore = myPageService.reviewScoreFind(loginId);
+            model.addAttribute("review_score", reviewScore);
 
-        // 평점 차트
-        List<ReviewScoreDto> reviewScore = myPageService.reviewScoreFind(loginId);
-        model.addAttribute("review_score", reviewScore);
+            // 장르 정보
+            List<GenreDto> genreList = myPageService.genreFind(loginId);
+            model.addAttribute("genre_list", genreList);
 
-        // 장르 정보
-        List<GenreDto> genreList = myPageService.genreFind(loginId);
-        model.addAttribute("genre_list", genreList);
+            // 페이징 정보를 전달
+            model.addAttribute("currentPage", page);
+            model.addAttribute("startPage", page - (page - 1) % 10);
+            model.addAttribute("pageSize", pageSize);
+            model.addAttribute("totalPages", totalPages);
+            model.addAttribute("orderType", orderType);
 
-        // 페이징 정보를 전달
-        model.addAttribute("currentPage", page);
-        model.addAttribute("startPage", page - (page - 1) % 10);
-        model.addAttribute("pageSize", pageSize);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("orderType", orderType);
-
-        return "Movie_Like_mypage";
+            return "Movie_Like_mypage";
+        } else {
+            return "redirect: /app";
+        }
     }
 
+    // 수빈
+    @PostMapping("/myPage/selectUserId")
+    @ResponseBody
+    public ResponseEntity<String> modifyInfo(HttpSession httpSession) {
+        Integer loginId = (int)httpSession.getAttribute("liogdin");
+        try {
+            return new ResponseEntity<String>(userDao.selectPassword(loginId), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("실패", HttpStatus.BAD_REQUEST);
+        }
+    }
 
-    // 수빈 + 송유영
+    @PostMapping("/myPage/delete/user")
+    @ResponseBody
+    public ResponseEntity<String> deleteUser(HttpSession session) {
+        try {
+            System.out.println(session.getAttribute("liogdin"));
+            int loginId = (int)session.getAttribute("liogdin");
+
+            myPageService.deleteUserInfo(loginId);
+//            session.invalidate();
+            return new ResponseEntity<String>("성공", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<String>( HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    //송유영 추가
     @PostMapping("/myPage/modifyInfo")
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> modifyInfo(HttpSession httpSession) {
+    public ResponseEntity<Map<String, Object>> modifyInfoAll(HttpSession httpSession) {
         Integer loginId = (int)httpSession.getAttribute("liogdin");
         try {
             return new ResponseEntity<Map<String, Object>>(userService.selectUser(loginId), HttpStatus.OK);
@@ -80,7 +109,6 @@ public class MyPageController {
         }
     }
 
-    //송유영 추가
     @PostMapping("/myPage/modifyUser")
     @ResponseBody
     public ResponseEntity<String> modifyUser(@RequestBody Map<String, Object> user, HttpSession httpSession) {

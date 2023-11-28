@@ -10,25 +10,11 @@
     <link rel="icon" href="<c:url value='/img/favicon.ico'/>">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <link rel="stylesheet" href="<c:url value='/css/common.css'/> ">
-    <link rel="stylesheet" href="<c:url value='/css/header.css'/> ">
     <link rel="stylesheet" href="<c:url value='/css/keyword_page.css'/> ">
 </head>
 <body>
 <div id="wrap">
-    <header class="header">
-        <div class="main_logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="MovieLike"></a></div>
-        <div class="h_left">
-            <div><a href="<c:url value='/list/chart?title=all'/>">영화 전체보기</a></div>
-            <div><a href="<c:url value='/find/chart'/>">차트</a></div>
-            <div><a href="<c:url value='/find/keyword'/>">키워드 찾기</a></div>
-        </div>
-        <div class="h_right">
-            <div class="login"><a href="./Movie_Like_login.html">로그인</a></div>
-            <div class="line"></div>
-            <div class="join"><a href="./Movie_Like_join.html">회원가입</a></div>
-        </div>
-    </header>
-
+    <jsp:include page="header.jsp"/>
     <main class="container" onselectstart="return false">
         <div class="m_head">취향 <span class="m_headKey">#키워드</span> 골라보기</div>
         <!-- <div class="m_tagList"><span class="m_tagItem" data-key="genr/액션">#액션</span></div> -->
@@ -121,7 +107,7 @@
             <tr class="m_tr">
                 <th class="m_th">국가</th>
                 <td class="m_td">
-                    <div class="m_tdList">
+                    <div class="m_tdList country_list">
                         <label for="korea_chk"><span class="m_tdItem">대한민국</span></label>
                         <label for="america_chk"><span class="m_tdItem">미국</span></label>
                         <label for="uk_chk"><span class="m_tdItem">영국</span></label>
@@ -145,7 +131,7 @@
             <tr class="m_tr">
                 <th class="m_th">OTT</th>
                 <td class="m_td">
-                    <div class="m_tdList">
+                    <div class="m_tdList ott_list">
                         <label for="netflex_chk"><span class="m_tdItem">넷플릭스</span></label>
                         <label for="watcha_chk"><span class="m_tdItem">왓챠</span></label>
                         <label for="disnep_chk"><span class="m_tdItem">디즈니+</span></label>
@@ -157,7 +143,7 @@
             <tr class="m_tr">
                 <th class="m_th">리뷰수</th>
                 <td class="m_td">
-                    <div class="m_tdList">
+                    <div class="m_tdList review_cnt_list">
                         <label for="review_500_chk"><span class="m_tdItem">리뷰 500개 이상</span></label>
                         <label for="review_400_chk"><span class="m_tdItem">리뷰 400개
                                     <label for="review_300_chk"></label>이상</span></label>
@@ -168,7 +154,7 @@
             <tr class="m_tr">
                 <th class="m_th">평점</th>
                 <td class="m_td">
-                    <div class="m_tdList">
+                    <div class="m_tdList score_list">
                         <label for="score5_chk"><span class="m_tdItem">5점이상</span></label>
                         <label for="score4_chk"><span class="m_tdItem">4점이상</span></label>
                         <label for="score3_chk"><span class="m_tdItem">3점이상</span></label>
@@ -238,6 +224,7 @@
                 <label for="score4_chk"><span class="m_tagItem" id="score4" data-score = "4">평점 4개 이상</span></label>
                 <label for="score3_chk"><span class="m_tagItem" id="score3" data-score = "3">평점 3개 이상</span></label>
             </div>
+            <div class="chk_delete_btn">X</div>
         </div>
 
         <div class="m_mvBox">
@@ -253,8 +240,8 @@
             </div>
         </div>
         <div class="m_moreBox">more</div>
-
     </main>
+    <jsp:include page="footer.jsp"/>
 </div>
 <script src="<c:url value='/js/keyword.js'/> "></script>
 </body>
