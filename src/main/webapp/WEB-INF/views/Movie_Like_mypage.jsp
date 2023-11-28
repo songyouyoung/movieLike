@@ -244,7 +244,7 @@
                                 <c:if test="${i <= totalPages}">
                                     <div class="num">
                                         <a href="?page=${i}&pageSize=${pageSize}&orderType=${orderType}"
-                                           style="${i eq currentPage ? 'color: #A785EF;' : ''}">  <%-- 송유영 color 수정 --%>
+                                           style="${i eq currentPage ? 'color: #A785EF;' : ''}">
                                                 ${i}
                                         </a>
                                     </div>

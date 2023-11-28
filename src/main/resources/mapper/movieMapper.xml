@@ -60,7 +60,7 @@
                 order by m.movDate desc
             </when>
             <when test="sort == 1">
-                order by m.movScoreCnt, movScore
+                order by m.movScoreCnt desc, movScore desc
             </when>
         </choose>
         limit #{nowPage}, #{pageSize}
@@ -145,10 +145,10 @@
         </if>
         <choose>
             <when test="search == 'search'">
-                ORDER BY m.movSearchCnt
+                ORDER BY m.movSearchCnt desc
             </when>
             <otherwise>
-                ORDER BY m.movScoreCnt, m.movScore
+                ORDER BY m.movScoreCnt desc, m.movScore desc
             </otherwise>
         </choose>
         limit 0, 10;
@@ -240,7 +240,7 @@
                 order by m.movDate desc
             </when>
             <when test="sort == 1">
-                order by m.movScoreCnt, movScore
+                order by m.movScoreCnt desc, movScore desc
             </when>
         </choose>
         limit ${nowPage}, 20

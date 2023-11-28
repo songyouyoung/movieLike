@@ -80,6 +80,7 @@ public class MyPageController {
         }
     }
 
+    //송유영 추가
     @PostMapping("/myPage/modifyUser")
     @ResponseBody
     public ResponseEntity<String> modifyUser(@RequestBody Map<String, Object> user, HttpSession httpSession) {
