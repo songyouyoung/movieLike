@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page session="false" %> <%-- 이 페이지에서는 세션을 새로 생성 안하겠다 라는 뜻 --%>
 <c:set var="sessionId" value="${ pageContext.request.getSession(false).getAttribute('liogdin')!=null? pageContext.request.getSession(false).getAttribute('liogdin'):null}" />
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +26,7 @@
             <div class="detail_content">
                 <div class="detail_top">
                     <div class="movie_title"> ${mv.movName}</div>
-                    <span class="movie_year">${fn:split(mv.movDate, '-')[0]}</span>
+                    <span class="movie_year">${mv.movDate}</span>
                 </div>
                 <div class="movie_country">
                     <c:forEach var="country" items="${mv.countryNameList}" varStatus="status">
@@ -154,7 +153,7 @@
                 <div class="title_txt">예고편 영상</div>
                 <div class="preview">
                     <iframe
-                            src="https://www.youtube.com/embed/${mv.movTrailer}?si=MLICGmo6npmC-CJj&amp;controls=0&autoplay=1&mute=1&loop=1&rel=0"
+                            src="https://www.youtube.com/embed/${mv.movTrailer}?si=MLICGmo6npmC-CJj&amp;controls=1&autoplay=1&mute=1&loop=1&rel=0"
                             title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -433,8 +432,6 @@
             review_result += "<div class='star_icon1'><img src='<c:url value='/img/star.png'/>'></div>"
             review_result += "<div class='movie_avg1'>"+rvScore+"</div>"
             review_result += "<div class='write_date'>"+fullDate+"</div></div>"
-            // review_result += "<input class='review_content' readonly data-rvid="+rvId+" value="+rvContent+">"
-            // review_result += "<textarea class='review_content' readonly data-rvid="+rvId+">"+rvContent+"</textarea>"
             review_result += "<textarea rows='1' class='review_content' readonly data-rvid='"+rvId+"'>"+rvContent+"</textarea>"
             if(userId == "${sessionId}") {
                 review_result += "<div class='update_box'>"
@@ -458,10 +455,8 @@
                 dataType:'text',
                 data: JSON.stringify({movId: movId, rvId: rvId}),
                 success: function (result) {
-                    console.log(result);
-                    console.log(".page_clicked: " + $(".page_clicked").text());
                     showReviewAll($(".page_clicked").text(), $('.select_r').val());
-                    jjimClick();
+                    likeClick();
                 },
                 error: function (request, error) {
                     idChkPopup();

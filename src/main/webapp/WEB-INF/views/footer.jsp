@@ -7,7 +7,7 @@
             <div class="f_txt1">© 2023 by ML, Inc. All rights reserved.</div>
         </div>
         <div class="f_box">
-            <div>Project Name: Movie Like</div>
+            <div class="f_pro_name">Project Name: Movie Like</div>
             <div class="name">
                 <div>Team: 문수빈</div>
                 <div class="f_line"></div>

@@ -157,7 +157,7 @@
     }
     .content_box {
         gap: 20px;
-        padding: 20px 30px;
+        padding: 20px;
     }
     .content {
         width: calc((100% - 20px * 1) / 2);
@@ -182,5 +182,10 @@
     }
     .avg_box {
         margin-top: 5px;
+    }
+    .search_bar {
+        margin: 30px auto;
+        width: 300px;
+        height: 40px;
     }
 }

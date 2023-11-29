@@ -1,9 +1,9 @@
 .header {
     width: 100%;
-    height: 100px;
     background-color: #333;
     padding: 0 30px;
     box-sizing: border-box;
+    overflow: hidden;
 }
 .main_logo {
     width: 250px;
@@ -101,10 +101,10 @@
     #wrap {
         width: 100%;
         height: 100%;
+        overflow: hidden;
     }
     .header {
         position: sticky !important;
-        height: 60px;
         padding: 0;
     }
     .main_logo {
@@ -128,7 +128,7 @@
     .h_right {
         position: absolute;
         top: 0;
-        right: 0;
+        right: 10px;
         overflow: hidden;
         font-size: 12px;
         width: 140px;
@@ -153,10 +153,21 @@
         width: 200%;
         margin: 0 auto;
         padding: 0;
+        display: block;
     }
+    .f_box {
+        float: left;
+        margin: 10px;
+    }
+    .name {
+        transform: translateX(-50%);
+        width: 230px;
+    }
+    .f_pro_name {
+        margin: 12px 10px;
+    }
+
     .f_txt1 {
-        height: auto;
-        float: none;
-        line-height: normal;
+        display: none;
     }
 }

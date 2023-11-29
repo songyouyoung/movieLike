@@ -34,12 +34,10 @@ public class JoinController {
     }
 
     @PostMapping("/signUp/save")
-    public String showMovieSave(UserDto userDto, String userPhone1, String userPhone2, String userPhone3,
+    public String showMovieSave(UserDto userDto, String userPhone2, String userPhone3,
                                 String userBirth1, String userBirth2, String userBirth3, String userNickname, int [] genr_arr) {
-        System.out.println("gneraRR: " + Arrays.toString(genr_arr));
-
         // 번호 합쳐서 넣기
-        String userPhone = userPhone1 + "-" + userPhone2 + "-" + userPhone3;
+        String userPhone = "010-" + userPhone2 + "-" + userPhone3;
         userDto.setUserPhone(userPhone);
 
         //생년월일
@@ -63,7 +61,7 @@ public class JoinController {
             System.out.println(userGenreDtoList);
             userGenreDao.insertUserGenre(userGenreDtoList);
         }
-        return "redirect:/";
+        return "redirect:/login/login";
     }
 
     // 아이디 중복체크 ajax1

@@ -24,43 +24,29 @@
                 <tr>
                     <th class="th1">이메일</th>
                     <th>
-                        <span id="id_ok" class="id_ok">중복된 이메일이 아닙니다.</span>
-                        <span id="id_already" class="id_already">이미 사용중인 이메일입니다.</span>
+                        <span id="id_ok" class="id_ok confirm_sub">사용 가능한 이메일입니다.</span>
+                        <span id="id_already" class="id_already confirm_sub">이미 사용중인 이메일입니다.</span>
                         <input type="email" class="login_input" id="email" name="userEmail" placeholder="이메일 형식으로 입력해주세요" onblur= "checkId()" minlength="10" maxlength="25" >
-<%--                        <div class="warning_box">--%>
-<%--                            <img src="<c:url value='/img/warning.png'/>" alt="" class="warning">--%>
-<%--                            <div id="email_error" class="error">이메일 형식으로 입력해주세요</div>--%>
-<%--                            <div class="failure-message hide">영어 또는 숫자만 가능합니다</div>--%>
-<%--                        </div>--%>
                     </th>
                 </tr>
                 <tr>
                     <th class="th1">비밀번호</th>
                     <th>
-                        <input type="password" name="userPw" id="password" class="login_input" minlength="8" maxlength="16" placeholder=" 비밀번호 - 영문(대,소),숫자,특수문자 포함 8자 이상 " oninput="check_pw();">
-<%--                        <div class="warning_box">--%>
-<%--                            <img src="<c:url value='/img/warning.png'/>" alt="" class="warning">--%>
-<%--                            <div id="password_error" class="error">비밀번호 - 영문(대,소),숫자,특수문자 포함 8자 이상 입력해주세요.</div>--%>
-<%--                        </div>--%>
-                        <div class = "pw-text"> <%-- ajax 텍스트--%>
-                        </div>
+                        <div class="ok-text confirm_sub"></div>
+                        <input type="password" name="userPw" id="password" class="login_input" minlength="8" maxlength="16" placeholder=" 비밀번호 - 영문(대,소),숫자,특수문자 포함 8자 이상 " onblur="check_pw();">
                     </th>
                 </tr>
                 <tr>
                     <th class="th1">비밀번호 확인</th>
                     <th>
-                        <input type="password" name="password_chk" id="password_chk" class="login_input" minlength="8" maxlength="16" placeholder=" 비밀번호 확인 " oninput="check_pw();">
-                        <div class="warning_box">
-                            <img src="<c:url value='/img/warning.png'/>" alt="" class="warning">
-                            <div id="email_error" class="error">비밀번호가 일치하지 않습니다.</div>
-                        </div>
-                        <div class = "ok-text"> <%-- ajax 텍스트--%>
-                        </div>
+                        <input type="password" name="password_chk" id="password_chk" class="login_input" minlength="8" maxlength="16" placeholder=" 비밀번호 확인 " onblur="check_pw();">
                     </th>
                 </tr>
                 <tr>
                     <th class="th1">이름</th>
-                    <th><input type="text" name="userName" id="name" class="login_input" placeholder="이름 입력 (한글만가능)" minlength="2" maxlength="10"></th>
+                    <th>
+                        <input type="text" name="userName" id="name" class="login_input" placeholder="이름 입력 (한글만가능)" minlength="2" maxlength="10" onblur="checkName();">
+                    </th>
                 </tr>
                 <tr>
                     <th class="th1">생년월일</th>
@@ -79,21 +65,20 @@
                 <tr>
                     <th class="th1">전화번호</th>
                     <th>
-                        <input type="text" name="userPhone1" class="phone_input" id="hp1" minlength="2" maxlength="3"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="3자 이상" onblur= "checkph()" >
-                        <input type="text" name="userPhone2" class="phone_input" id="hp2" minlength="3"   maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="4자 이상"  onblur= "checkph()">
-                        <input type="text" name="userPhone3" class="phone_input" id="hp3" minlength="3"  maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="4자 이상"  onblur= "checkph()">
-                        <span id="ph_ok" class="ph_ok">중복된 번호가 아닙니다.</span>
-                        <span id="ph_already" class="ph_already">이미 사용중인 번호입니다.</span>
+                        <span id="ph_ok" class="ph_ok confirm_sub">사용 가능한 번호입니다.</span>
+                        <span id="ph_already" class="ph_already confirm_sub">이미 사용중인 번호입니다.</span>
+                        <input type="text" name="userPhone1" class="phone_input" id="hp1" minlength="3" maxlength="3"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" value="010" disabled>
+                        <input type="text" name="userPhone2" class="phone_input" id="hp2" minlength="4"   maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="4자 이상"  onblur="checkph()">
+                        <input type="text" name="userPhone3" class="phone_input" id="hp3" minlength="4"  maxlength="4" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="4자 이상"  onblur="checkph()">
                     </th>
                 </tr>
                 <tr>
                     <th class="th1">닉네임</th>
-
-                    <th> <p><span id="nick_ok" style="font-size:12px;" class="nick_ok">중복된 닉네임이 아닙니다.</span><span id="nick_already" style="font-size:12px;" class="nick_already">이미 사용중인 닉네임입니다.</span>
-                        <input type="text" name="userNickname" id="nickname" class="login_input" placeholder="한글 초성 및 모음 제외한 2자 이상 16자 이하," onblur= "checkNick()"></th>
+                    <th> <p><span id="nick_ok" style="font-size:12px;" class="nick_ok confirm_sub">사용 가능한 닉네임입니다.</span><span id="nick_already" style="font-size:12px;" class="nick_already">이미 사용중인 닉네임입니다.</span>
+                        <input type="text" name="userNickname" id="nickname" class="login_input" placeholder="한글 초성 및 모음 제외한 2자 이상 16자 이하," onblur="checkNick()"></th>
                 </tr>
                 <tr>
-                    <th class="th1">나의 영화 취향<br>(선택)</th>
+                    <th class="th1">나의 관심 장르<br><span class="genre_sub">(최대 3개 선택)</span></th>
                     <th>
                         <input type="checkbox" name="genre_chk" id="genre1" class="genre_checkbox" data-genr="10749" >
                         <span class="genre_label_chk"><label for="genre1"><span class="genre">로맨스</span></label></span>

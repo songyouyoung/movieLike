@@ -2,18 +2,22 @@ var c_path = (location.pathname).split("/")[1];
 function genreClick(id) {
     location.href = "./list/chart?title=genr&val=" + id
 }
-function changeOrder(obj) {
-    // 최신순, 좋아요순이 바뀌면 아래 url을 호출한다.
-    location.href = "./myPage?orderType=" + obj.value
-}
-function moveList(type, count) {
-    // count가 0이면 이동하지 않는다.
-    if (count == 0) {
-        return;
+function moveList(type,count){
+    let msg =""
+    if(type=="myview"){
+        msg="봤어요";
+    }else{
+        msg="찜";
     }
 
+    if(count==0){
+        Swal.fire('알림', ' 선택영화가 없습니다.', 'warning');
+        return
+    }
     location.href =  "./list/chart?title=" + type;
+
 }
+
 
 $('.btn_myreview a').click(function() {
     event.preventDefault();
@@ -26,7 +30,6 @@ $('.btn_myreview a').click(function() {
 // 송유영 작업
 // 비밀번호 확인하고 회원정보 폼 뜨기
 function updateCheck(str) {
-    // var user_password = prompt('비밀번호를 입력해주세요');
     (async () => {
         const { value: user_password } = await Swal.fire({
             title: '비밀번호를 입력해주세요',
@@ -99,6 +102,7 @@ function closePopup() {
 $(document).keydown(function(event) {
     if ( event.keyCode == 27 || event.which == 27 ) {
         closePopup();
+        location.replace(location.pathname);
     }
 });
 // $(document).mouseup(function (e){
@@ -109,10 +113,48 @@ $(document).keydown(function(event) {
 // });
 
 // 송유영 작업
+function checkIdModify(){
+    let email = $('#email').val();
+    if (!expEmailText.test(email)) {
+        Swal.fire('알림', '이메일 형식으로 입력해주세요.', 'warning').then(() => {
+            $('#email').focus();
+        });
+    }
+}
+function checkphModify(){
+    let hp2 = $('#hp2').val().trim();
+    let hp3 = $('#hp3').val().trim();
+
+    if((hp2.length > 0 && hp3.length > 0) && (hp2.length < 4 || hp3.length < 4) ) {
+        Swal.fire('알림', '010-xxxx-xxxx 형식으로 입력해주세요.', 'warning').then(() => {
+            $('#hp2').focus();
+        });
+    }
+}
+function checkNickModify(){
+    if (!expNameText.test($('#nickname').val())) {
+        Swal.fire('알림', '닉네임이 올바르지 않습니다.\n(한글 초성 및 모음 제외한 2자 이상 16자 이하, 영어 또는 숫자 또는 한글로 구성으로만 가능합니다)', 'warning').then(() => {
+            $('#nickname').focus();
+        });
+    }
+}
+
+
+// 송유영 작업
 // 회원정보 수정
 function updatePopup() {
-    console.log(sendit());
-    if(sendit()) {
+    if ($("#password").val() != $("#password_chk").val()){
+        $("input[name=userPw]").css("background-color", "#FFCECE");
+        $(".ok-text").css("color", "rgb(255, 120, 203)");
+        $(".ok-text").text("비밀번호를 확인해주세요.");
+        return;
+    }else if($("#name").val().trim() == ""){
+        Swal.fire('알림', '이름을 입력해주세요 (한글만 가능)', 'warning').then(() => {
+            $('#name').focus();
+        });
+    }else if($("#hp2").val().length < 4 || $("#hp3").val().length < 4){
+        Swal.fire('알림', '010-xxxx-xxxx 형식으로 입력해주세요.', 'warning');
+    }else if(sendit()) {
         let userPhone = $('#hp1').val() + "-" + $('#hp2').val() + "-" + $('#hp3').val()
         console.log("userPhone : " + userPhone);
         let user = {

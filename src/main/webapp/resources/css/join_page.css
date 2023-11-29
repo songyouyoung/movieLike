@@ -144,58 +144,44 @@ tr {
 #genre19:checked + .genre_label_chk .genre {
     background: #A785EF;
 }
-.warning_box {
-    display: none;
-    overflow: hidden;
-}
-.error {
-    font-size: 12px;
-    text-align: left;
-    padding: 5px;
-    float: left;
-    color: #ff3737b8;
-}
-.warning {
-    width: 20px;
-    height: 20px;
-    float: left;
-}
 .genre_sub {
     font-size: 14px;
 }
-
-
 #id_ok{
     color: #34aadc;
     display: none;
 }
-
 #id_already{
     color: rgb(255, 120, 203);
     display: none;
 }
-
 #nick_ok{
     color: #34aadc;
     display: none;
 }
-
 #nick_already{
     color: rgb(255, 120, 203);
     display: none;
 }
-
 #ph_ok{
     color: #34aadc;
     display: none;
 }
-
 #ph_already{
     color: rgb(255, 120, 203);
     display: none;
 }
-
 p{margin:0;}
+#hp1{
+    background-color: #fff;
+}
+.login_btn:disabled {
+    background-color: rgb(128, 128, 128);
+    cursor: not-allowed;
+}
+.confirm_sub {
+    font-size: 12px;
+}
 
 @media screen and (min-width: 280px) and (max-width: 480px) {
     #wrap {
@@ -233,5 +219,7 @@ p{margin:0;}
     .genre_label_chk {
         font-size: 0.8em;
     }
-
+    input::placeholder {
+        font-size: 10px;
+    }
 }

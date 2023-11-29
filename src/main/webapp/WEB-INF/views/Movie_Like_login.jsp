@@ -18,39 +18,41 @@
         <main class="container">
             <div class="logo"><a href="<c:url value='/'/>"><img src="<c:url value='/img/logo.png'/>" alt="MovieLike"></a></div>
             <form action="<c:url value='/login/login'/>" method="post" onsubmit="return formCheck(this);" class="login_form">
-                    <div class="title">로그인</div>
-                <div id="msg">
-                    <c:if test="${not empty error}">
-                       일치하는 회원정보가 없습니다. <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(error)}</i>
-                    </c:if>
-                    <c:if test="${not empty msg}">
-                        <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(msg)}</i>
-                    </c:if>
-                </div>
+                    <div class="title">
+                        <span>로그인</span>
+                        <div id="msg">
+                            <c:if test="${not empty error}">
+                                일치하는 회원정보가 없습니다. <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(error)}</i>
+                            </c:if>
+                            <c:if test="${not empty msg}">
+                                <i class="fa fa-exclamation-circle"> ${URLDecoder.decode(msg)}</i>
+                            </c:if>
+                        </div>
+                    </div>
+
                 <hr>
                 <div class="input_box">
-                    <input type="text" name="id" value="${cookie.id.value}" class="login_input_text" placeholder="아이디(이메일)을 입력하세요." autofocus autocomplete="username">
+                    <input type="text" name="id" value="${cookie.liogdinc.value}" class="login_input_text" placeholder="아이디(이메일)을 입력하세요." autofocus autocomplete="username">
                 </div>
                 <div class="input_box">
                     <input type="password" name="pw" value="" id="pwInput" class="login_input_text" placeholder="비밀번호를 입력하세요" autocomplete="current-password">
                 </div>
                 <div class="input_box id_chk_box">
                     <label>
-                        <input type="checkbox" class="input_checkbox" name="rememberId" ${empty cookie.id.value?"":"checked"}>
+                        <input type="checkbox" class="input_checkbox" name="rememberId" ${empty cookie.liogdinc.value?"":"checked"}>
                         아이디 기억하기
                     </label>
                 </div>
                 <div class="input_box"><input type="submit" class="login_input input_btn" value="로그인"></div>
                 <div class="id_search_box">
-                    <div class="id_search">아이디 찾기</div>
+                    <div class="id_search"><a href="<c:url value='/show/findEmail'/>">아이디 찾기</a></div>
                     <div class="h_line"></div>
-                    <div class="id_search">비밀번호 찾기</div>
+                    <div class="id_search"><a href="<c:url value='/show/findPassword'/>">비밀번호 찾기</a></div>
                     <div class="h_line"></div>
                     <div class="id_search"><a href="<c:url value='/signUp/add'/>">회원가입</a></div>
                 </div>
             </form>
         </main>
-        <jsp:include page="footer.jsp"/>
     </div>
     <script>
         function formCheck(frm){

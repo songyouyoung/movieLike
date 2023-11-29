@@ -47,9 +47,6 @@ public class LoginController {
 
             // 로그인 실패 시 에러 메시지를 모델에 추가하고 로그인 폼으로 이동
             if (!"success".equals(loginResult)) {
-
-                System.out.println("login fail: " + loginResult);
-
                 model.addAttribute("error", loginResult);
                 return "Movie_Like_login";
             }
