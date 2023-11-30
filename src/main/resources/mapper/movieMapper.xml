@@ -234,7 +234,6 @@
         </choose>
         limit ${nowPage}, 20
     </select>
-<!--    송유영 추가 -->
 <!--  리스트페이지 - 나이별  -->
     <select id="selectSearchMovAge" parameterType="map" resultType="movieDto">
         select DISTINCT m.movId, m.movName, m.movDate, m.movPoster, (m.movScore / m.movScoreCnt) movScore, m.movScoreCnt, w.movCount
@@ -289,7 +288,6 @@
     <update id="updateMovieScore" parameterType="map">
         update movie set movScore = movScore + #{rvScore}, movScoreCnt = movScoreCnt + #{pmOne} where movId = #{movId}
     </update>
-    <!-- 수빈    -->
     <update id="updateScore" parameterType="java.util.List">
         <foreach collection="list" item="item" separator=";" index="index">
             update movie

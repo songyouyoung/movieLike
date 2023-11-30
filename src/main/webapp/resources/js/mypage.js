@@ -230,7 +230,6 @@ function unregister() {
             input: 'password',
             confirmButtonColor: "#a785efb8"
         });
-        // 송유영 추가
         if (user_password == undefined){
             return;
         }
@@ -286,108 +285,7 @@ function unregister() {
 
 }
 
-// 송유영 주석. 생년월일 변경 안할거라 필요없음.
-// // 생년월일 선택 부분
-// // 년
-// const birthYearEl = document.querySelector('#birth_year')
-// let today = new Date();
-// let year = today.getFullYear();
-//
-// isYearOptionExisted = false;
-// birthYearEl.addEventListener('focus', function() {
-//     if(!isYearOptionExisted) {
-//         isYearOptionExisted = true;
-//         for(var i = 1940; i<=year; i++) {
-//             const YearOption = document.createElement('option')
-//             YearOption.setAttribute('value', i)
-//             YearOption.innerText = i
-//
-//             this.appendChild(YearOption);
-//         }
-//     }
-// });
-//
-// // 월
-// var birthMonthEl = document.querySelector('#birth_month')
-//
-// // 일
-// var birthDateEl = document.querySelector('#birth_date')
-//
-// isMonthOptionExisted = false;
-// birthMonthEl.addEventListener('focus', function() {
-//     if(!isMonthOptionExisted) {
-//         isMonthOptionExisted = true;
-//         for(i=1; i<=12;i++) {
-//             const MonthOption = document.createElement('option')
-//             MonthOption.setAttribute('value', i)
-//             MonthOption.innerText = i
-//
-//             this.appendChild(MonthOption);
-//         }
-//     }
-// });
-//
-//
-// birth_month.addEventListener('change', function() {
-//     var chk_month = birth_month.options[birth_month.selectedIndex].value;
-//
-//     isDateOptionExisted = false;
-//     if(chk_month == 2) {
-//         birthDateEl.addEventListener('focus', function() {
-//             if(!isDateOptionExisted) {
-//                 $('#birth_date').empty(); // .empty() : 지정한 요소의 하위 요소를 제거
-//                 isDateOptionExisted = true;
-//                 for(i=1; i<=28;i++) {
-//                     const DateOption = document.createElement('option')
-//                     DateOption.setAttribute('value', i)
-//                     DateOption.innerText = i
-//
-//                     this.appendChild(DateOption);
-//                 }
-//                 isDateOptionExisted = false;
-//             }
-//         });
-//     }
-//     else if(chk_month == 4 || chk_month == 6 || chk_month == 9 || chk_month == 11) {
-//         isDateOptionExisted = false;
-//         birthDateEl.addEventListener('focus', function() {
-//             if(!isDateOptionExisted) {
-//                 $('#birth_date').empty();
-//                 isDateOptionExisted = true;
-//                 for(i=1; i<=30;i++) {
-//
-//                     var DateOption = document.createElement('option')
-//
-//                     DateOption.setAttribute('value', i)
-//                     DateOption.innerText = i
-//
-//                     this.appendChild(DateOption);
-//                 }
-//                 isDateOptionExisted = false;
-//             }
-//         });
-//     }
-//     else {
-//         isDateOptionExisted = false;
-//         birthDateEl.addEventListener('focus', function() {
-//             if(!isDateOptionExisted) {
-//                 $('#birth_date').empty();
-//                 isDateOptionExisted = true;
-//                 for(i=1; i<=31;i++) {
-//                     const DateOption = document.createElement('option')
-//                     DateOption.setAttribute('value', i)
-//                     DateOption.innerText = i
-//
-//                     this.appendChild(DateOption);
-//                 }
-//                 isDateOptionExisted = false;
-//             }
-//         });
-//     }
-// })
-
 // 차트
-
 function chartInit(data) {
     const ctx = document.getElementById('myChart');
     const chart = new Chart(ctx, {

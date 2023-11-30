@@ -31,7 +31,6 @@ public class DetailController {
     public String showMovieDetail(Integer movId, Model model, HttpSession session) {
         if(session.getAttribute("liogdin") != null) {
             int currId = (Integer)session.getAttribute("liogdin");
-
             // 해당 영화에 찜 눌렀는지 확인
             MyListDto myListDto = new MyListDto(movId, currId);
             if(detailService.checkMyList(myListDto) == 1) {
@@ -113,10 +112,10 @@ public class DetailController {
             }
             reviewDto.setUserId(curr_id);
             detailService.writeReview(reviewDto);
-            return new ResponseEntity<String> ("봤어요 통신 성공!", HttpStatus.OK); // 200
+            return new ResponseEntity<String> ("리뷰 등록 통신 성공!", HttpStatus.OK); // 200
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<String> ("봤어요 통신 실패!", HttpStatus.BAD_REQUEST); // 400
+            return new ResponseEntity<String> ("리뷰 등록 실패!", HttpStatus.BAD_REQUEST); // 400
         }
     }
 
@@ -206,21 +205,6 @@ public class DetailController {
         }
     }
 
-//    @PostMapping("/review/confirm/{movId}")
-//    @ResponseBody
-//    public ResponseEntity<Integer> confirmReview(@PathVariable Integer movId, HttpSession session) {
-//        try {
-//            Map<String, Integer> map = new HashMap<>();
-//            map.put("movId", movId);
-//            map.put("userId", (Integer) session.getAttribute("liogdin"));
-//            System.out.println("movId" + movId);
-//            return new ResponseEntity<Integer> (1, HttpStatus.OK); // 200
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<Integer> (HttpStatus.BAD_REQUEST); // 400
-//        }
-//    }
-
     @PostMapping("/review/confirm")
     @ResponseBody
     public ResponseEntity<Integer> confirmReview(@RequestBody Integer movId, HttpSession session) {
@@ -236,5 +220,4 @@ public class DetailController {
             return new ResponseEntity<Integer> (HttpStatus.BAD_REQUEST); // 400
         }
     }
-
 }

@@ -28,7 +28,6 @@ public class DetailService {
         movieDto.setCountryNameList(movieDao.selectMovieCountry(movId));
         movieDto.setGenreList(movieDao.selectMovieGenre(movId));
         movieDto.setOttList(movieDao.selectMovieOtt(movId));
-        movieDto.setOttList(movieDao.selectMovieOtt(movId));
         movieDto.setActorList(movieDao.selectMoviePerson(movId));
         movieDao.updateSearchCnt(movId);
         return movieDto;

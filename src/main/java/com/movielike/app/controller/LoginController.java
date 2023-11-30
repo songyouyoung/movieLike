@@ -22,9 +22,12 @@ public class LoginController {
     @Autowired
     private UserDao userDao;
 
+    private String movId = "";
+
     // 로그인 폼을 보여주는 메서드
     @GetMapping("/login")
-    public String loginForm() {
+    public String loginForm(String prevMovId) {
+        movId = prevMovId;
         return "Movie_Like_login";
     }
 
@@ -40,7 +43,6 @@ public class LoginController {
     @PostMapping("/login")
     public String login(String id, String pw, String Nickname, boolean rememberId, Model model,
                         HttpServletResponse response, HttpServletRequest request, String prevPage) {
-
         try {
             // 로그인 체크 메서드 호출
             String loginResult = loginChk(id, pw);
@@ -72,9 +74,13 @@ public class LoginController {
             // 출력: 이메일 추가
             String storedeEmail = (String) session.getAttribute("liogdine");
             System.out.println("Logged in with email " + storedeEmail);
+            System.out.println("prevPage "+ prevPage);
 
             // 이전 페이지로 리다이렉트 또는 기본적으로 홈페이지로 리다이렉트
             prevPage = (prevPage == null || prevPage.trim().isEmpty()) ? "/" : prevPage.trim().replace(",", "");
+            if(movId != null && !("".equals(movId))) {
+                prevPage = "http://localhost:8080/app/movie/detail?movId="+ movId;
+            }
             return "redirect:" + prevPage;
         } catch (Exception e) {
             // 예외 처리

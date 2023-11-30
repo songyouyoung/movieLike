@@ -97,7 +97,7 @@
                 <div class="login_page_move_icon"><img src="<c:url value='/img/login_page_move.png'/>" alt=""></div>
                 <div class="login_txt">로그인이 필요한 기능입니다.</div>
                 <div class="popup_btn_box">
-                    <div class="popup_btn"><a href="<c:url value='/login/login'/>">로그인</a></div>
+                    <div class="popup_btn"><a href="<c:url value='/login/login?prevMovId=${mv.movId}'/>">로그인</a></div>
                     <div class="popup_btn" onclick="closeLoginPopup()">취소</div>
                 </div>
                 <div class="popup_close_btn" onclick="closeLoginPopup()"><img src="<c:url value='/img/close_btn.png'/>" alt=""></div>
@@ -272,9 +272,7 @@
                                         setReviewPage();
                                         $('.select_r option').prop("selected", "");
                                         $('option[value=latest]').prop("selected", true);
-
                                         maxReviewCnt = maxReviewCnt < 1 ? 1 : maxReviewCnt;
-
                                         showPageNation();
                                         $("input[name='star_rd']").prop('checked', false);
                                         $("input[name='reviewContent']").prop("value", "");
@@ -305,7 +303,6 @@
     /* 리뷰 범위 불러오기 */
     let showReviewAll = (nowPage, mode) => {
         mode = mode == "like" ? 1 : 0;
-        console.log("show: " + $(this));
         nowPage = (+nowPage - 1) * 10;
         $.ajax({
             type:'POST',

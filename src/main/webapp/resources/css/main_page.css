@@ -13,7 +13,7 @@
     background-color: #222;
     padding-bottom: 200px;
 }
-/* 硫붿씤踰좊꼫 */
+/* 筌롫뗄�ㅸ린醫딄섐 */
 .main_banner {
     position: relative;
     width: 100%;
@@ -315,13 +315,13 @@
 }
 .review_txt {
     margin: 10px 0 20px;
-    height: auto;
+    height: 100px;
     line-height: 25px;
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 7;
+    -webkit-line-clamp: 4;
 }
 .review_right_box {
     float: left;

@@ -33,7 +33,6 @@
                     <div class="my_change_btn" onclick="updateCheck('')">개인정보변경</div> <%-- 송유영 수정 onclick 메서드 --%>
                     <div class="my_end_btn" onclick="unregister()">회원탈퇴</div>
                 </div>
-                <%--                    송유영 수정--%>
             </div>
             <div id="popup" class="popup">
                 <div class="popup_content">

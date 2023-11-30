@@ -85,11 +85,9 @@ public class MyPageController {
     @ResponseBody
     public ResponseEntity<String> deleteUser(HttpSession session) {
         try {
-            System.out.println(session.getAttribute("liogdin"));
             int loginId = (int)session.getAttribute("liogdin");
-
             myPageService.deleteUserInfo(loginId);
-//            session.invalidate();
+            session.invalidate();
             return new ResponseEntity<String>("성공", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
