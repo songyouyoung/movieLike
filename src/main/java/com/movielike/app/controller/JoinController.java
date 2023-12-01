@@ -64,7 +64,7 @@ public class JoinController {
         return "redirect:/login/login";
     }
 
-    // 아이디 중복체크 ajax1
+    // 아이디 중복체크 ajax
     @PostMapping("/checkId")
     @ResponseBody
     public int checkId(@RequestParam("userEmail") String email) {
@@ -72,7 +72,7 @@ public class JoinController {
         return cnt;
     }
 
-    // 닉네임 중복체크 ajax2
+    // 닉네임 중복체크 ajax
     @PostMapping("/checkNick")
     @ResponseBody
     public int checkNick (@RequestParam("userNickname") String nickname) {

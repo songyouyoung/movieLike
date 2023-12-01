@@ -22,7 +22,7 @@
         <div class="content">
             <div class="my_genre">
                 <c:forEach var="genre" items="${genre_list}">
-                    <input type="button" class="genre" value="#${genre.genrName}" onclick="genreClick(${genre.genrId})">
+                    <input type="button" class="genre" value="#${genre.genrName}" onclick="genreClick(${genre.genrId}, '${genre.genrName}')">
                 </c:forEach>
             </div>
             <div class="nickname_txt">${sessionScope.liogdinn}</div>
@@ -30,7 +30,7 @@
             <div class="update_icon">
                 <img src="<c:url value='/img/set.png'/>" alt="" class="icon_hover">
                 <div class="update_hover_box">
-                    <div class="my_change_btn" onclick="updateCheck('')">개인정보변경</div> <%-- 송유영 수정 onclick 메서드 --%>
+                    <div class="my_change_btn" onclick="updateCheck('')">개인정보변경</div>
                     <div class="my_end_btn" onclick="unregister()">회원탈퇴</div>
                 </div>
             </div>
@@ -231,8 +231,8 @@
     </c:forEach>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script> var sessionId = '<c:out value="${sessionId}"/>'; </script> <%-- 송유영 추가 --%>
-<script src="<c:url value='/js/join.js'/>" defer></script> <%-- 송유영 추가 --%>
+<script> var sessionId = '<c:out value="${sessionId}"/>'; </script>
+<script src="<c:url value='/js/join.js'/>" defer></script>
 <script src="<c:url value='/js/mypage.js'/>"></script>
 <script>
     $(window).load(function(){

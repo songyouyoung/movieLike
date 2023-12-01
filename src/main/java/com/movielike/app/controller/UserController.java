@@ -54,6 +54,7 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<String> showFindPassword(@RequestBody UserDto userDto) {
         try {
+            System.out.println(userDto.getUserName() + " " + userDto.getUserEmail() + " " + userDto.getUserPhone());
             if(userService.selectUserInfo(userDto) == 1) {
                 return new ResponseEntity<String>("ok!",HttpStatus.OK);
             } else {

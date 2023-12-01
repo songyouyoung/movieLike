@@ -16,8 +16,8 @@ import java.util.Map;
 public class UserService {
     @Autowired
     UserDao userDao;
-    @Autowired //    송유영 추가
-    MovieDao movieDao; //    송유영 추가
+    @Autowired
+    MovieDao movieDao;
 
     public String findEmail(UserDto userDto) {
         return userDao.findEmail(userDto);
@@ -31,7 +31,6 @@ public class UserService {
         return userDao.selectUserInfo(userDto);
     }
 
-    //    송유영 추가
 /////////////////////////////////
 ///////// 회원 정보 수정 //////////
 /////////////////////////////////

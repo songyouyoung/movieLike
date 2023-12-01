@@ -38,7 +38,6 @@ public class WatchedMovieDao {
         return session.selectList(namespace + "selectWatchedMovie", watchedMovieDto);
     }
 
-    ////////// 수빈
     public int deleteAllWatchedMovie(int userId) {
         return session.delete(namespace + "deleteAllWatchedMovie", userId);
     }

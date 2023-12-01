@@ -39,7 +39,6 @@ public class UserDao {
         return session.insert(namespace + "insertUser", userDto);
     }
 
-    ///////////////// 주영
     public int checkId(String email) {
         return session.selectOne(namespace + "checkId", email);
     }
@@ -54,10 +53,7 @@ public class UserDao {
         return result;
     }
 
-    //////////// 수빈
     public int selectUserId(String email) {return session.selectOne(namespace + "selectUserId", email);}
-
-    //    송유영 추가
 /////////////////////////////////
 ///////// 회원 정보 수정 //////////
 /////////////////////////////////

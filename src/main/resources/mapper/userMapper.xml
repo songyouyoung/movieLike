@@ -20,7 +20,6 @@
         delete from user where userId = #{userId}
     </delete>
 
-    <!--  주영   -->
     <select id="selectUserId" parameterType="String" resultType="int">
         select userId from user where userEmail = #{userEmail}
     </select>
@@ -51,7 +50,6 @@
         SELECT * FROM user WHERE userEmail = #{userEmail} AND userPw = #{userPw}
     </select>
 
-    <!--    송유영 추가-->
     <!-- ....................................... -->
     <!-- ..............회원 정보 수정............. -->
     <!-- ....................................... -->

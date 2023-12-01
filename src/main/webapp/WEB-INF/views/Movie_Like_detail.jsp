@@ -419,8 +419,8 @@
             let rvLikeChk = review.rvLikeChk ? "like_color" : "";
             let dt = new Date(review.rvRegDate);
             let year=dt.getFullYear();
-            let mon=dt.getMonth()+1;
-            let date=dt.getDate();
+            let mon=dt.getMonth() + 1 < 10 ? "0"+ dt.getMonth() + 1 : dt.getMonth() +1 ;
+            let date=dt.getDate() < 10 ? "0"+ dt.getDate() : dt.getDate();
             let fullDate = year + "-" + mon + "-" + date;
             review_result += "<div class='review_list_box'>"
             review_result += "<div class='list_line'></div>"

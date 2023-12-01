@@ -1,6 +1,6 @@
 var c_path = (location.pathname).split("/")[1];
-function genreClick(id) {
-    location.href = "./list/chart?title=genr&val=" + id
+function genreClick(id, name) {
+    location.href = "./list/chart?title=genr&val=" + id + "&valName=" + name
 }
 function moveList(type,count){
     let msg =""
@@ -27,7 +27,6 @@ $('.btn_myreview a').click(function() {
     }, 1000)
 })
 
-// 송유영 작업
 // 비밀번호 확인하고 회원정보 폼 뜨기
 function updateCheck(str) {
     (async () => {
@@ -112,7 +111,6 @@ $(document).keydown(function(event) {
 //   }
 // });
 
-// 송유영 작업
 function checkIdModify(){
     let email = $('#email').val();
     if (!expEmailText.test(email)) {
@@ -139,8 +137,6 @@ function checkNickModify(){
     }
 }
 
-
-// 송유영 작업
 // 회원정보 수정
 function updatePopup() {
     if ($("#password").val() != $("#password_chk").val()){

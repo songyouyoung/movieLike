@@ -96,7 +96,6 @@ function sendit() {
         nickname.focus();
         return false;
     }
-    //송유영 추가
     return true;
 }
 

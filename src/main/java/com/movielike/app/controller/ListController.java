@@ -60,8 +60,6 @@ public class ListController {
         String userId = String.valueOf((Integer)session.getAttribute("liogdin"));
         nowPage = (nowPage == null? "0" : nowPage);
         sort = (sort == null? "0" : sort);
-
-        // 송유영 추가
         val = (val == null ? null : val.replaceAll(" ", ""));
         List<MovieDto> movieList = service.listSearch(title, val, userId, nowPage, sort);
         System.out.println("movieList : " + movieList);

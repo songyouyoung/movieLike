@@ -1,31 +1,23 @@
 #wrap img {
     width: 100%; height: 100%;
 }
-.header {
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 9999;
-}
+
 .container {
     width: 100%;
     overflow: hidden;
     background-color: #222;
     padding-bottom: 200px;
 }
-/* 筌롫뗄�ㅸ린醫딄섐 */
 .main_banner {
     position: relative;
     width: 100%;
     height: 44vw;
-    margin-top: 100px;
     overflow: hidden;
 }
 .mainbanner_list a {
     display: block;
     width: 100%;
     height: 100%;
-
     position: absolute;
     left: 0;
     top: 0;
@@ -130,7 +122,6 @@
     background-color: #fff;
     transition: 0.2s ease;
 }
-
 
 .search_bar {
     width: 950px;
@@ -410,9 +401,6 @@
         height: 50px;
         margin-top: -6px;
     }
-    /* .recommended_item_content {
-        height: 100%;
-    } */
     .swiper {
         width: 75%;
     }

@@ -65,9 +65,6 @@ public class ReviewDao {
         return session.selectOne(namespace + "selectReviewScore", rvId);
     }
 
-    ////////////////// 정선
-
-
     public List<ReviewDto> selectReview(HashMap param) {
         return session.selectList(namespace + "selectReview", param);
     }
@@ -80,8 +77,6 @@ public class ReviewDao {
         return session.selectList(namespace + "selectReviewGroupByScore", reviewDto);
     }
 
-
-    ////// 수빈
     public List<Map<String, Integer>> selectUserReview(int userId) {
         return session.selectList(namespace + "selectUserReview", userId);
     }

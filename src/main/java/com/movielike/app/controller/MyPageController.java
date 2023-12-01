@@ -21,8 +21,8 @@ public class MyPageController {
     MyPageService myPageService;
     @Autowired
     UserDao userDao;
-    @Autowired // 송유영 추가
-    UserService userService; // 송유영 추가
+    @Autowired
+    UserService userService;
 
 
     @GetMapping("/myPage")
@@ -69,7 +69,6 @@ public class MyPageController {
         }
     }
 
-    // 수빈
     @PostMapping("/myPage/selectUserId")
     @ResponseBody
     public ResponseEntity<String> modifyInfo(HttpSession httpSession) {
@@ -95,7 +94,6 @@ public class MyPageController {
         }
     }
 
-    //송유영 추가
     @PostMapping("/myPage/modifyInfo")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> modifyInfoAll(HttpSession httpSession) {
