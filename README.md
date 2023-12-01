@@ -15,8 +15,8 @@
 	5. 로그인 세션 없을 시 로그인 / 회원가입, 있을 시 로그아웃 / 마이페이지 보임.
 
    - 메인 페이지
-        <img src = "https://github.com/songyouyoung/movieLike/assets/144079150/d8c73b20-2639-44d3-b2ae-3ee66f73f06e">
-	<img src = "https://github.com/songyouyoung/movieLike/assets/144079150/57980a38-b8cb-4e6c-b25c-31fb6d9bdae9">
+        <br><img src = "https://github.com/songyouyoung/movieLike/assets/144079150/d8c73b20-2639-44d3-b2ae-3ee66f73f06e">
+	<br><img src = "https://github.com/songyouyoung/movieLike/assets/144079150/57980a38-b8cb-4e6c-b25c-31fb6d9bdae9">
 	1. 메인 배너 : 로그인 세션 있을 시 해당 회원의 관심 장르에 맞춰 최신 영화 출력, 로그인 세션 없을 시 최신 영화 출력.
 	2. 검색바 : 돋보기 버튼 클릭, 엔터 쳤을 시 검색어에 맞는 영화 리스트 페이지로 이동.
 	3. 인기 순위, 넷플릭스 인기 순위 : 영화 평점 준 사람 수, 영화 평점으로 정렬해서 Top 10개 출력.
@@ -25,7 +25,7 @@
 	6. 시리즈 : 시리즈 별 최신 순으로 정렬해서 Top 6개 출력.
 
    - 리스트 페이지
-     	<img src = "https://github.com/songyouyoung/movieLike/assets/144079150/b11a99dc-6147-44fb-9732-6dd98d793435">
+     	<br><img src = "https://github.com/songyouyoung/movieLike/assets/144079150/b11a99dc-6147-44fb-9732-6dd98d793435">
 	1. 메인 -> 검색 : 검색어에 맞는 영화 출력. 영화 제목, 배우, 감독 다 조회 가능. 
 	2. 메인 -> 시리즈 더보기 : 선택한 시리즈에 맞는 영화 출력. 
 	3. 차트 -> 분류 : 선택한 분류에 맞는 영화 출력. 
@@ -37,7 +37,7 @@
 	7. 무한 스크롤로 영화 추가로 출력. 
 
    - 키워드 찾기 페이지
-     	<img src = "https://github.com/songyouyoung/movieLike/assets/144079150/0f50f109-4d7a-41e8-8282-4fb88cef9a0b">
+     	<br><img src = "https://github.com/songyouyoung/movieLike/assets/144079150/0f50f109-4d7a-41e8-8282-4fb88cef9a0b">
 	1. 장르별, 국가별, OTT별, 리뷰 수, 평점 별로 원하는 키워드 클릭 시 비동기방식으로 즉시 영화 리스트 출력
 	2. 리뷰 수, 평점은 하나만 선택 가능. 
 	3. 키워드 선택 시 배경색 바뀌고, 아래에 선택한 태그들 출력. 
@@ -45,7 +45,7 @@
 	5. 영화 출력 후 최 하단에 더보기 버튼 생김. 더보기 버튼 클릭 시 영화 추가로 출력. 
 
    - 차트 페이지
-     	<img src = "https://github.com/songyouyoung/movieLike/assets/144079150/7524279a-14b8-432d-8efe-94bb3c547941">
+     	<br><img src = "https://github.com/songyouyoung/movieLike/assets/144079150/7524279a-14b8-432d-8efe-94bb3c547941">
 	1. 장르별, 국가별, OTT별, 연도별, 나이대별로 나누어서 해당 분류에 대항하는 리스트 페이지로 이동. 
 
    - 상세 페이지
@@ -58,7 +58,7 @@
 	7. 자신이 좋아요 누른 댓글만 좋아요 이미지에 빨간색 표시. 
 
    - 마이 페이지
-     	<img src = "https://github.com/songyouyoung/movieLike/assets/144079150/82f035a5-978f-4bc4-99c5-470fa69ef5d4">
+     	<br><img src = "https://github.com/songyouyoung/movieLike/assets/144079150/82f035a5-978f-4bc4-99c5-470fa69ef5d4">
 	1. 회원가입 시 선택한 선호 장르 태그 출력. 클릭 시 해당 장르 영화 리스트 페이지로 이동.
 	2. 자신이 작성한 리뷰 수 출력. 클릭 시 하단 자신이 작성한 리뷰 리스트로 이동.
 	3. 자신이 본 영화 수, 찜한 영화 수 출력. 클릭 시 자신이 본, 찜한 영화 리스트 페이지로 이동. 
